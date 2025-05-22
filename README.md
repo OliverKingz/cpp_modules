@@ -24,7 +24,7 @@ Keywords
 
 <div align="right">
 
-Made by: [![Contributors Display](https://badges.pufler.dev/contributors/oliverkingz/42-CPP-Modules?size=30&padding=5&perRow=10&bots=true)](https://github.com/OliverKingz)
+Made by: [![Contributors Display](https://badges.pufler.dev/contributors/OliverKingz/cpp_modules?size=30&padding=5&perRow=10&bots=true)](https://github.com/OliverKingz)
 
 </div>
 
@@ -33,11 +33,9 @@ Made by: [![Contributors Display](https://badges.pufler.dev/contributors/oliverk
 ## Index
 
 - [Overview](#overview)
+- [General Rules for C++ Modules](#general-rules-for-c++-modules)
 - [Module Features](#module-features)
-- [Requirements](#requirements)
 - [How to Run](#how-to-run)
-  - [Example Usage](#example-usage)
-  - [Testing](#testing)
 - [What I Learned](#what-i-learned)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
