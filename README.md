@@ -33,7 +33,7 @@ Made by: [![Contributors Display](https://badges.pufler.dev/contributors/OliverK
 ## Index
 
 - [Overview](#overview)
-- [General Rules for C++ Modules](#general-rules-for-c++-modules)
+- [General Rules for C++ Modules](#general-rules-for-c-modules)
 - [Module Features](#module-features)
 - [How to Run](#how-to-run)
 - [What I Learned](#what-i-learned)
