@@ -1,8 +1,20 @@
 #include <iostream>
+#include <cctype>
 
-int main()
+int main(int argc, char *argv[])
 {
-	std::cout << "Hello" << std::endl;
+	if (argc < 2)
+		return (std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n", 0);
+
+	for (int i = 1; i < argc; i++)
+	{
+		for (int j = 0; argv[i][j]; j++)
+		{
+			std::cout << static_cast<char>(toupper(argv[i][j]));
+		}
+		std::cout << " ";
+	}
+	std::cout << std::endl;
+
 	return 0;
 }
-
