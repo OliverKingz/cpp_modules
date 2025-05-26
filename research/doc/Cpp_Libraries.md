@@ -15,6 +15,10 @@ wcout The same as cout but outputs wide char (wchar_t) data rather than char dat
 
 ---
 
+Add for cctype
+
+---
+
 C++ string Functions
 The <string> library has many functions that allow you to perform tasks on strings.
 

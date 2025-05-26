@@ -4,11 +4,11 @@ OBJ_DIR := obj/
 
 # **************************************************************************** #
 # PROJECT
-NAME := megaphone
+NAME := awesome_phonebook
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := megaphone
+SRC_FILES := awesome_phonebook
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
