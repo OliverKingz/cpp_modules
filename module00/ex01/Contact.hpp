@@ -1,29 +1,26 @@
 #ifndef CONTACT_HPP
-#define CONTACT_HPP
+# define CONTACT_HPP
 
-#include <string>
+# include <string>
 
 class Contact
 {
-private:
+  private:
 	std::string firstName;
 	std::string lastName;
 	std::string nickname;
 	std::string phoneNumber;
 	std::string darkestSecret;
 
+  public:
 	// Constructor
-	Contact(const std::string &fName, const std::string &lName, const std::string &nName, const std::string &phoneNbr, const std::string &darkSecret)
-	{
-		firstName = fName;
-		lastName = lName;
-		nickname = nName;
-		phoneNumber = phoneNbr;
-		darkestSecret = darkSecret;
-	}
 
-public:
+	Contact(const std::string &fName, const std::string &lName,
+		const std::string &nName, const std::string &phoneNbr,
+		const std::string &darkSecret);
+
 	// Setters
+
 	void setFirstName(const std::string &fName);
 	void setLastName(const std::string &lName);
 	void setNickname(const std::string &nName);
@@ -31,11 +28,13 @@ public:
 	void setDarkestSecret(const std::string &darkSecret);
 
 	// Getters
+
 	std::string getFirstName() const;
 	std::string getLastName() const;
 	std::string getNickname() const;
 	std::string getPhoneNumber() const;
 	std::string getDarkestSecret() const;
+
 }
 
 #endif
