@@ -8,7 +8,7 @@ NAME := awesome_phonebook
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := awesome_phonebook
+SRC_FILES := awesome_phonebook PhoneBook Contact
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))

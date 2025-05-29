@@ -1,5 +1,4 @@
-#include <iostream> // To use cout
-#include <cctype>	// To use toupper()
+#include <iostream> // To use cout, cin...
 
 int main(int argc, char *argv[])
 {
