@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 		{
 			std::cout << static_cast<char>(toupper(argv[i][j])); // Avoid C-style cast (char)
 		}
-		std::cout << " ";
 	}
 	std::cout << std::endl;
 
