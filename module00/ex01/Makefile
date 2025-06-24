@@ -8,7 +8,7 @@ NAME := awesome_phonebook
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := awesome_phonebook PhoneBook Contact
+SRC_FILES := main PhoneBook Contact
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
@@ -84,7 +84,7 @@ fclean:
 re: fclean all
 
 # **************************************************************************** #
-# NORM AND DEBUG RULES
+# DEBUG AND RULES
 
 # Rule to compile with debug flags
 debug:
@@ -108,7 +108,10 @@ valgrind:
 		valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS); \
 	fi
 
+run:
+	@./$(NAME)
+
 # **************************************************************************** #
 
-.PHONY: all clean fclean re debug valgrind
+.PHONY: all clean fclean re debug valgrind run
 .DEFAULT_GOAL := all
