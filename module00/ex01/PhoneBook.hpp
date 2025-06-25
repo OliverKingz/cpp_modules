@@ -27,6 +27,8 @@ class PhoneBook
 		void addContact(const Contact &newContact);
 		void printIndexContact(int index) const;
 		void printContacts() const;
+		std::string getValidCommand() const;
+		Contact getValidContact() const;
 };
 
 #endif
