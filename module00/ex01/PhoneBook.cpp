@@ -6,19 +6,17 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 15:22:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 17:20:12 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-size_t PhoneBook::totalContacts = 0;
+PhoneBook::PhoneBook() : totalContacts(0) {}
 
-PhoneBook::PhoneBook() {}
+void PhoneBook::setTotalContacts(size_t totalC) { totalContacts = totalC; }
 
-void PhoneBook::setTotalContacts(const int totalC) {totalContacts = totalC; };
-
-int PhoneBook::getTotalContacts() const {return totalContacts; };
+size_t PhoneBook::getTotalContacts() const { return totalContacts; }
 
 void PhoneBook::addContact(const Contact &newContact)
 {
@@ -29,7 +27,7 @@ void PhoneBook::addContact(const Contact &newContact)
 	}
 	else // FIFO We move contacts 1 to the left
 	{
-		for (int i = 0; i < MAX_CONTACTS - 1; i++)
+		for (size_t i = 0; i < MAX_CONTACTS - 1; i++)
 			contactList[i] = contactList[i + 1];
 		contactList[MAX_CONTACTS - 1] = newContact;
 	}
@@ -37,6 +35,11 @@ void PhoneBook::addContact(const Contact &newContact)
 
 void PhoneBook::printIndexContact(size_t index) const
 {
+	if (index >= totalContacts)
+	{
+		std::cout << "Invalid index " << index << ". Valid range: 0-" << (totalContacts - 1) << std::endl;
+		return;
+	}
 	std::cout << "\n" << contactList[index].getFirstName() << std::endl;
 	std::cout << contactList[index].getLastName() << std::endl;
 	std::cout << contactList[index].getNickname() << std::endl;
