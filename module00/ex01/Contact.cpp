@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:29 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 13:08:29 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:07:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ Contact::Contact(const std::string &fName, const std::string &lName,
 	const std::string &nName, const std::string &phoneNbr,
 	const std::string &darkSecret)
 {
+	if (!isValidName(fName) || !isValidName(lName) 
+		|| !isValidName(nName) || !isValidPhoneNumber(phoneNbr))
+	{
+		std::cerr << "Invalid contact information provided." << std::endl;
+		return;
+	}
 	firstName = fName;
 	lastName = lName;
 	nickname = nName;
@@ -28,11 +34,35 @@ Contact::Contact(const std::string &fName, const std::string &lName,
 
 // Setters
 
-void Contact::setFirstName(const std::string &fName) { firstName = fName; };
-void Contact::setLastName(const std::string &lName) { lastName = lName; };
-void Contact::setNickname(const std::string &nName) { nickname = nName; };
-void Contact::setPhoneNumber(const std::string &phoneNbr) { phoneNumber = phoneNbr; };
-void Contact::setDarkestSecret(const std::string &darkSecret) { darkestSecret = darkSecret; };
+void Contact::setFirstName(const std::string &fName)
+{ 
+	if (isValidName(fName))
+		firstName = fName; 
+};
+
+void Contact::setLastName(const std::string &lName)
+{
+	if (isValidName(lName))
+		lastName = lName;
+};
+
+void Contact::setNickname(const std::string &nName)
+{
+	if (isValidName(nName))
+		nickname = nName;
+};
+
+void Contact::setPhoneNumber(const std::string &phoneNbr)
+{
+	if (isValidPhoneNumber(phoneNbr))
+		phoneNumber = phoneNbr;
+};
+
+void Contact::setDarkestSecret(const std::string &darkSecret)
+{
+	if (isValidName(darkSecret))
+		darkestSecret = darkSecret;
+};
 
 // Getters
 
@@ -51,4 +81,10 @@ void Contact::printContact() const
 	std::cout << getNickname() << std::endl;
 	std::cout << getPhoneNumber() << std::endl;
 	std::cout << getDarkestSecret() << std::endl;
+}
+
+bool Contact::isEmpty() const
+{
+	return firstName.empty() && lastName.empty() && nickname.empty()
+		&& phoneNumber.empty() && darkestSecret.empty();
 }

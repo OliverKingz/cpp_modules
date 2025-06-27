@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 17:20:12 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:05:30 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ size_t PhoneBook::getTotalContacts() const { return totalContacts; }
 
 void PhoneBook::addContact(const Contact &newContact)
 {
+	if (newContact.isEmpty())
+	{
+		std::cout << "Contact is empty, not added." << std::endl;
+		return;
+	}
 	if (totalContacts < MAX_CONTACTS)
 	{
 		contactList[totalContacts] = newContact;

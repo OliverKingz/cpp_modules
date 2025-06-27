@@ -108,7 +108,7 @@ test:
 	./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
-run:
+run: all
 	@./$(NAME) $(ARGS)
 
 # **************************************************************************** #

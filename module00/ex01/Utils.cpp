@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:04:10 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 14:50:05 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:59:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,14 @@ bool stringToSizeT(const std::string &str, size_t &value)
 	return true;
 }
 
-bool isValidName(const std::string &name)
-{
-	if (name.empty())
-		return false;
-	for (std::size_t i = 0; i < name.length(); i++)
-	{
-		if (!isalpha(name[i]) && !isspace(name[i]))
-			return false;
-	}
-	return true;
-}
-
 bool isValidPhoneNumber(const std::string &phoneNbr)
 {
 	if (phoneNbr.empty())
 		return false;
 
+	bool hasDigit = false;
 	std::size_t i = 0;
-	while (isspace(phoneNbr[i]))
+	while (isspace(phoneNbr[i]) && i < phoneNbr.length())
 		i++;
 	if (phoneNbr[i] == '+' && i < phoneNbr.length())
 		i++;
@@ -47,10 +36,33 @@ bool isValidPhoneNumber(const std::string &phoneNbr)
 		return false;
 	for (; i < phoneNbr.length(); i++)
 	{
-		if (!isdigit(phoneNbr[i]) && phoneNbr[i] != ' ')
+		if (isdigit(phoneNbr[i]))
+			hasDigit = true;
+		else if (!isspace(phoneNbr[i]) && phoneNbr[i] != '-')
 			return false;
 	}
-	return true;
+	return hasDigit;
+}
+
+bool isValidName(const std::string &name)
+{
+	if (name.empty())
+		return false;
+
+	bool hasAlpha = false;
+	std::size_t i = 0;
+	while (isspace(name[i]))
+		i++;
+	if (i >= name.length())
+		return false;
+	for (; i < name.length(); i++)
+	{
+		if (isalpha(name[i]))
+			hasAlpha = true;
+		else if (!isspace(name[i]) && name[i] != '-')
+			return false;
+	}
+	return hasAlpha;
 }
 
 std::string inputName(const std::string &msg)

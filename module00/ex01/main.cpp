@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 16:18:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:07:51 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void printMenu()
 
 static void addPreexisentContacts(PhoneBook &myBook)
 {
-	Contact newContact("Alexandros Nikolaos", "Papadopoulos", "apeteapetea", "666666666666", "Hates every people");
+	Contact newContact("Alexandros-Nikolaos", "Papadopoulos", "apeteapetea", "666666666666", "Hates every people");
 	myBook.addContact(newContact);
 	Contact newContact1("Oliver King", "Zamora", "ozamora-", "+34 666 666 666", "Likes Pokemon");
 	myBook.addContact(newContact1);
