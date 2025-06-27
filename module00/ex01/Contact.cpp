@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 13:08:29 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/06/27 13:08:29 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 // Constructor
@@ -31,11 +43,6 @@ std::string Contact::getPhoneNumber() const { return phoneNumber; };
 std::string Contact::getDarkestSecret() const { return darkestSecret; };
 
 // Functions
-
-bool Contact::isEmpty() const
-{ 
-	return (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty()); 
-}
 
 void Contact::printContact() const
 {

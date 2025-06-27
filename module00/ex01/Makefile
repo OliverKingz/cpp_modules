@@ -8,7 +8,7 @@ NAME := awesome_phonebook
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main PhoneBook Contact
+SRC_FILES := main PhoneBook Contact Utils
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
@@ -94,7 +94,8 @@ debug:
 	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) DEBUG=1 -s
 	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦$(NC)"
-	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
+	./$(NAME) $(ARGS)
+#	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
 
 # Rule to compile with valgrind debug flags
 valgrind:
@@ -104,12 +105,11 @@ valgrind:
 	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) VALGRIND=1 -s
 	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	-@if [ ! -z "$(ARGS)" ]; then \
-		valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS); \
-	fi
+	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+#	-@if [ ! -z "$(ARGS)" ]; then valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS); fi
 
 run:
-	@./$(NAME)
+	@./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 

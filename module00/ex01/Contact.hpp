@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 13:00:23 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/06/27 13:07:28 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include <string>
-# include <iostream>
-# include <iomanip>
+# include "Utils.hpp"
 
 class Contact
 {
@@ -39,9 +49,9 @@ class Contact
 		std::string getDarkestSecret() const;
 
 		// Functions
+		void printContact() const;
 
 		bool isEmpty() const;
-		void printContact() const;
 };
 
 #endif

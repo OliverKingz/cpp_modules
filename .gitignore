@@ -51,4 +51,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Personal files
 /subjects
+*.build_mode
+
+# Project executables
+megaphone
+awesome_phonebook

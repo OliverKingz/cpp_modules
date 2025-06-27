@@ -1,13 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 13:00:10 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/06/27 13:58:44 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
+#include "Utils.hpp"
 #include "Contact.hpp"
 
 class PhoneBook
 {
 	private:
-		Contact contactList[8];
-		int contactCount;
+		static const int MAX_CONTACTS = 8;
+		Contact contactList[MAX_CONTACTS];
+		static size_t contactCount;
 
 	public:
 		// Constructor
@@ -25,10 +39,15 @@ class PhoneBook
 		// Functions
 
 		void addContact(const Contact &newContact);
-		void printIndexContact(int index) const;
+
+		void printIndexContact(size_t index) const;
 		void printContacts() const;
-		std::string getValidCommand() const;
-		Contact getValidContact() const;
+
+		bool isValidCommand(const std::string &cmd) const;
+
+		std::string inputCommand() const;
+		Contact inputContact();
+		size_t inputIndex(const std::string &msg);
 };
 
 #endif
