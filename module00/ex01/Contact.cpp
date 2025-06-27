@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:29 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 19:07:10 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:50:43 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void Contact::setDarkestSecret(const std::string &darkSecret)
 
 // Getters
 
-std::string Contact::getFirstName() const { return firstName; };
-std::string Contact::getLastName() const { return lastName; };
-std::string Contact::getNickname() const { return nickname; };
-std::string Contact::getPhoneNumber() const { return phoneNumber; };
-std::string Contact::getDarkestSecret() const { return darkestSecret; };
+const std::string &Contact::getFirstName() const { return firstName; };
+const std::string &Contact::getLastName() const { return lastName; };
+const std::string &Contact::getNickname() const { return nickname; };
+const std::string &Contact::getPhoneNumber() const { return phoneNumber; };
+const std::string &Contact::getDarkestSecret() const { return darkestSecret; };
 
 // Functions
 

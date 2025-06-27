@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:00:23 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 15:19:55 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:50:20 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ class Contact
 
 		// Getters
 
-		std::string getFirstName() const;
-		std::string getLastName() const;
-		std::string getNickname() const;
-		std::string getPhoneNumber() const;
-		std::string getDarkestSecret() const;
+		const std::string &getFirstName() const;
+		const std::string &getLastName() const;
+		const std::string &getNickname() const;
+		const std::string &getPhoneNumber() const;
+		const std::string &getDarkestSecret() const;
 
 		// Functions
 		

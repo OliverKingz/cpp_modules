@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 19:05:30 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:02:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@ PhoneBook::PhoneBook() : totalContacts(0) {}
 void PhoneBook::setTotalContacts(size_t totalC) { totalContacts = totalC; }
 
 size_t PhoneBook::getTotalContacts() const { return totalContacts; }
+const Contact& PhoneBook::getContact(size_t index) const
+{
+	if (index >= totalContacts)
+	{
+		std::cerr << "Invalid index " << index << ". Valid range: 0-" << (totalContacts - 1) << std::endl;
+		return Contact(); // Return a default constructed Contact
+	}
+	return contactList[index];
+};
 
 void PhoneBook::addContact(const Contact &newContact)
 {
 	if (newContact.isEmpty())
 	{
-		std::cout << "Contact is empty, not added." << std::endl;
+		std::cerr << "Contact is empty, not added." << std::endl;
 		return;
 	}
 	if (totalContacts < MAX_CONTACTS)
@@ -42,14 +51,20 @@ void PhoneBook::printIndexContact(size_t index) const
 {
 	if (index >= totalContacts)
 	{
-		std::cout << "Invalid index " << index << ". Valid range: 0-" << (totalContacts - 1) << std::endl;
+		std::cerr << "Invalid index " << index << ". Valid range: 0-" << (totalContacts - 1) << std::endl;
 		return;
 	}
-	std::cout << "\n" << contactList[index].getFirstName() << std::endl;
-	std::cout << contactList[index].getLastName() << std::endl;
-	std::cout << contactList[index].getNickname() << std::endl;
-	std::cout << contactList[index].getPhoneNumber() << std::endl;
-	std::cout << contactList[index].getDarkestSecret() << std::endl;
+	if (contactList[index].isEmpty())
+	{
+		std::cerr << "Contact at index " << index << " is empty." << std::endl;
+		return;
+	}
+	const Contact& contact = getContact(index);
+	std::cout << "\n" << contact.getFirstName() << std::endl;
+	std::cout << contact.getLastName() << std::endl;
+	std::cout << contact.getNickname() << std::endl;
+	std::cout << contact.getPhoneNumber() << std::endl;
+	std::cout << contact.getDarkestSecret() << std::endl;
 }
 
 void PhoneBook::printContacts() const
