@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 13:08:23 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:13:33 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ int main(int argc, char *argv[])
 	if (argc != 1)
 		return ((std::cerr << "Usage: ./awesome_phonebook\n"), 1);
 
-	std::cout << BOLD << "========== PHONEBOOK MENU ==========" << RESET << std::endl;
-    std::cout << GREEN << "ADD" << RESET << "\t- Add a new contact" << std::endl;
-    std::cout << BLUE << "SEARCH" << RESET << "\t- Search contacts" << std::endl;
-    std::cout << CYAN << "EXIT" << RESET << "\t- Exit program" << std::endl;
-	std::cout << "====================================\n";
+	std::cout << BOLD << "\n========== PHONEBOOK MENU ==========\n" << RESET;
+	std::cout << GREEN << "ADD" << RESET << "\t- Add a new contact\n";
+	std::cout << BLUE << "SEARCH" << RESET << "\t- Search contacts\n";
+	std::cout << CYAN << "EXIT" << RESET << "\t- Exit program\n";
+	std::cout << "====================================\n\n";
+
 	while (true)
 	{
 		cmd = myBook.inputCommand();
@@ -37,14 +38,21 @@ int main(int argc, char *argv[])
 		}
 		else if (cmd == "SEARCH")
 		{
-			std::cout << "\nYou selected to display a specific contact, choose the index of the contact you wish to display: \n";
+			if (myBook.getTotalContacts() == 0)
+			{
+				std::cout << "\nYou selected to display a specific contact, but no contacts are available.\n"
+						  << "Please add a contact first.\n\n";
+				continue;
+			}
+			std::cout << "\nYou selected to display a specific contact\n"
+					  << "Choose the index of the contact you wish to display. \n\n";
 			myBook.printContacts();
-			myBook.printIndexContact(myBook.inputIndex("Enter index:\t"));
+			myBook.printIndexContact(myBook.inputIndex("\nEnter index:\t"));
 			std::cout << "\n";
 		}
 		else if (cmd == "EXIT")
 		{
-			std::cout << "\nYou selected to exit the program. Goodbye!\n";
+			std::cout << "\nYou selected to exit the program. Goodbye!\n\n";
 			break;
 		}
 	}

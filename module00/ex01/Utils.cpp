@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:04:10 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 13:16:58 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 14:50:05 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool stringToSizeT(const std::string &str, size_t &value)
 {
 	std::stringstream ss(str);
 
-	if (!(ss >> *value) || !ss.eof())
+	if (!(ss >> value) || !ss.eof())
 		return false;
 	return true;
 }

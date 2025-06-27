@@ -6,35 +6,37 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 13:09:24 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:08:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook() : contactCount(0){}
+size_t PhoneBook::contactCount = 0;
+
+PhoneBook::PhoneBook() {}
 
 void PhoneBook::setTotalContacts(const int totalC) {contactCount = totalC; };
 int PhoneBook::getTotalContacts() const {return contactCount; };
 
 void PhoneBook::addContact(const Contact &newContact)
 {
-	if (contactCount <= 7)
+	if (contactCount < MAX_CONTACTS)
 	{
 		contactList[contactCount] = newContact;
 		contactCount++;
 	}
 	else // FIFO We move contacts 1 to the left
 	{
-		for (int i = 0; i <= 6; i++)
+		for (int i = 0; i < MAX_CONTACTS - 1; i++)
 			contactList[i] = contactList[i + 1];
-		contactList[7] = newContact;
+		contactList[MAX_CONTACTS - 1] = newContact;
 	}
 }
 
 void PhoneBook::printIndexContact(size_t index) const
 {
-	std::cout << contactList[index].getFirstName() << std::endl;
+	std::cout << "\n" << contactList[index].getFirstName() << std::endl;
 	std::cout << contactList[index].getLastName() << std::endl;
 	std::cout << contactList[index].getNickname() << std::endl;
 	std::cout << contactList[index].getPhoneNumber() << std::endl;
@@ -112,15 +114,10 @@ size_t PhoneBook::inputIndex(const std::string &msg)
 	{
 		std::cout << msg;
 		std::getline(std::cin, input);
-		try {
-			index = std::stoul(input);
-			if (index < contactCount)
-				isValid = true;
-			else
-				std::cout << "Invalid index number, repeat. ";
-		} catch (const std::exception&) {
+		if (stringToSizeT(input, index) == false || input.empty() || index >= contactCount)
 			std::cout << "Invalid index number, repeat. ";
-		}
+		else
+			isValid = true;
 	}
 	return index;
 }
