@@ -487,7 +487,7 @@ public:                     // Anyone can access these
 #### `const` - Constants and Const Methods
 
 - When applied to a variable, `const` means its value cannot be changed after initialization.
-- When combined with `static`, it creates a class-level constant.
+- When combined with `static`, it creates a class-level constant (shared by all instances, value cannot be changed).
 
 ```cpp
 class PhoneBook {
@@ -514,19 +514,19 @@ class PhoneBook {
 private:
     static const int MAX_CONTACTS = 8;  // Shared by all instances
     Contact contacts[MAX_CONTACTS];
-    static int totalCreated;            // Count all PhoneBooks created
+    int totalContacts;                  // Each PhoneBook has its own count
 
 public:
-    static int getTotalCreated() { return totalCreated; }
+    PhoneBook() : totalContacts(0) {}
+    int getTotalContacts() const { return totalContacts; }
+    static int getMaxContacts() { return MAX_CONTACTS; }
 };
-
-// In .cpp file
-int PhoneBook::totalCreated = 0;
 ```
 
-- Why is `totalCreated` static?
-  - `totalCreated` is declared as `static` so that it keeps track of the total number of `PhoneBook` objects created, regardless of how many instances exist.
-  - If it were not static, each `PhoneBook` instance would have its own separate `totalCreated` variable, which would not allow for a global count.
+- Why is `MAX_CONTACTS` static?
+  - `MAX_CONTACTS` is declared as `static` so that the maximum number of contacts is the same for all `PhoneBook` instances and does not take up extra space in each object.
+- Why is `totalContacts` **not** static?
+  - Each `PhoneBook` should track its own number of contacts, so `totalContacts` is a regular (non-static) member variable. If it were static, all `PhoneBook` instances would share the same count, which is not the intended behavior.
 
 #### Basic Data Types: `int`, `bool`, `void`, `size_t`
 
