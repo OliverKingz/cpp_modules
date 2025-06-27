@@ -6,12 +6,16 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 12:59:58 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 15:18:44 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 16:10:13 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 # define UTILS_HPP
+
+# ifndef TEST
+#  define TEST false
+# endif
 
 // Standard C++ Libraries
 
@@ -25,7 +29,9 @@
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
+# define BOLD_OFF "\033[22m"
 # define UNDERLINE "\033[4m"
+# define UNDERLINE_OFF "\033[24m"
 # define BLACK "\033[0;30m"
 # define WHITE "\033[0;37m"
 # define RED "\033[0;31m"

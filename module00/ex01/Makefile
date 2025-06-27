@@ -25,6 +25,7 @@ CPPFLAGS += -MMD -MP
 BUILD_MODE_FILE := .build_mode
 DEBUG ?= 0
 VALGRIND ?= 0
+TEST ?= 0
 VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
 --track-origins=yes --trace-children=yes --track-fds=yes
 
@@ -35,6 +36,10 @@ endif
 
 ifeq ($(VALGRIND),1)
 	CPPFLAGS += -g3
+endif
+
+ifeq ($(TEST),1)
+	CPPFLAGS += -DTEST=true
 endif
 
 # **************************************************************************** #
@@ -108,10 +113,16 @@ valgrind:
 	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 #	-@if [ ! -z "$(ARGS)" ]; then valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS); fi
 
+# Rule to run the program with arguments
 run:
 	@./$(NAME) $(ARGS)
 
+# Rule to compile and run with testing variables added
+test:
+	@$(MAKE) re TEST=1 -s
+	./$(NAME) $(ARGS)
+
 # **************************************************************************** #
 
-.PHONY: all clean fclean re debug valgrind run
+.PHONY: all clean fclean re debug valgrind run test
 .DEFAULT_GOAL := all
