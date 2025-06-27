@@ -1,46 +1,43 @@
 # **************************************************************************** #
-# DIRECTORIES
-OBJ_DIR := obj/
-
-# **************************************************************************** #
 # PROJECT
 NAME := awesome_phonebook
-
-# **************************************************************************** #
-# FILES
-SRC_FILES := main PhoneBook Contact Utils
-
-# GENERAL FILES
-SRCS := $(addsuffix .cpp, $(SRC_FILES))
-OBJS := $(SRCS:$(SRC_DIR)%.cpp=$(OBJ_DIR)%.o)
-DEPS := $(OBJS:.o=.d)
 
 # **************************************************************************** #
 # COMPILER
 CPP := c++
 CPPFLAGS := -Wall -Wextra -Werror -std=c++98
 CPPFLAGS += -MMD -MP
+LDFLAGS :=
 
-# DEBUG MODE
-BUILD_MODE_FILE := .build_mode
+# BUILD MODES
 DEBUG ?= 0
 VALGRIND ?= 0
 TEST ?= 0
-VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
---track-origins=yes --trace-children=yes --track-fds=yes
+VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes \
+				--trace-children=yes
 
 ifeq ($(DEBUG),1)
+	OBJ_DIR := obj/debug/
 	CPPFLAGS += -g3 -fsanitize=address
 	LDFLAGS += -fsanitize=address
-endif
-
-ifeq ($(VALGRIND),1)
+else ifeq ($(VALGRIND),1)
+	OBJ_DIR := obj/valgrind/
 	CPPFLAGS += -g3
+else ifeq ($(TEST),1)
+	OBJ_DIR := obj/test/
+	CPPFLAGS += -DTEST=true
+else
+	OBJ_DIR := obj/regular/
 endif
 
-ifeq ($(TEST),1)
-	CPPFLAGS += -DTEST=true
-endif
+# **************************************************************************** #
+# FILES
+SRC_FILES := main PhoneBook Contact Utils
+
+# GENERAL FILES (defined after OBJ_DIR is set)
+SRCS := $(addsuffix .cpp, $(SRC_FILES))
+OBJS := $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+DEPS := $(OBJS:.o=.d)
 
 # **************************************************************************** #
 # COLOURS: BOLD RGBYW
@@ -63,7 +60,7 @@ all: $(NAME)
 
 # Rule to create the program
 $(NAME): $(OBJS)
-	@$(CPP) $(CPPFLAGS) $(OBJS)  -o $(NAME)
+	@$(CPP) $(CPPFLAGS) $(LDFLAGS) $(OBJS) -o $(NAME)
 	@printf "%b" "$(CL) -> $(BW)[$(NAME)]:\t$(BG)Compilation success\t✅$(NC)\n"
 
 # Rule to compile object files from source files
@@ -72,17 +69,17 @@ $(OBJ_DIR):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	@mkdir -p $(dir $@)
 	@printf "%b" "$(CL) -> $(BW)[$(NAME)]:\t$(NC)$<\r"
-	@$(CPP) $(CPPFLAGS) $(IFLAGS) -c $< -o $@
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 # Rule to clean generated files
 clean:
-	@rm -rf $(OBJ_DIR) $(BUILD_MODE_FILE)
+	@rm -rf obj/
 	@printf "%b" "$(CL) -> $(BW)[$(NAME)]:\t$(BG)Object files cleaned\t❎$(NC)\n"
 
 # Rule to clean generated files and the executable
 fclean:
 	@$(MAKE) clean > /dev/null
-	@rm -rf $(NAME) $(BONUS_NAME)
+	@rm -rf $(NAME)
 	@printf "%b" "$(CL) -> $(BW)[$(NAME)]:\t$(BG)Exe and objects cleaned\t❎$(NC)\n"
 
 # Rule to recompile from zero
@@ -91,36 +88,28 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-# Rule to compile with debug flags
+# Force clean and rebuild for different modes
 debug:
-	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "DEBUG=1" $(BUILD_MODE_FILE); then \
-		$(MAKE) fclean -s; \
-	fi
-	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
-	@$(MAKE) DEBUG=1 -s
-	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦$(NC)"
+	@$(MAKE) fclean -s
+	@$(MAKE) DEBUG=1 $(NAME) -s
+	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
 	./$(NAME) $(ARGS)
-#	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
 
-# Rule to compile with valgrind debug flags
 valgrind:
-	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "VALGRIND=1" $(BUILD_MODE_FILE); then \
-		$(MAKE) fclean -s; \
-	fi
-	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
-	@$(MAKE) VALGRIND=1 -s
-	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦$(NC)"
+	@$(MAKE) fclean -s
+	@$(MAKE) VALGRIND=1 $(NAME) -s
+	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
 	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
-#	-@if [ ! -z "$(ARGS)" ]; then valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS); fi
+
+test:
+	@$(MAKE) fclean -s
+	@$(MAKE) TEST=1 $(NAME) -s
+	@echo " -> $(BW)[Testing]:\t\t\t$(BY)Testing mode enabled\t🟨$(NC)"
+	./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run:
 	@./$(NAME) $(ARGS)
-
-# Rule to compile and run with testing variables added
-test:
-	@$(MAKE) re TEST=1 -s
-	./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 
