@@ -6,25 +6,26 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 15:08:07 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:22:35 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-size_t PhoneBook::contactCount = 0;
+size_t PhoneBook::totalContacts = 0;
 
 PhoneBook::PhoneBook() {}
 
-void PhoneBook::setTotalContacts(const int totalC) {contactCount = totalC; };
-int PhoneBook::getTotalContacts() const {return contactCount; };
+void PhoneBook::setTotalContacts(const int totalC) {totalContacts = totalC; };
+
+int PhoneBook::getTotalContacts() const {return totalContacts; };
 
 void PhoneBook::addContact(const Contact &newContact)
 {
-	if (contactCount < MAX_CONTACTS)
+	if (totalContacts < MAX_CONTACTS)
 	{
-		contactList[contactCount] = newContact;
-		contactCount++;
+		contactList[totalContacts] = newContact;
+		totalContacts++;
 	}
 	else // FIFO We move contacts 1 to the left
 	{
@@ -50,7 +51,7 @@ void PhoneBook::printContacts() const
 	std::cout << std::setw(10) << std::right << "Last Name" << "|";
 	std::cout << std::setw(10) << std::right << "Nickame" << "\n";
 	std::cout << std::setw(44) << std::setfill('-') << "\n" << std::setfill(' ');
-	for (size_t i = 0; i < contactCount; i++)
+	for (size_t i = 0; i < totalContacts; i++)
 	{
 		std::cout	<< std::setw(10) << std::right << i << "|";
 		std::cout	<< std::setw(10) << std::right
@@ -71,6 +72,7 @@ void PhoneBook::printContacts() const
 	}
 	std::cout << std::setw(44) << std::setfill('-') << "\n" << std::setfill(' ');
 }
+
 bool PhoneBook::isValidCommand(const std::string &cmd) const
 {
 	return (cmd == "ADD" || cmd == "SEARCH" || cmd == "EXIT");
@@ -114,7 +116,7 @@ size_t PhoneBook::inputIndex(const std::string &msg)
 	{
 		std::cout << msg;
 		std::getline(std::cin, input);
-		if (stringToSizeT(input, index) == false || input.empty() || index >= contactCount)
+		if (stringToSizeT(input, index) == false || input.empty() || index >= totalContacts)
 			std::cout << "Invalid index number, repeat. ";
 		else
 			isValid = true;

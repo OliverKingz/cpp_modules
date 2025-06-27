@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:00:10 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 13:58:44 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:22:37 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class PhoneBook
 	private:
 		static const int MAX_CONTACTS = 8;
 		Contact contactList[MAX_CONTACTS];
-		static size_t contactCount;
+		static size_t totalContacts;
 
 	public:
 		// Constructor
