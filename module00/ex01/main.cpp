@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 19:07:51 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:30:47 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void printMenu()
 {
 	std::cout << BOLD << "\n========== PHONEBOOK MENU ==========\n" << RESET;
 	std::cout << GREEN << "ADD" << RESET << "\t- Add a new contact\n";
-	std::cout << BLUE << "SEARCH" << RESET << "\t- Search contacts\n";
-	std::cout << CYAN << "EXIT" << RESET << "\t- Exit program\n";
+	std::cout << CYAN << "SEARCH" << RESET << "\t- Search contacts\n";
+	std::cout << BLUE << "EXIT" << RESET << "\t- Exit program\n";
 	std::cout << BOLD << "====================================\n\n" << RESET;
 }
 
 static void addPreexisentContacts(PhoneBook &myBook)
 {
-	Contact newContact("Alexandros-Nikolaos", "Papadopoulos", "apeteapetea", "666666666666", "Hates every people");
+	Contact newContact("Alex-Nikolaos", "Papadopoulos", "apeteapetea", "666666666666", "Hates every people");
 	myBook.addContact(newContact);
 	Contact newContact1("Oliver King", "Zamora", "ozamora-", "+34 666 666 666", "Likes Pokemon");
 	myBook.addContact(newContact1);

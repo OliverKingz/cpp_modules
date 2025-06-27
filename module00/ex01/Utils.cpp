@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:04:10 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 18:59:24 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:30:14 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ std::string inputName(const std::string &msg)
 		if (isValidName(input))
 			isValid = true;
 		else
-			std::cout << "Invalid input, repeat. ";
+			std::cerr << "Invalid name, repeat. ";
 	}
 	return input;
 }
@@ -94,7 +94,7 @@ std::string inputPhoneNumber(const std::string &msg)
 		if (isValidPhoneNumber(input))
 			isValid = true;
 		else
-			std::cout << "Invalid phone number, repeat. ";
+			std::cerr << "Invalid phone number, repeat. ";
 	}
 	return input;
 }

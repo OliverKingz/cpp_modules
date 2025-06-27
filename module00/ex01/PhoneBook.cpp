@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 20:02:10 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:28:26 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ PhoneBook::PhoneBook() : totalContacts(0) {}
 void PhoneBook::setTotalContacts(size_t totalC) { totalContacts = totalC; }
 
 size_t PhoneBook::getTotalContacts() const { return totalContacts; }
+
 const Contact& PhoneBook::getContact(size_t index) const
 {
 	if (index >= totalContacts)
 	{
 		std::cerr << "Invalid index " << index << ". Valid range: 0-" << (totalContacts - 1) << std::endl;
-		return Contact(); // Return a default constructed Contact
+		throw std::out_of_range("Index out of range");
 	}
 	return contactList[index];
 };
@@ -54,13 +55,15 @@ void PhoneBook::printIndexContact(size_t index) const
 		std::cerr << "Invalid index " << index << ". Valid range: 0-" << (totalContacts - 1) << std::endl;
 		return;
 	}
-	if (contactList[index].isEmpty())
+	const Contact& contact = getContact(index);
+
+	if (contact.isEmpty())
 	{
 		std::cerr << "Contact at index " << index << " is empty." << std::endl;
 		return;
 	}
-	const Contact& contact = getContact(index);
-	std::cout << "\n" << contact.getFirstName() << std::endl;
+	std::cout << "\n" << "Contact at index " << index << ": \n" << RESET;
+	std::cout << contact.getFirstName() << std::endl;
 	std::cout << contact.getLastName() << std::endl;
 	std::cout << contact.getNickname() << std::endl;
 	std::cout << contact.getPhoneNumber() << std::endl;
@@ -69,31 +72,28 @@ void PhoneBook::printIndexContact(size_t index) const
 
 void PhoneBook::printContacts() const
 {
-	std::cout << std::setw(10) << std::right << "Index" << "|";
-	std::cout << std::setw(10) << std::right << "First Name" << "|";
-	std::cout << std::setw(10) << std::right << "Last Name" << "|";
-	std::cout << std::setw(10) << std::right << "Nickame" << "\n";
-	std::cout << std::setw(44) << std::setfill('-') << "\n" << std::setfill(' ');
+	std::cout << CYAN << std::right << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First Name" << "|";
+	std::cout << std::setw(10) << "Last Name" << "|";
+	std::cout << std::setw(10) << "Nickname" << "\n";
+	std::cout << std::setw(44) << std::setfill('-') << "\n" << std::setfill(' ') << RESET;
 	for (size_t i = 0; i < totalContacts; i++)
 	{
-		std::cout	<< std::setw(10) << std::right << i << "|";
-		std::cout	<< std::setw(10) << std::right
-					<< (contactList[i].getFirstName().length() > 10 ?
+		std::cout	<< std::setw(10) << i << "|";
+		std::cout	<< std::setw(10) << (contactList[i].getFirstName().length() > 10 ?
 					contactList[i].getFirstName().substr(0, 9) + "." :
 					contactList[i].getFirstName())
 					<< "|";
-		std::cout	<< std::setw(10) << std::right
-					<< (contactList[i].getLastName().length() > 10 ?
+		std::cout	<< std::setw(10) << (contactList[i].getLastName().length() > 10 ?
 					contactList[i].getLastName().substr(0, 9) + "." :
 					contactList[i].getLastName())
 					<< "|";
-		std::cout	<< std::setw(10) << std::right
-					<< (contactList[i].getNickname().length() > 10 ?
+		std::cout	<< std::setw(10) << (contactList[i].getNickname().length() > 10 ?
 					contactList[i].getNickname().substr(0, 9) + "." :
 					contactList[i].getNickname())
 					<< "\n";
 	}
-	std::cout << std::setw(44) << std::setfill('-') << "\n" << std::setfill(' ');
+	std::cout << CYAN << std::setw(44) << std::setfill('-') << "\n" << std::setfill(' ') << RESET;
 }
 
 bool PhoneBook::isValidCommand(const std::string &cmd) const
@@ -140,7 +140,7 @@ size_t PhoneBook::inputIndex(const std::string &msg)
 		std::cout << msg;
 		std::getline(std::cin, input);
 		if (stringToSizeT(input, index) == false || input.empty() || index >= totalContacts)
-			std::cout << "Invalid index number, repeat. ";
+			std::cerr << "Invalid index number, repeat. \n";
 		else
 			isValid = true;
 	}
