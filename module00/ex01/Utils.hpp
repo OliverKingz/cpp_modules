@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 12:59:58 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 14:56:31 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:18:44 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 # define UTILS_HPP
 
 // Standard C++ Libraries
+
 # include <string>
 # include <iostream>
 # include <iomanip>
-# include <cctype>
 # include <sstream>
+# include <cctype>
 
 // Color Definitions
+
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
 # define UNDERLINE "\033[4m"

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:00:23 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 13:07:28 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:19:55 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ class Contact
 		std::string getDarkestSecret() const;
 
 		// Functions
+		
 		void printContact() const;
-
 		bool isEmpty() const;
 };
 
