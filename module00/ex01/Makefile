@@ -16,16 +16,16 @@ TEST ?= 0
 VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes \
 				--trace-children=yes
 
-ifeq ($(DEBUG),1)
+ifeq ($(TEST),1)
+	OBJ_DIR := obj/test/
+	CPPFLAGS += -DTEST=true
+else ifeq ($(DEBUG),1)
 	OBJ_DIR := obj/debug/
 	CPPFLAGS += -g3 -fsanitize=address
 	LDFLAGS += -fsanitize=address
 else ifeq ($(VALGRIND),1)
 	OBJ_DIR := obj/valgrind/
 	CPPFLAGS += -g3
-else ifeq ($(TEST),1)
-	OBJ_DIR := obj/test/
-	CPPFLAGS += -DTEST=true
 else
 	OBJ_DIR := obj/regular/
 endif
@@ -101,9 +101,9 @@ valgrind:
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
 	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
-test:
+test: 
 	@$(MAKE) fclean -s
-	@$(MAKE) TEST=1 $(NAME) -s
+	@$(MAKE) TEST=1 DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Testing]:\t\t\t$(BY)Testing mode enabled\t🟨$(NC)"
 	./$(NAME) $(ARGS)
 

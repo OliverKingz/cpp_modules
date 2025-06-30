@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 20:28:26 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:23:05 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void PhoneBook::addContact(const Contact &newContact)
 		contactList[totalContacts] = newContact;
 		totalContacts++;
 	}
-	else // FIFO We move contacts 1 to the left
+	else
 	{
+		std::cout << YELLOW << "Your PhoneBook is full. First contact added will be removed to make space.\n" << RESET; //FIFO
 		for (size_t i = 0; i < MAX_CONTACTS - 1; i++)
 			contactList[i] = contactList[i + 1];
 		contactList[MAX_CONTACTS - 1] = newContact;
