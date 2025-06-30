@@ -55,6 +55,7 @@ dkms.conf
 /subjects
 *.build_mode
 
-# Project executables
+# Module00 Executables
 megaphone
 awesome_phonebook
+dream_job
