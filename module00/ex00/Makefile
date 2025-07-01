@@ -1,10 +1,10 @@
 # **************************************************************************** #
-# DIRECTORIES
-OBJ_DIR := obj/
-
-# **************************************************************************** #
 # PROJECT
 NAME := megaphone
+
+# **************************************************************************** #
+# DIRECTORIES
+OBJ_DIR := obj/
 
 # **************************************************************************** #
 # FILES
@@ -94,7 +94,7 @@ debug:
 	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) DEBUG=1 -s
 	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦$(NC)"
-	-@if [ ! -z "$(ARGS)" ]; then ./$(NAME) $(ARGS); fi
+	./$(NAME) "$(ARGS)"
 
 # Rule to compile with valgrind debug flags
 valgrind:
@@ -104,9 +104,11 @@ valgrind:
 	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
 	@$(MAKE) VALGRIND=1 -s
 	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	-@if [ ! -z "$(ARGS)" ]; then \
-		valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS); \
-	fi
+	valgrind $(VALGRIND_FLAGS) ./$(NAME) "$(ARGS)"
+
+# Rule to run the program with arguments
+run:
+	./$(NAME) "$(ARGS)"
 
 # **************************************************************************** #
 
