@@ -6,9 +6,39 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:47:06 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/02 14:11:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:55:34 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Zombie.hpp"
+# define BLUE "\033[0;34m"
+# define RESET "\033[0m"
+
+int main()
+{
+	std::cout << BLUE << "\nCreating a pointer heap-allocated zombie: needs to personally delete\n" << RESET;
+	Zombie* pointerDynamicZombie = new Zombie("pointerDynamicZombie");
+	pointerDynamicZombie->announce();
+	delete pointerDynamicZombie; // it triggers destructor ~Zombie()
+
+	std::cout << BLUE << "\nCreating a reference heap-allocated zombie: needs to personally delete\n" << RESET;
+	Zombie& refDynamicZombie = *(new Zombie("refDynamicZombie"));
+	refDynamicZombie.announce();
+	delete &refDynamicZombie; // it triggers destructor ~Zombie()
+
+	std::cout << BLUE << "\nCreating a temporary stack-allocated zombie: automatically deletes immediately\n" << RESET;
+	randomChump("tempStackZombie");
+
+	std::cout << BLUE << "\nCreating a stack-allocated zombie: automatically deletes at the end\n" << RESET;
+	Zombie stackZombie("stackZombie");
+	stackZombie.announce();
+
+	std::cout << BLUE << "\nCreating a named stack-allocated zombie: automatically deletes at the end\n" << RESET;
+	Zombie namedStackZombie = Zombie("namedStackZombie");
+	namedStackZombie.announce();
+
+	return 0;
+}
 
 /*
 ** Exercise 00: Zombie Exercise
