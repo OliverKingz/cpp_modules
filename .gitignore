@@ -54,9 +54,13 @@ dkms.conf
 # Personal files
 /subjects
 *.build_mode
+my_program
 
 # Module00 Executables
 megaphone
 awesome_phonebook
 dream_job
 module00/ex02/my.log
+
+# Module01 Executables
+zombie_world
