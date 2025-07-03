@@ -1,21 +1,37 @@
-/*
-** Exercise 02: HI THIS IS BRAIN
-**
-** Turn-in directory: ex02/
-** Files to turn in: Makefile, main.cpp
-** Forbidden functions: None
-**
-** Description:
-** Write a program with:
-** - A string variable initialized to "HI THIS IS BRAIN".
-** - `stringPTR`: a pointer to the string.
-** - `stringREF`: a reference to the string.
-**
-** Print:
-** - The memory address of the string variable, `stringPTR`, and `stringREF`.
-** - The value of the string variable, the value pointed to by `stringPTR`, and the
-**   value referenced by `stringREF`.
-**
-** Goal: Demystify references and understand their similarities to pointers.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/03 14:50:09 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/07/03 15:07:04 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <iostream>
+#include <string>
+
+# define RESET "\033[0m"
+# define UNDERLINE "\033[4m"
+# define BLUE "\033[0;34m"
+
+int main()
+{
+	std::string string = "HI THIS IS BRAIN";
+	std::string* stringPTR = &string;
+	std::string& stringREF = string;
+
+	std::cout << UNDERLINE << "Memory addres of each string variable\n" << RESET;
+	std::cout << BLUE << "string:\t\t" << RESET << &string << std::endl;
+	std::cout << BLUE << "stringPTR:\t" << RESET << stringPTR << std::endl;
+	std::cout << BLUE << "stringREF:\t" << RESET << &stringREF << std::endl;
+
+	std::cout << UNDERLINE << "\nValue of each string variable\n" << RESET;
+	std::cout << BLUE << "string:\t\t" << RESET << string << std::endl;
+	std::cout << BLUE << "stringPTR:\t" << RESET << *stringPTR << std::endl;
+	std::cout << BLUE << "stringREF:\t" << RESET << stringREF << std::endl;
+
+	return 0;
+}
