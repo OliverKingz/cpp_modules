@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 13:47:06 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 14:45:51 by ozamora-         ###   ########.fr       */
+/*   Created: 2025/07/03 13:24:36 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/07/03 14:47:14 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main()
+Zombie* zombieHorde(int N, std::string name)
 {
-	int n = 5;
-	std::string name = "Foo";
-
-	std::cout << BOLD << "Creating a zombie horde, all heap-allocated\n";
-	Zombie* myHorde = zombieHorde(n, name);
-	for (int i = 0; i < n ; i++)
-	{
-		myHorde[i].announce();
+	Zombie* horde = new Zombie[N];
+	for (int i = 0; i < N; ++i) {
+		horde[i].setName(name);
 	}
-
-	delete[] myHorde;
+	return horde;
 }
+
+// Another option: Using temporary objects
+// Zombie *horde = new Zombie[N];
+// for (int i = 0; i < N; ++i) {
+// 	horde[i] = Zombie(name);
+// }
+// return horde;
