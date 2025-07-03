@@ -1,27 +1,45 @@
-/*
-** Exercise 03: Unnecessary violence
-**
-** Turn-in directory: ex03/
-** Files to turn in: Makefile, main.cpp, Weapon.{h, hpp}, Weapon.cpp,
-**                   HumanA.{h, hpp}, HumanA.cpp, HumanB.{h, hpp}, HumanB.cpp
-** Forbidden functions: None
-**
-** Description:
-** Implement a `Weapon` class with:
-** - A private string attribute `type`.
-** - `getType()` to return a constant reference to `type`.
-** - `setType()` to update `type`.
-**
-** Create `HumanA` and `HumanB` classes with:
-** - A `Weapon` and a `name`.
-** - `attack()` to display "<name> attacks with their <weapon type>".
-**
-** Differences:
-** - `HumanA` takes a `Weapon` in its constructor and is always armed.
-** - `HumanB` does not take a `Weapon` in its constructor and may not always
-**   have a weapon.
-**
-** Test the implementation with provided code and ensure proper memory management.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/03 15:07:55 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/07/03 16:33:36 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
 
+int main()
+{
+	{
+		Weapon club = Weapon("crude spiked club");
+
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon club = Weapon("crude spiked club");
+
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
+	
+	{// My tests
+		HumanB oliver("Oliver");
+		oliver.attack();
+		Weapon sword("cool shiny sword");
+		oliver.setWeapon(sword);
+		oliver.attack();
+	}
+	return 0;
+}
