@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:55 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 16:33:36 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/03 18:08:49 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int main()
 {
+	std::cout << "================" << BLUE << " Exercise 03: Unnecessary violence " << RESET << "================\n" << std::endl;
 	{
 		Weapon club = Weapon("crude spiked club");
 

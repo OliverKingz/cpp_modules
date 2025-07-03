@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:50:09 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 15:07:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/03 18:07:43 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int main()
 {
+	std::cout << "================" << BLUE << " Exercise 02: HI THIS IS BRAIN " << RESET << "================\n" << std::endl;
 	std::string string = "HI THIS IS BRAIN";
 	std::string* stringPTR = &string;
 	std::string& stringREF = string;

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:34:36 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 18:02:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/03 18:10:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
 
-	std::cout << "===========" << BLUE << " Sed Is For Losers " << RESET << "===========\n" << std::endl;
+	std::cout << "================" << BLUE << " Exercise 04: Sed is for losers " << RESET << "================\n" << std::endl;
 	std::cout << BLUE << "String to be replaced: \t" << RESET << s1 << std::endl;
 	std::cout << BLUE << "Replacement string: \t" << RESET << s2 << std::endl;
 	std::cout << BLUE << "Original file: \t\t" << RESET << fileName << std::endl;
