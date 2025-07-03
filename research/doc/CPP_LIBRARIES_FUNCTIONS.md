@@ -1,3 +1,18 @@
+# C++ Libraries and Functions Reference
+
+## Table of Contents
+
+1. [iostream Objects](#iostream-objects) - Console input/output objects
+2. [iomanip Functions](#iomanip-functions) - Format manipulation for I/O
+3. [cctype Functions](#cctype-functions) - Character classification and transformation
+4. [string Functions](#string-functions) - C++ string class methods
+5. [cstring Functions](#cstring-functions) - C-style string and memory operations
+6. [fstream Classes and Functions](#fstream-classes-and-functions) - File input/output operations
+
+---
+
+## iostream Objects
+
 C++ iostream objects
 The <iostream> library provides objects which can read user input and output data to the console or to a file.
 
@@ -13,6 +28,8 @@ The <iostream> library provides objects which can read user input and output dat
 | `wcout` | The same as `cout` but outputs wide char (`wchar_t`) data rather than `char` data |
 
 ---
+
+## iomanip Functions
 
 C++ iomanip Functions  
 The `<iomanip>` library provides facilities to manipulate the format of input and output.
@@ -37,6 +54,8 @@ The `<iomanip>` library provides facilities to manipulate the format of input an
 
 ---
 
+## cctype Functions
+
 C++ cctype Functions  
 The `<cctype>` library provides functions to classify and transform individual characters.
 
@@ -57,6 +76,8 @@ The `<cctype>` library provides functions to classify and transform individual c
 | `toupper()`  | Converts character to uppercase                    |
 
 ---
+
+## string Functions
 
 C++ string Functions
 The <string> library has many functions that allow you to perform tasks on strings.
@@ -80,6 +101,8 @@ A list of popular string functions can be found in the table below.
 | `compare()`  | Compares two strings                                                          |
 
 ---
+
+## cstring Functions
 
 C++ cstring Functions
 The <cstring> library has many functions that allow you to perform tasks on arrays and C-style strings.
@@ -112,5 +135,94 @@ A list of all cstring functions can be found in the table below.
 | `strstr()`   | Returns a pointer to the first occurrence of a C-style string in another string                                                   |
 | `strtok()`   | Splits a string into pieces using delimiters                                                                                      |
 | `strxfrm()`  | Converts characters in a C-style string from ASCII encoding to the encoding of the current locale                                 |
+
+---
+
+## fstream Classes and Functions
+
+C++ fstream Classes and Functions
+The `<fstream>` library provides classes and functions for file input/output operations.
+
+## File Stream Classes
+
+| Class      | Description                                       |
+| ---------- | ------------------------------------------------- |
+| `ifstream` | Input file stream for reading from files          |
+| `ofstream` | Output file stream for writing to files           |
+| `fstream`  | File stream for both reading and writing to files |
+
+## File Opening Modes
+
+| Mode          | Description                                        |
+| ------------- | -------------------------------------------------- |
+| `ios::in`     | Open for input operations (reading)                |
+| `ios::out`    | Open for output operations (writing)               |
+| `ios::binary` | Open in binary mode                                |
+| `ios::ate`    | Set initial position at the end of file            |
+| `ios::app`    | All output operations are performed at end of file |
+| `ios::trunc`  | If file exists, truncate it to zero length         |
+
+## Common File Operations
+
+| Function/Method | Description                                |
+| --------------- | ------------------------------------------ |
+| `open()`        | Opens a file                               |
+| `close()`       | Closes a file                              |
+| `is_open()`     | Checks if file is open                     |
+| `good()`        | Checks if stream is in good state          |
+| `bad()`         | Checks if a non-recoverable error occurred |
+| `fail()`        | Checks if an error occurred                |
+| `eof()`         | Checks if end-of-file has been reached     |
+| `clear()`       | Clears error flags                         |
+| `seekg()`       | Sets position of input pointer             |
+| `seekp()`       | Sets position of output pointer            |
+| `tellg()`       | Returns position of input pointer          |
+| `tellp()`       | Returns position of output pointer         |
+| `getline()`     | Reads entire line from file                |
+| `get()`         | Reads single character from file           |
+| `put()`         | Writes single character to file            |
+| `read()`        | Reads block of data from file              |
+| `write()`       | Writes block of data to file               |
+
+## Example Usage
+
+```cpp
+#include <fstream>
+#include <iostream>
+#include <string>
+
+int main() {
+	// Reading from file
+	std::ifstream inputFile("example.txt");
+	if (inputFile.is_open()) {
+		std::string line;
+		while (std::getline(inputFile, line)) {
+			std::cout << line << std::endl;
+		}
+		inputFile.close();
+	}
+
+	// Writing to file
+	std::ofstream outputFile("output.txt");
+	if (outputFile.is_open()) {
+		outputFile << "Hello, World!" << std::endl;
+		outputFile.close();
+	}
+
+	// Reading and writing
+	std::fstream file("data.txt", std::ios::in | std::ios::out | std::ios::app);
+	if (!file) {
+		std::cerr << "Error opening data.txt for reading and writing." << std::endl;
+		return 1;
+	}
+	if (file.is_open()) {
+		file << "New data" << std::endl;
+		file.close();
+	}
+
+	return 0;
+	}
+}
+```
 
 ---
