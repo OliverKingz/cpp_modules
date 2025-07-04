@@ -101,8 +101,12 @@ valgrind:
 run: all
 	@./$(NAME) $(ARGS) > my.log
 
-diff: run
-	diff -I '^.{16}' 19920104_091532.log my.log
+# Rule to compare output with a reference log
+diff: my.log
+	cut -c 17- 19920104_091532.log > temp_ref.log
+	cut -c 17- my.log > temp_my.log
+	-diff temp_ref.log temp_my.log
+	@rm -f temp_ref.log temp_my.log
 
 # **************************************************************************** #
 
