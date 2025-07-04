@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 14:49:55 by ozamora-          #+#    #+#              #
-#    Updated: 2025/07/04 17:26:04 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/07/04 20:52:27 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,18 +102,18 @@ debug:
 	@$(MAKE) fclean -s
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # Rule to debug using valgrind the program
 valgrind:
 	@$(MAKE) fclean -s
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
-	-@./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # Rule to test the program using Makefile
 test: all
@@ -125,5 +125,5 @@ test: all
 
 # **************************************************************************** #
 
-.PHONY: all clean fclean re debug valgrind run
+.PHONY: all clean fclean re debug valgrind run test
 .DEFAULT_GOAL := all

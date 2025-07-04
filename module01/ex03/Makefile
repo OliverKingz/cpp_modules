@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 14:49:55 by ozamora-          #+#    #+#              #
-#    Updated: 2025/07/03 16:17:32 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/07/04 20:51:55 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,22 +96,20 @@ re: fclean all
 # DEBUG AND RULES
 
 # Rule to debug and execute the program
-debug:
-	@$(MAKE) fclean -s
+debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # Rule to debug using valgrind the program
-valgrind:
-	@$(MAKE) fclean -s
+valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
-	@./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 
