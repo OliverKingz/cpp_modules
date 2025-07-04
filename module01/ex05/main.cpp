@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 21:01:48 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/07/04 21:31:06 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 ** Exercise 05: Harl 2.0
 **
@@ -20,3 +32,18 @@
 ** Test the class with various levels to ensure functionality.
 */
 
+#include "Harl.hpp"
+
+int main()
+{
+	std::cout << "\n================" << BLUE << " Exercise 05: Harl 2.0 " << RESET << "================\n";
+
+	Harl myKaren;
+	myKaren.complain("DEBUG");
+	myKaren.complain("INFO");
+	myKaren.complain("WARNING");
+	myKaren.complain("ERROR");
+
+	std::cout <<   "================" <<         "======================="          << "================\n\n";
+	return 0;
+}
