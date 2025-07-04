@@ -6,9 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 21:03:22 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/04 21:31:22 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 22:53:59 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <string>
 #include <iostream>
@@ -30,6 +33,8 @@
 class Harl
 {
 	private:
+		static std::string _level[4];
+		static void (Harl::*_levelFunction[4])(void);
 		void debug(void);
 		void info(void);
 		void warning(void);
@@ -37,3 +42,5 @@ class Harl
 	public:
 		void complain(std::string level);
 };
+
+#endif
