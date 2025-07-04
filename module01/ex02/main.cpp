@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 14:50:09 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 18:07:43 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 17:57:04 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int main()
 	std::cout << BLUE << "string:\t\t" << RESET << string << std::endl;
 	std::cout << BLUE << "stringPTR:\t" << RESET << *stringPTR << std::endl;
 	std::cout << BLUE << "stringREF:\t" << RESET << stringREF << std::endl;
-
+	std::cout << "===============================================================\n";
 	return 0;
 }

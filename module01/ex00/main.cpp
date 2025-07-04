@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:47:06 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 18:05:54 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:05:20 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	std::cout << "===================" << BLUE << " Exercise 00: BraiiiiiiinnnzzzZ " << RESET << "===================\n" << std::endl;
+	std::cout << "===================" << BLUE << " Exercise 00: BraiiiiiiinnnzzzZ " << RESET << "===================\n";
 
 	std::cout << BOLD << "Creating a pointer heap-allocated zombie: needs to personally delete\n" << RESET;
 	Zombie* pointerDynamicZombie = new Zombie("pointerDynamicZombie");
@@ -37,6 +37,7 @@ int main()
 	Zombie namedStackZombie = Zombie("namedStackZombie");
 	namedStackZombie.announce();
 
+	std::cout << "=====================================================================\n";
 	return 0;
 }
 
