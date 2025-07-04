@@ -29,6 +29,7 @@ endif
 # **************************************************************************** #
 # FILES
 SRC_FILES := tests Account
+LOG := my.log
 
 # GENERAL FILES (defined after OBJ_DIR is set)
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
@@ -75,7 +76,7 @@ clean:
 # Rule to clean generated files and the executable
 fclean:
 	@$(MAKE) clean > /dev/null
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(LOG)
 	@printf "%b" "$(CL) -> $(BW)[$(NAME)]:\t$(BG)Exe and objects cleaned\t❎$(NC)\n"
 
 # Rule to recompile from zero
@@ -84,26 +85,24 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-LOG := my.log
-
 # Rule to compile and run with debug flags
 debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # Rule to run with Valgrind
 valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
-	@./$(NAME) $(ARGS) > $(LOG)
+	-./$(NAME) $(ARGS) > $(LOG)
 
 # Rule to compare output with a reference log
-diff: $(LOG)
+diff: run $(LOG) 19920104_091532.log
 	cut -c 17- 19920104_091532.log > temp_ref.log
 	cut -c 17- $(LOG) > temp_my.log
 	-diff temp_ref.log temp_my.log

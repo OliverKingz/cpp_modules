@@ -92,17 +92,17 @@ ARGS := Damnit " ! " "Sorry students, I thought this thing was off."
 debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦$(NC)"
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # Rule to compile with valgrind debug flags
 valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s	
 	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 

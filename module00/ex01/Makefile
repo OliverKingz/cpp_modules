@@ -107,7 +107,7 @@ test: fclean
 
 # Rule to run the program with arguments
 run: all
-	-@./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 
