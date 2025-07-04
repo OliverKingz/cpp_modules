@@ -55,6 +55,7 @@ dkms.conf
 /subjects
 *.build_mode
 my_program
+template
 
 # Module00 Executables
 megaphone
