@@ -102,7 +102,7 @@ run: all
 	-./$(NAME) $(ARGS) > $(LOG)
 
 # Rule to compare output with a reference log
-diff: run $(LOG) 19920104_091532.log
+tester: 19920104_091532.log $(LOG)
 	cut -c 17- 19920104_091532.log > temp_ref.log
 	cut -c 17- $(LOG) > temp_my.log
 	-diff temp_ref.log temp_my.log
@@ -110,5 +110,5 @@ diff: run $(LOG) 19920104_091532.log
 
 # **************************************************************************** #
 
-.PHONY: all clean fclean re debug valgrind run diff
+.PHONY: all clean fclean re debug valgrind run tester
 .DEFAULT_GOAL := all

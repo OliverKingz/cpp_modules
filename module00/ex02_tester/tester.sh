@@ -6,6 +6,7 @@ make re
 cd ../ex02_tester
 ../ex02/dream_job > my.log
 echo x >> my.log
+echo "To compare the logs, my.log needs to finix with an 'x' at the end."
 g++ comparer.cpp -o comparer
 ./comparer
 rm comparer
