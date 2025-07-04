@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 12:59:58 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 16:10:13 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:57:17 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include <iostream>
 # include <iomanip>
 # include <sstream>
-# include <cctype>
+# include <cctype> 
+# include <cstdlib> // To use exit()
 
 // Color Definitions
 

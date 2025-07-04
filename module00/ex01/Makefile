@@ -93,23 +93,23 @@ debug:
 	@$(MAKE) fclean -s
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 valgrind:
 	@$(MAKE) fclean -s
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 test: 
 	@$(MAKE) fclean -s
 	@$(MAKE) TEST=1 DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Testing]:\t\t\t$(BY)Testing mode enabled\t🟨$(NC)"
-	./$(NAME) $(ARGS)
+	-./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
-	@./$(NAME) $(ARGS)
+	-@./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 

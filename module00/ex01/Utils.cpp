@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:04:10 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/27 20:30:14 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:05:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ std::string inputName(const std::string &msg)
 	{
 		std::cout << msg;
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cerr << "End of input detected (CTRL+D). Exiting... \n";
+			exit(EXIT_FAILURE);
+		}
 		if (isValidName(input))
 			isValid = true;
 		else
@@ -91,6 +96,11 @@ std::string inputPhoneNumber(const std::string &msg)
 	{
 		std::cout << msg;
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cerr << "End of input detected (CTRL+D). Exiting... \n";
+			exit(EXIT_FAILURE);
+		}
 		if (isValidPhoneNumber(input))
 			isValid = true;
 		else
@@ -105,6 +115,11 @@ std::string inputString(const std::string &msg)
 
 	std::cout << msg;
 	std::getline(std::cin, input);
+	if (std::cin.eof())
+	{
+		std::cerr << "End of input detected (CTRL+D). Exiting... \n";
+		exit(EXIT_FAILURE);
+	}
 
 	return input;
 }

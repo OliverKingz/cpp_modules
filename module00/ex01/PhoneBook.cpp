@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 13:08:42 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:23:05 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:05:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ std::string PhoneBook::inputCommand() const
 	{
 		std::cout << UNDERLINE << "Enter command:\t" << RESET;
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cerr << "End of input detected (CTRL+D). Exiting... \n";
+			exit(EXIT_FAILURE);
+		}
 		if (isValidCommand(input))
 			isValid = true;
 	}
@@ -140,6 +145,11 @@ size_t PhoneBook::inputIndex(const std::string &msg)
 	{
 		std::cout << msg;
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cerr << "End of input detected (CTRL+D). Exiting... \n";
+			exit(EXIT_FAILURE);
+		}
 		if (stringToSizeT(input, index) == false || input.empty() || index >= totalContacts)
 			std::cerr << "Invalid index number, repeat. \n";
 		else
