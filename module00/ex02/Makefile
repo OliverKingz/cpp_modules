@@ -84,32 +84,32 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
+LOG := my.log
+
 # Rule to compile and run with debug flags
-debug:
-	@$(MAKE) fclean -s
+debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
 	./$(NAME) $(ARGS)
 
 # Rule to run with Valgrind
-valgrind:
-	@$(MAKE) fclean -s
+valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
 	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
-	@./$(NAME) $(ARGS) > my.log
+	@./$(NAME) $(ARGS) > $(LOG)
 
 # Rule to compare output with a reference log
-diff: my.log
+diff: $(LOG)
 	cut -c 17- 19920104_091532.log > temp_ref.log
-	cut -c 17- my.log > temp_my.log
+	cut -c 17- $(LOG) > temp_my.log
 	-diff temp_ref.log temp_my.log
 	@rm -f temp_ref.log temp_my.log
 
 # **************************************************************************** #
 
-.PHONY: all clean fclean re debug valgrind run
+.PHONY: all clean fclean re debug valgrind run diff
 .DEFAULT_GOAL := all

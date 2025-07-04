@@ -26,7 +26,7 @@ BUILD_MODE_FILE := .build_mode
 DEBUG ?= 0
 VALGRIND ?= 0
 VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all \
---track-origins=yes --trace-children=yes --track-fds=yes
+--track-origins=yes --trace-children=yes
 
 ifeq ($(DEBUG),1)
 	CPPFLAGS += -g3 -fsanitize=address
@@ -86,29 +86,23 @@ re: fclean all
 # **************************************************************************** #
 # NORM AND DEBUG RULES
 
+ARGS := Damnit " ! " "Sorry students, I thought this thing was off."
+
 # Rule to compile with debug flags
-debug:
-	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "DEBUG=1" $(BUILD_MODE_FILE); then \
-		$(MAKE) fclean -s; \
-	fi
-	@echo "DEBUG=1" > $(BUILD_MODE_FILE)
-	@$(MAKE) DEBUG=1 -s
+debug: fclean
+	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦$(NC)"
-	./$(NAME) "$(ARGS)"
+	./$(NAME) $(ARGS)
 
 # Rule to compile with valgrind debug flags
-valgrind:
-	@if [ ! -f $(BUILD_MODE_FILE) ] || ! grep -q "VALGRIND=1" $(BUILD_MODE_FILE); then \
-		$(MAKE) fclean -s; \
-	fi
-	@echo "VALGRIND=1" > $(BUILD_MODE_FILE)
-	@$(MAKE) VALGRIND=1 -s
+valgrind: fclean
+	@$(MAKE) VALGRIND=1 $(NAME) -s	
 	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦$(NC)"
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) "$(ARGS)"
+	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
-run:
-	./$(NAME) "$(ARGS)"
+run: all
+	./$(NAME) $(ARGS)
 
 # **************************************************************************** #
 

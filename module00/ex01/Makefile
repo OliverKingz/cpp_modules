@@ -89,22 +89,19 @@ re: fclean all
 # DEBUG AND RULES
 
 # Rule to compile and run with debug flags
-debug:
-	@$(MAKE) fclean -s
+debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
 	-./$(NAME) $(ARGS)
 
 # Rule to run with Valgrind
-valgrind:
-	@$(MAKE) fclean -s
+valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
 	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with a pre-filled phonebook for testing
-test: 
-	@$(MAKE) fclean -s
+test: fclean
 	@$(MAKE) TEST=1 DEBUG=1 $(NAME) -s
 	-./$(NAME) $(ARGS)
 
