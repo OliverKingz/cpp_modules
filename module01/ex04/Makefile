@@ -6,7 +6,7 @@
 #    By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/03 14:49:55 by ozamora-          #+#    #+#              #
-#    Updated: 2025/07/03 17:45:11 by ozamora-         ###   ########.fr        #
+#    Updated: 2025/07/04 17:26:04 by ozamora-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-ARGS := my_file loves hates
+ARGS := Makefile NAME PROJECT
 
 # Rule to debug and execute the program
 debug:
@@ -114,6 +114,14 @@ valgrind:
 # Rule to run the program with arguments
 run: all
 	-@./$(NAME) $(ARGS)
+
+# Rule to test the program using Makefile
+test: all
+	-./$(NAME) Makefile a a
+	diff Makefile Makefile.replace
+	chmod 000 Makefile.replace
+	-./$(NAME) Makefile a a
+	chmod 644 Makefile.replace
 
 # **************************************************************************** #
 

@@ -6,24 +6,16 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:40:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 16:53:45 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:28:19 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 # define UTILS_HPP
 
-// Standard C++ Libraries
-
 # include <string>
 # include <iostream>
 # include <fstream>
-
-// # include <iomanip>
-// # include <sstream>
-// # include <cctype>
-
-// Color Definitions
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
@@ -38,16 +30,5 @@
 # define BLUE "\033[0;34m"
 # define MAGENTA "\033[0;35m"
 # define CYAN "\033[0;36m"
-
-// Utility Functions
-
-bool stringToSizeT(const std::string &str, size_t &value);
-
-bool isValidName(const std::string &name);
-bool isValidPhoneNumber(const std::string &phoneNbr);
-
-std::string inputName(const std::string &msg);
-std::string inputPhoneNumber(const std::string &msg);
-std::string inputString(const std::string &msg);
 
 #endif
