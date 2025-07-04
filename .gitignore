@@ -67,3 +67,4 @@ zombie_world
 ptr_and_refs
 human_world
 my_program
+*.replace

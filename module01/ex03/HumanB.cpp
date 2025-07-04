@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:12:52 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/03 16:23:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/04 17:46:06 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 HumanB::HumanB(std::string name) : _name(name)
 {
 	_weapon = NULL;
+	std::cout << "HumanB constructor called for " << BLUE << _name << RESET << " without weapon" << std::endl;
+}
+
+HumanB::~HumanB()
+{
+	std::cout << "HumanB destructor called for " << BLUE << _name << RESET << std::endl;
 }
 
 void HumanB::setWeapon(Weapon& weapon)
