@@ -84,13 +84,14 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-# Force clean and rebuild for different modes
+# Rule to compile and run with debug flags
 debug:
 	@$(MAKE) fclean -s
 	@$(MAKE) DEBUG=1 $(NAME) -s
 	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
 	./$(NAME) $(ARGS)
 
+# Rule to run with Valgrind
 valgrind:
 	@$(MAKE) fclean -s
 	@$(MAKE) VALGRIND=1 $(NAME) -s
