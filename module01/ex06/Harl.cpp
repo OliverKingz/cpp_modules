@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 21:03:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/08 22:07:00 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/08 22:25:23 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,47 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-	bool isValidLevel = false;
-	for (int i = 0; i < 4 ; i++)
+	int levelIndex = -1;
+	for (int i = 0; i < 4; i++)
 	{
-		if (this->_level[i] == level || isValidLevel)
+		if (this->_level[i] == level)
 		{
-			(this->*_levelFunction[i])();
-			isValidLevel = true;
+			levelIndex = i;
+			break;
 		}
 	}
-	if (!isValidLevel)
-		std::cout << "[ Probably complaining about insignificant problems ]\n";
+	switch (levelIndex)
+	{
+		case 0:
+			(this->*_levelFunction[0])();
+			// fall through
+		case 1:
+			(this->*_levelFunction[1])();
+			// fall through
+		case 2:
+			(this->*_levelFunction[2])();
+			// fall through
+		case 3:
+			(this->*_levelFunction[3])();
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]\n";
+			break;
+	}
 }
 
+// Solution without using switch
+// void Harl::complain(std::string level)
+// {
+// 	bool isValidLevel = false;
+// 	for (int i = 0; i < 4 ; i++)
+// 	{
+// 		if (this->_level[i] == level || isValidLevel)
+// 		{
+// 			(this->*_levelFunction[i])();
+// 			isValidLevel = true;
+// 		}
+// 	}
+// 	if (!isValidLevel)
+// 		std::cout << "[ Probably complaining about insignificant problems ]\n";
+// }
