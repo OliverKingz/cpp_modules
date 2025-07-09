@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 21:03:22 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/09 15:05:27 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:51:46 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>
 
 # define RESET "\033[0m"
+# define UNDERLINE "\033[4m"
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
