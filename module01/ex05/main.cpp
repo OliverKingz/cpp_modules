@@ -6,31 +6,9 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 21:01:48 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/04 23:00:09 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:49:02 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** Exercise 05: Harl 2.0
-**
-** Turn-in directory: ex05/
-** Files to turn in: Makefile, main.cpp, Harl.{h, hpp}, Harl.cpp
-** Forbidden functions: None
-**
-** Description:
-** Create a `Harl` class with private member functions:
-** - `void debug(void);`
-** - `void info(void);`
-** - `void warning(void);`
-** - `void error(void);`
-**
-** Add a public member function:
-** - `void complain(std::string level);`
-**   Calls the appropriate private function based on the level passed.
-**
-** Use pointers to member functions to avoid a forest of `if/else` statements.
-** Test the class with various levels to ensure functionality.
-*/
 
 #include "Harl.hpp"
 
