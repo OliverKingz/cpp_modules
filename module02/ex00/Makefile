@@ -1,6 +1,6 @@
 # **************************************************************************** #
 # PROJECT
-NAME := template
+NAME := orthodox_canonical_form
 
 # **************************************************************************** #
 # COMPILER
@@ -83,6 +83,9 @@ re: fclean all
 
 # **************************************************************************** #
 # DEBUG AND RULES
+
+DEFAULT_ARGS :=
+ARGS := $(DEFAULT_ARGS)
 
 # Rule to compile and run with debug flags
 debug: fclean

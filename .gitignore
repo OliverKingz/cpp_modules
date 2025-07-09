@@ -51,19 +51,19 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# Personal files
+# Personal Files and Executables
 /subjects
 *.build_mode
 my_program
 template
 
-# Module00 Executables
+# Module00 Files and Executables
 megaphone
 awesome_phonebook
 dream_job
 module00/ex02/my.log
 
-# Module01 Executables
+# Module01 Files and Executables
 zombie_world
 ptr_and_refs
 human_world
@@ -71,3 +71,6 @@ my_program
 *.replace
 harl
 harlFilter
+
+# Module02 Files and Executables
+orthodox_canonical_form
