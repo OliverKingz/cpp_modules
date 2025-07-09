@@ -1,670 +1,299 @@
-# C++ Keywords for 42 School
+# C++ Keywords Reference for 42 School
 
-This guide focuses specifically on C++ keywords relevant to the 42 School CPP modules curriculum.
+A comprehensive guide to C++ keywords for 42 School CPP modules, organized by learning progression and practical usage.
 
-## Overview
+## Introduction
 
-42 School CPP modules follow a progressive learning path. Here's what keywords you need to master for each stage:
+The 42 CPP modules use **C++98 standard exclusively**. This reference provides all C++98 keywords with practical examples, usage patterns, and 42-specific guidance. Keywords are organized from basic to advanced to match the module progression.
 
 ---
 
-## Must Know (Module 00-04)
+## Foundation Keywords (Modules 00-01)
 
-**Essential for basic C++:**
+These are the essential keywords you'll use in every C++ program. Master these first.
 
-### Object-Oriented Programming Core
+### Class Definition & Access Control
 
-```cpp
-class, struct, public, private, protected
-```
-
-- **`class`** - Define classes (Module 00: PhoneBook, Module 04: Animal hierarchy)
-- **`struct`** - Like class but default public access (rarely used in 42)
-- **`public`** - Members accessible from outside the class
-- **`private`** - Members only accessible within the class (encapsulation)
-- **`protected`** - Members accessible in derived classes (inheritance)
-
-**Why critical:** Every 42 CPP project uses classes. Understanding access specifiers is fundamental to proper encapsulation.
-
-### Memory & Object Lifecycle
-
-```cpp
-const, static, virtual
-```
-
-- **`const`** - Immutable values/objects, const member functions
-  - `const int MAX_SIZE = 8;` (PhoneBook)
-  - `std::string getName() const;` (getter methods)
-- **`static`** - Class-level members, not instance-level
-  - `static const int MAX_CONTACTS = 8;` (shared by all instances)
-- **`virtual`** - Enable polymorphism, virtual destructors
-  - `virtual ~Animal() {}` (proper cleanup in inheritance)
-  - `virtual void makeSound() = 0;` (pure virtual functions)
-
-**Why critical:** `const` ensures data integrity, `static` manages class-wide data, `virtual` enables polymorphism (Module 04).
-
-### Dynamic Memory Management
-
-```cpp
-new, delete
-```
-
-- **`new`** - Allocate memory on heap: `int* ptr = new int(42);`
-- **`delete`** - Free heap memory: `delete ptr;` or `delete[] array;`
-
-**Why critical:** Manual memory management is required in C++98. Every `new` must have matching `delete` to avoid memory leaks.
-
-### Control Flow Fundamentals
-
-```cpp
-if, else, for, while, return
-```
-
-- **`if/else`** - Conditional execution
-- **`for`** - Counting loops: `for(int i = 0; i < 8; i++)`
-- **`while`** - Condition-based loops
-- **`return`** - Exit function with/without value
-
-**Why critical:** Basic program flow control needed in every project.
+| Keyword   | Purpose                                 | Module 00 Example                        |
+| --------- | --------------------------------------- | ---------------------------------------- |
+| class     | Define a class (OOP foundation)         | `class PhoneBook { };`                   |
+| struct    | Define a struct (public by default)     | `struct Contact { std::string name; };`  |
+| public    | Public access specifier                 | `public: void addContact();`             |
+| private   | Private access specifier                | `private: std::string firstName;`        |
+| protected | Protected access specifier              | `protected: std::string type;` (Module 03+) |
 
 ### Essential Data Types
 
-```cpp
-int, char, bool, float, double, void
-```
+| Keyword  | Purpose                         | Common Usage                          |
+| -------- | ------------------------------- | ------------------------------------- |
+| int      | Integer numbers                 | `int index = 0;`                      |
+| char     | Single characters               | `char initial = 'A';`                 |
+| bool     | Boolean values                  | `bool isValid = true;`                |
+| float    | Single-precision decimals       | `float price = 9.99f;`                |
+| double   | Double-precision decimals       | `double pi = 3.14159;`                |
+| void     | No type/return value            | `void printMessage();`                |
 
-- **`int`** - Integers for counters, IDs, calculations
-- **`char`** - Single characters, C-strings
-- **`bool`** - True/false values for flags, conditions
-- **`float/double`** - Decimal numbers (prefer `double`)
-- **`void`** - No return type for functions
+### Control Flow
 
-**Why critical:** These are your basic building blocks for all data manipulation.
+| Keyword  | Purpose                            | Essential Usage                       | Notes                                |
+| -------- | ---------------------------------- | ------------------------------------- | ------------------------------------ |
+| if       | Conditional execution              | `if (index < MAX_SIZE)`               | Basic program logic control         |
+| else     | Alternative condition              | `else { handleError(); }`             | Must follow if statement             |
+| for      | Counted loops                      | `for (int i = 0; i < 8; i++)`         | When you know iteration count        |
+| while    | Conditional loops                  | `while (input != "QUIT")`             | When condition determines when to stop |
+| do       | Post-condition loop                | `do { getInput(); } while (invalid);` | Body executes at least once         |
+| break    | Exit loop or switch early          | `break;` (in loops/switch)            | Jumps out of current loop/switch     |
+| continue | Skip to next iteration             | `continue;` (in loops only)           | Skips rest of loop body              |
+| switch   | Multi-way branch                   | `switch (choice) { case 1: ... }`     | Efficient alternative to if-else chain |
+| case     | Label in switch statement          | `case 'A': processA(); break;`        | Must end with break (usually)        |
+| default  | Default case in switch             | `default: handleUnknown(); break;`    | Handles unmatched cases              |
+| return   | Exit function with/without value   | `return getName();`                   | Can return value or just exit        |
 
-### Safe Type Conversion
+### Memory Management (Module 01)
 
-```cpp
-static_cast, const_cast, dynamic_cast
-```
+| Keyword | Purpose                   | Critical Usage                        | Memory Rules                          |
+| ------- | ------------------------- | ------------------------------------- | ------------------------------------- |
+| new     | Allocate heap memory      | `Zombie* z = new Zombie("name");`     | Every `new` needs matching `delete`   |
+| delete  | Free heap memory          | `delete z;` or `delete[] array;`      | Use `delete[]` for arrays, `delete` for single objects |
 
-- **`static_cast`** - Safe compile-time conversions
-  - `static_cast<float>(intValue)` (numeric conversion)
-  - `static_cast<Derived*>(basePtr)` (safe upcast)
-- **`const_cast`** - Remove const qualifier (use sparingly)
-  - `const_cast<char*>(constString)` (for legacy C functions)
-- **`dynamic_cast`** - Runtime type checking for polymorphism
-  - `dynamic_cast<Dog*>(animalPtr)` (safe downcast)
-
-**Why critical:** 42 forbids C-style casts. These provide type safety while allowing necessary conversions.
-
----
-
-## Important for Later Modules (05-09)
-
-**Advanced concepts:**
-
-### Generic Programming (Module 07-08)
-
-```cpp
-template, typename
-```
-
-- **`template`** - Create generic classes/functions
-  ```cpp
-  template<typename T>
-  class Array {
-      T* data;
-      // Works with any type T
-  };
-  ```
-- **`typename`** - Template parameter declaration
-  ```cpp
-  template<typename T>  // T can be any type
-  void function(T value);
-  ```
-
-**Why important:** Templates enable code reuse. One template works for `int`, `string`, custom classes, etc.
-
-### Error Handling (Module 05-06)
+**Critical Memory Management Rules:**
+- **Heap vs Stack**: `new` allocates on heap (manual cleanup), local variables on stack (automatic cleanup)
+- **Memory Leaks**: Forgetting `delete` causes memory leaks - program keeps using memory
+- **Array Allocation**: `new Type[size]` must use `delete[] ptr`, not `delete ptr`
+- **Double Delete**: Calling `delete` twice on same pointer = undefined behavior
+- **Null Pointers**: Safe to call `delete` on `nullptr`, but not on uninitialized pointers
 
 ```cpp
-try, catch, throw
-```
+// Module 01 Examples
+Zombie* newZombie(std::string name) {
+    return new Zombie(name);  // Heap - survives function scope
+}
 
-- **`try`** - Begin exception-handling block
-- **`catch`** - Handle specific exception types
-- **`throw`** - Raise an exception
-  ```cpp
-  try {
-      if (index >= size)
-          throw std::out_of_range("Index too big");
-  }
-  catch (const std::exception& e) {
-      std::cout << "Error: " << e.what() << std::endl;
-  }
-  ```
+void randomChump(std::string name) {
+    Zombie zombie(name);      // Stack - automatic cleanup when function ends
+}
 
-**Why important:** Robust error handling instead of return codes. Required for many Module 05+ exercises.
-
-### Code Organization
-
-```cpp
-namespace, using
-```
-
-- **`namespace`** - Organize code, prevent name conflicts
-  ```cpp
-  namespace ft {
-      class vector { /* custom implementation */ };
-  }
-  ```
-- **`using`** - Bring namespace items into scope
-  ```cpp
-  using std::cout;  // Now can use 'cout' instead of 'std::cout'
-  using namespace std;  // Bring entire namespace (avoid in headers!)
-  ```
-
-**Why important:** Large projects need organization. Standard library is in `std` namespace.
-
-### Performance & Design
-
-```cpp
-inline, explicit, operator
-```
-
-- **`inline`** - Suggest function inlining for performance
-  ```cpp
-  inline int getSize() const { return size; }  // Small, frequently called
-  ```
-- **`explicit`** - Prevent implicit conversions
-  ```cpp
-  explicit MyClass(int value);  // Prevents: MyClass obj = 42;
-  ```
-- **`operator`** - Overload operators for custom classes
-  ```cpp
-  MyClass operator+(const MyClass& other) const;  // Enable: obj1 + obj2
-  ```
-
-**Why important:** Fine-tune performance, prevent bugs, make classes behave like built-in types.
-
----
-
-## Avoid in 42
-
-**Forbidden or discouraged:**
-
-### Strictly Forbidden
-
-```cpp
-goto          // Bad practice, jumps anywhere
-asm           // Assembly not allowed in 42
-```
-
-### Discouraged/Restricted
-
-```cpp
-register      // Deprecated since C++11
-reinterpret_cast  // Usually forbidden (unsafe)
-```
-
-### Use with Caution
-
-```cpp
-const_cast    // Only when absolutely necessary
-mutable       // Rare use cases
-volatile      // Usually not needed in 42 projects
+// Array management
+Zombie* horde = new Zombie[5];  // Array allocation
+// ... use horde
+delete[] horde;                 // Array deletion - note the []
 ```
 
 ---
 
-## Quick Reference by Module
+## Core Concept Keywords (Modules 02-04)
 
-### Module 00 - First Steps
+These keywords enable advanced C++ features like const correctness, operator overloading, and polymorphism.
 
-**Keywords needed:**
+### The `const` Keyword Family
 
-- `class`, `public`, `private`
-- `const`, `static`
-- `int`, `string`, `bool`, `void`
-- `if`, `for`, `while`, `return`
+`const` is fundamental to good C++ design. It has multiple forms with different meanings:
 
-**Example - PhoneBook:**
+| Usage Pattern             | Syntax                                | Purpose                                       | Why Important                        |
+| ------------------------- | ------------------------------------- | --------------------------------------------- | ------------------------------------ |
+| **Const Variable**        | `const int MAX_SIZE = 8;`             | Value cannot change after initialization     | Prevents accidental modification     |
+| **Const Method**          | `std::string getName() const;`        | Method promises not to modify object         | Enables calling on const objects     |
+| **Const Parameter**       | `void func(const std::string& str);`  | Parameter cannot be modified (safe reference) | Efficiency + safety for large objects |
+| **Const Return**          | `const std::string& getName() const;` | Returned reference cannot be modified        | Prevents modification of internal data |
+| **Const Pointer**         | `int* const ptr = &value;`            | Pointer address cannot change                | Pointer always points to same object |
+| **Pointer to Const**      | `const int* ptr = &value;`            | Cannot modify value through pointer          | Read-only access through pointer     |
+| **Const Pointer to Const** | `const int* const ptr = &value;`      | Neither pointer address nor value can change | Complete immutability               |
+
+**Const Best Practices:**
+- **Const Correctness**: Design classes so const objects can do everything read-only
+- **Getter Methods**: Always make getters const: `std::string getName() const;`
+- **Pass by const reference**: `void func(const LargeObject& obj)` - efficient and safe
+- **Const Return**: Return const references to prevent modification: `const std::string& getInternalData() const;`
 
 ```cpp
+// Module 00 Examples - PhoneBook
 class PhoneBook {
-private:              // keyword: access specifier
-    static const int MAX_CONTACTS = 8;  // keywords: static, const, int
-public:               // keyword: access specifier
-    void addContact();    // keywords: void
-    bool searchContact(); // keywords: bool
-};
-```
-
-### Module 01 - Memory, References, Pointers
-
-**New keywords:**
-
-- `new`, `delete`
-
-**Example:**
-
-```cpp
-class Zombie {
 private:
-    std::string name;
+    static const int MAX_CONTACTS = 8;  // Class constant - shared by all instances
+    Contact contacts[MAX_CONTACTS];
+    int contactCount;
+
 public:
-    Zombie(const std::string& name);  // const reference
-    ~Zombie();                        // destructor
-};
-
-// Dynamic allocation
-Zombie* zombie = new Zombie("Foo");
-delete zombie;  // Don't forget!
-```
-
-### Module 02 - Ad-hoc Polymorphism, Operators
-
-**New keywords:**
-
-- `operator`
-- `static_cast`
-
-**Example:**
-
-```cpp
-class Fixed {
-public:
-    Fixed operator+(const Fixed& other) const;  // operator overloading
-    operator float() const;                     // conversion operator
+    // Const method - doesn't modify object, can be called on const PhoneBook
+    int getContactCount() const { return contactCount; }
+    
+    // Const return - prevents modification of returned reference
+    const Contact& getContact(int index) const { 
+        return contacts[index]; 
+    }
+    
+    // Non-const method - modifies object state
+    void addContact(const Contact& contact) {  // const parameter - efficient, safe
+        if (contactCount < MAX_CONTACTS) {
+            contacts[contactCount++] = contact;
+        }
+    }
 };
 ```
 
-### Module 03 - Inheritance
+### The `static` Keyword Family
 
-**New keywords:**
+`static` controls scope and lifetime in different contexts:
 
-- `protected` (now becomes important)
+| Usage Context           | Syntax                                 | Purpose                                    | Key Characteristics                  |
+| ----------------------- | -------------------------------------- | ------------------------------------------ | ------------------------------------ |
+| **Static Class Member** | `static const int MAX_CONTACTS = 8;`  | Shared by all instances of the class       | One copy for entire class            |
+| **Static Method**       | `static bool isValid(const std::string&);` | Class method, no `this` pointer      | Called without object instance       |
+| **Static Local Var**   | `static int counter = 0;`              | Retains value between function calls       | Initialized only once                |
+| **Static Global**       | `static int fileVar = 42;`             | File scope only, not visible externally    | Internal linkage, prevents name conflicts |
+| **Static Function**     | `static void helperFunc() { }`         | Function visible only within current file  | File-private function                |
 
-**Example:**
+**Static Usage Guidelines:**
+- **Class Members**: Use for constants shared by all instances
+- **Utility Methods**: Use for functions that don't need object state
+- **Function-local**: Use for counters, caches that persist between calls
+- **File-scope**: Use to make variables/functions private to a file
 
 ```cpp
-class ClapTrap {
-protected:             // accessible to derived classes
-    std::string name;
+// Module 00 Examples
+class PhoneBook {
+private:
+    static const int MAX_CONTACTS = 8;  // Shared constant - all PhoneBooks have same limit
+    Contact contacts[MAX_CONTACTS];
+    int contactCount;                   // Each PhoneBook has its own count
+
 public:
-    virtual ~ClapTrap(); // virtual destructor
+    PhoneBook() : contactCount(0) {}
+    
+    // Static method - belongs to class, not instance
+    static int getMaxContacts() { 
+        return MAX_CONTACTS;  // Can access static members
+        // return contactCount;  // ERROR! No access to non-static members
+    }
+    
+    // Static utility method
+    static bool isValidName(const std::string& name) {
+        return !name.empty() && name.length() <= 50;
+    }
 };
 
-class ScavTrap : public ClapTrap {  // public inheritance
-public:
-    void guardGate();
-};
+// Usage:
+int main() {
+    // Call static method without creating object
+    std::cout << "Max contacts: " << PhoneBook::getMaxContacts() << std::endl;
+    
+    if (PhoneBook::isValidName("John")) {
+        // Create PhoneBook instance
+        PhoneBook pb;
+        // pb also has access to static members
+    }
+}
+
+// Static local variable example
+int getNextId() {
+    static int nextId = 1;  // Initialized only once, retains value
+    return nextId++;        // Each call returns different value
+}
 ```
 
-### Module 04 - Subtype Polymorphism
+### Polymorphism Keywords (Module 04)
 
-**New keywords:**
+| Keyword         | Purpose                              | Usage Example                           | Critical Notes                       |
+| --------------- | ------------------------------------ | --------------------------------------- | ------------------------------------ |
+| virtual         | Enable function overriding          | `virtual void makeSound();`             | Enables runtime polymorphism        |
+| virtual (pure)  | Force override, make class abstract  | `virtual void makeSound() = 0;`         | Class cannot be instantiated        |
+| virtual (dtor)  | Ensure proper inheritance cleanup    | `virtual ~Animal();`                    | **Always** use in base classes      |
 
-- `virtual` (pure virtual functions)
-- `dynamic_cast`
-
-**Example:**
+**Virtual Function Deep Dive:**
 
 ```cpp
+// Module 04 Examples - Animal Hierarchy
 class Animal {
+protected:
+    std::string type;
+
 public:
-    virtual void makeSound() const = 0;  // pure virtual
-    virtual ~Animal() {}                 // virtual destructor
+    Animal() {}
+    virtual ~Animal() {}                    // Virtual destructor - CRUCIAL!
+
+    virtual void makeSound() const = 0;     // Pure virtual - must override
+    virtual std::string getType() const {   // Virtual - can override
+        return type;
+    }
+    
+    // Non-virtual function - cannot be overridden
+    void breathe() const {
+        std::cout << "Breathing..." << std::endl;
+    }
 };
 
 class Dog : public Animal {
 public:
-    void makeSound() const {             // override
+    Dog() { type = "Dog"; }
+    ~Dog() { std::cout << "Dog destructor" << std::endl; }
+
+    // Override pure virtual function - MUST implement
+    virtual void makeSound() const {
         std::cout << "Woof!" << std::endl;
     }
-};
-
-// Safe downcasting
-Animal* animal = new Dog();
-Dog* dog = dynamic_cast<Dog*>(animal);   // runtime check
-```
-
-### Module 05 - Exceptions
-
-**New keywords:**
-
-- `try`, `catch`, `throw`
-
-**Example:**
-
-```cpp
-class Form {
-public:
-    class GradeTooHighException : public std::exception {
-    public:
-        virtual const char* what() const throw() {
-            return "Grade is too high!";
-        }
-    };
-
-    void setGrade(int grade) {
-        if (grade < 1)
-            throw GradeTooHighException();  // throw keyword
+    
+    // Override virtual function - optional
+    virtual std::string getType() const {
+        return "Domestic " + type;
     }
 };
 
-// Usage
-try {                                    // try keyword
-    form.setGrade(0);
-}
-catch (const std::exception& e) {        // catch keyword
-    std::cout << e.what() << std::endl;
-}
-```
-
-### Module 06-09 - Advanced Topics
-
-**New keywords:**
-
-- `template`, `typename` (Module 07-08)
-- `namespace`, `using`
-- `inline`, `explicit`
-
----
-
-## Common 42 Mistakes to Avoid
-
-### ❌ Forbidden Casts
-
-```cpp
-// NEVER do this in 42:
-int* ptr = (int*)somePointer;        // C-style cast - FORBIDDEN
-void* raw = reinterpret_cast<void*>(ptr);  // Usually forbidden
-
-// Do this instead:
-int* ptr = static_cast<int*>(somePointer);  // Safe cast
-```
-
-### ❌ Missing Virtual Destructors
-
-```cpp
-// BAD - memory leaks in polymorphism:
-class Base {
-public:
-    ~Base() {}  // NOT virtual!
-};
-
-// GOOD - proper cleanup:
-class Base {
-public:
-    virtual ~Base() {}  // Virtual destructor
-};
-```
-
-### ❌ Memory Leaks
-
-```cpp
-// BAD - no matching delete:
-int* arr = new int[10];
-// ... forgot delete[]
-
-// GOOD - proper cleanup:
-int* arr = new int[10];
-// ... use array
-delete[] arr;  // Don't forget!
-```
-
-### ❌ Using Keywords as Names
-
-```cpp
-// ERROR - keywords can't be variable names:
-int class = 5;     // 'class' is a keyword
-int new = 10;      // 'new' is a keyword
-
-// OK - case matters:
-int Class = 5;     // Capital C, not the keyword
-```
-
----
-
-## 42 Best Practices
-
-1. **Always use proper access specifiers** - `private` by default, `public` when needed
-2. **Every `new` needs a `delete`** - manual memory management
-3. **Virtual destructors in base classes** - prevents memory leaks
-4. **Prefer `static_cast` over C-style casts** - type safety
-5. **Use `const` everywhere possible** - data integrity
-6. **Initialize everything** - avoid undefined behavior
-
----
-
-## Progression Timeline
-
-| Module | New Keywords                                    | Focus                |
-| ------ | ----------------------------------------------- | -------------------- |
-| 00     | `class`, `public`, `private`, `const`, `static` | Basic OOP            |
-| 01     | `new`, `delete`                                 | Memory management    |
-| 02     | `operator`, `static_cast`                       | Operator overloading |
-| 03     | `protected` (important now)                     | Inheritance          |
-| 04     | `virtual`, `dynamic_cast`                       | Polymorphism         |
-| 05     | `try`, `catch`, `throw`                         | Exception handling   |
-| 06     | Advanced casting                                | Type conversion      |
-| 07-08  | `template`, `typename`                          | Generic programming  |
-| 09     | STL containers                                  | Standard library     |
-
-This progression ensures you learn keywords when you actually need them, building complexity gradually.
-
----
-
-## Detailed Examples by Module Progression
-
-### Module 00 Examples
-
-#### `class` - Basic Class Definition
-
-```cpp
-// PhoneBook.hpp
-class PhoneBook {
-    // Class defines a new type
-};
-```
-
-#### `public`, `private` - Access Specifiers
-
-```cpp
-class Contact {
-private:                    // Only Contact can access these
-    std::string firstName;
-    std::string lastName;
-    std::string phoneNumber;
-
-public:                     // Anyone can access these
-    void setFirstName(const std::string& name);
-    std::string getFirstName() const;
-};
-```
-
-#### `const` - Constants and Const Methods
-
-- When applied to a variable, `const` means its value cannot be changed after initialization.
-- When combined with `static`, it creates a class-level constant (shared by all instances, value cannot be changed).
-
-```cpp
-class PhoneBook {
-private:
-    static const int MAX_CONTACTS = 8;  // Constant value
-
-public:
-    // Const method - doesn't modify object
-    std::string getContact(int index) const;
-
-    // Non-const method - can modify object
-    void addContact(const Contact& contact);
-};
-```
-
-#### `static` - Class-Level Members
-
-- When applied to a class member variable or function, `static` means that the member belongs to the class itself, not to any particular instance.
-- All instances of the class share the same static member.
-- Example: `static int totalCreated;` counts the total number of `PhoneBook` objects created, shared across all instances.
-
-```cpp
-class PhoneBook {
-private:
-    static const int MAX_CONTACTS = 8;  // Shared by all instances
-    Contact contacts[MAX_CONTACTS];
-    int totalContacts;                  // Each PhoneBook has its own count
-
-public:
-    PhoneBook() : totalContacts(0) {}
-    int getTotalContacts() const { return totalContacts; }
-    static int getMaxContacts() { return MAX_CONTACTS; }
-};
-```
-
-- Why is `MAX_CONTACTS` static?
-  - `MAX_CONTACTS` is declared as `static` so that the maximum number of contacts is the same for all `PhoneBook` instances and does not take up extra space in each object.
-- Why is `totalContacts` **not** static?
-  - Each `PhoneBook` should track its own number of contacts, so `totalContacts` is a regular (non-static) member variable. If it were static, all `PhoneBook` instances would share the same count, which is not the intended behavior.
-
-#### Basic Data Types: `int`, `bool`, `void`, `size_t`
-
-- **`int`** - Represents integer values (whole numbers without decimals)
-- **`bool`** - Represents boolean values (`true` or `false`)
-- **`void`** - Represents "no type" or "no return value"
-- **`size_t`** - Represents an unsigned integer type, typically used for sizes and counts
-
-```cpp
-class Utils {
-public:
-    // int - integer values for calculations, indices, counts
-    static int stringToInt(const std::string& str);
-
-    // bool - true/false return for validation functions
-    static bool isValidName(const std::string& name);
-
-    // void - no return value for action functions
-    static void printError(const std::string& message);
-};
-```
-
-- **Why use specific data types?**
-  - `int` for numeric operations where you need whole numbers (array indices, counts, IDs)
-  - `bool` for functions that need to return yes/no, valid/invalid, success/failure
-  - `void` for functions that perform actions but don't need to return data
-
-- **Key `size_t` Rules:**
-  - **Use for**: Array indices, container sizes, loop counters with containers
-  - **Don't use for**: Values that can be negative, small flags/enums, general arithmetic
-  - **Be careful with**: Reverse loops (underflow), mixing with signed integers
-  - **42 Context**: Good for contact counts, array indices, string lengths
-
-#### Control Flow: `if`, `for`, `while`, `return`
-
-- **`if`** - Conditional execution: runs code only when a condition is true
-- **`for`** - Counting loops: repeats code a specific number of times
-- **`while`** - Condition-based loops: repeats code while a condition remains true
-- **`return`** - Exits a function, optionally returning a value
-
-```cpp
-bool PhoneBook::addContact(const Contact& contact) {
-    // if - conditional execution
-    if (contactCount >= MAX_CONTACTS) {
-        return false;  // return - exit with value (failure)
-    }
-
-    // for - counting loop (when you know how many iterations)
-    for (int i = 0; i < MAX_CONTACTS; i++) {
-        if (contacts[i].isEmpty()) {
-            contacts[i] = contact;
-            return true;  // return - exit with value (success)
-        }
-    }
-
-    // while - condition-based loop (when condition determines when to stop)
-    int index = 0;
-    while (index < MAX_CONTACTS && !contacts[index].isEmpty()) {
-        index++;
-    }
-
-    return false;  // return - default exit value
-}
-```
-
-- **When to use each:**
-  - Use `for` when you know exactly how many times to loop
-  - Use `while` when you need to loop until a condition changes
-  - Use `if` for single conditional checks
-  - Use `return` to exit functions early or provide results
-
----
-
-### Module 01 Examples
-
-#### `new`, `delete` - Dynamic Memory Management
-
-- **`new`** - Allocates memory on the heap at runtime
-- **`delete`** - Frees memory that was allocated with `new`
-- **Heap vs Stack**: Stack memory is automatic (cleaned up when scope ends), heap memory is manual (you must clean it up)
-
-```cpp
-// Zombie.cpp
-class Zombie {
-private:
-    std::string name;
-
-public:
-    Zombie(std::string name) : name(name) {}
-    ~Zombie() { std::cout << name << " destroyed" << std::endl; }
-    void announce();
-};
-
-// Creating zombies
-Zombie* newZombie(std::string name) {
-    return new Zombie(name);  // Allocate on heap - survives function scope
-}
-
-void randomChump(std::string name) {
-    Zombie zombie(name);      // Allocate on stack - automatic cleanup
-}
-
+// Polymorphic usage
 int main() {
-    // Heap allocation - manual cleanup required
-    Zombie* heapZombie = newZombie("HeapZombie");
-    heapZombie->announce();
-    delete heapZombie;        // Must delete manually or memory leak!
-
-    // Stack allocation - automatic cleanup
-    randomChump("StackZombie");  // Zombie destroyed when function ends
-
-    // Array allocation
-    Zombie* horde = new Zombie[5];  // Allocate array on heap
-    // ... use horde
-    delete[] horde;           // Array delete - note the []
-
-    return 0;
+    Animal* animals[2];
+    animals[0] = new Dog();     // Upcasting - always safe
+    animals[1] = new Cat();
+    
+    // Polymorphic calls - correct function called at runtime
+    for (int i = 0; i < 2; i++) {
+        animals[i]->makeSound();  // Calls Dog::makeSound() or Cat::makeSound()
+        animals[i]->breathe();    // Calls Animal::breathe() (not virtual)
+    }
+    
+    // Cleanup - virtual destructor ensures correct destructor called
+    for (int i = 0; i < 2; i++) {
+        delete animals[i];  // Calls ~Dog() then ~Animal(), or ~Cat() then ~Animal()
+    }
 }
 ```
 
-- **Critical Rules:**
-  - Every `new` must have exactly one matching `delete`
-  - Every `new[]` must have exactly one matching `delete[]`
-  - Don't mix `new`/`delete[]` or `new[]`/`delete` - undefined behavior!
-  - Memory allocated with `new` persists until you `delete` it
+**Why Virtual Destructors Matter:**
+```cpp
+// WITHOUT virtual destructor - MEMORY LEAK!
+class Base {
+public:
+    ~Base() { /* cleanup Base */ }  // NOT virtual!
+};
 
----
+class Derived : public Base {
+private:
+    int* data;
+public:
+    Derived() : data(new int[100]) {}
+    ~Derived() { delete[] data; }   // This won't be called!
+};
 
-### Module 02 Examples
+Base* ptr = new Derived();
+delete ptr;  // Only calls ~Base(), NOT ~Derived() - MEMORY LEAK!
 
-#### `operator` - Operator Overloading
+// WITH virtual destructor - CORRECT
+class Base {
+public:
+    virtual ~Base() { /* cleanup Base */ }  // Virtual!
+};
+// Now delete ptr calls ~Derived() then ~Base() - no leak!
+```
 
-- **`operator`** - Allows you to define how operators (+, -, ==, etc.) work with your custom classes
-- **Why overload operators?** - Makes your classes behave like built-in types, improving readability
-- **Common operators to overload**: arithmetic (+, -, *, /), comparison (==, !=, <, >), assignment (=), increment/decrement (++, --)
+### Operator Overloading (Module 02)
+
+| Keyword  | Purpose                     | Usage Example                          | Design Guidelines                    |
+| -------- | --------------------------- | -------------------------------------- | ------------------------------------ |
+| operator | Define custom operators     | `Fixed operator+(const Fixed& other);` | Make classes behave like built-in types |
+
+**Operator Overloading Deep Dive:**
 
 ```cpp
-// Fixed.hpp
+// Module 02 Examples - Fixed Point Class
 class Fixed {
 private:
     int rawValue;
@@ -673,6 +302,7 @@ private:
 public:
     Fixed() : rawValue(0) {}
     Fixed(const int value) : rawValue(value << fractionalBits) {}
+    Fixed(const float value) : rawValue(static_cast<int>(roundf(value * (1 << fractionalBits)))) {}
 
     // Arithmetic operators - return new objects
     Fixed operator+(const Fixed& other) const {
@@ -687,6 +317,18 @@ public:
         return result;
     }
 
+    Fixed operator*(const Fixed& other) const {
+        Fixed result;
+        result.rawValue = (this->rawValue * other.rawValue) >> fractionalBits;
+        return result;
+    }
+
+    Fixed operator/(const Fixed& other) const {
+        Fixed result;
+        result.rawValue = (this->rawValue << fractionalBits) / other.rawValue;
+        return result;
+    }
+
     // Comparison operators - return bool
     bool operator>(const Fixed& other) const {
         return this->rawValue > other.rawValue;
@@ -696,7 +338,23 @@ public:
         return this->rawValue < other.rawValue;
     }
 
-    // Increment/decrement - two versions each
+    bool operator>=(const Fixed& other) const {
+        return this->rawValue >= other.rawValue;
+    }
+
+    bool operator<=(const Fixed& other) const {
+        return this->rawValue <= other.rawValue;
+    }
+
+    bool operator==(const Fixed& other) const {
+        return this->rawValue == other.rawValue;
+    }
+
+    bool operator!=(const Fixed& other) const {
+        return this->rawValue != other.rawValue;
+    }
+
+    // Increment/decrement operators
     Fixed& operator++() {        // Pre-increment: ++obj
         rawValue++;
         return *this;            // Return reference to modified object
@@ -707,267 +365,188 @@ public:
         rawValue++;              // Modify current object
         return temp;             // Return old state
     }
-};
 
-// Usage
-int main() {
-    Fixed a(5);
-    Fixed b(3);
-
-    Fixed sum = a + b;          // Calls a.operator+(b)
-    bool greater = a > b;       // Calls a.operator>(b)
-    ++a;                        // Calls a.operator++()
-    b++;                        // Calls b.operator++(0)
-
-    return 0;
-}
-```
-
-- **Key Concepts:**
-  - **const correctness**: Operators that don't modify the object should be `const`
-  - **Return types**: Arithmetic operators return new objects, comparison returns `bool`
-  - **Pre vs Post increment**: Pre-increment is more efficient (no temporary object)
-  - **this pointer**: Refers to the current object in member functions
-
-#### `static_cast` - Safe Type Conversion
-
-- **`static_cast`** - Performs compile-time type conversions with safety checks
-- **Why use it?** - Replaces dangerous C-style casts with explicit, safer alternatives
-- **When to use**: Numeric conversions, inheritance upcasting, explicit conversions
-
-```cpp
-class Fixed {
-public:
-    Fixed(const float value) {
-        // Convert float to fixed-point representation
-        // static_cast ensures explicit conversion from float to int
-        rawValue = static_cast<int>(roundf(value * (1 << fractionalBits)));
+    Fixed& operator--() {        // Pre-decrement: --obj
+        rawValue--;
+        return *this;
     }
 
-    float toFloat() const {
-        // Convert fixed-point back to float
-        // static_cast makes the conversion explicit and safe
+    Fixed operator--(int) {      // Post-decrement: obj--
+        Fixed temp(*this);
+        rawValue--;
+        return temp;
+    }
+
+    // Assignment operator
+    Fixed& operator=(const Fixed& other) {
+        if (this != &other) {    // Self-assignment check
+            this->rawValue = other.rawValue;
+        }
+        return *this;            // Return reference for chaining
+    }
+
+    // Conversion operators
+    operator float() const {     // Implicit conversion to float
         return static_cast<float>(rawValue) / (1 << fractionalBits);
     }
 
-    int toInt() const {
-        // Convert fixed-point to integer (truncates fractional part)
+    operator int() const {       // Implicit conversion to int
         return rawValue >> fractionalBits;
     }
 };
-```
 
-- **Advantages over C-style casts:**
-  - **Explicit intent**: Shows exactly what conversion you're doing
-  - **Compile-time checking**: Catches many conversion errors at compile time
-  - **Searchable**: Easy to find all casts in code with grep
-  - **42 compliant**: C-style casts `(int)value` are forbidden in 42
-
----
-
-### Module 03 Examples
-
-#### `protected` - Inheritance Access
-
-- **`protected`** - Access level between `private` and `public`
-- **Accessibility**: Only the class itself and its derived classes can access protected members
-- **Why use protected?** - Allows inheritance while maintaining encapsulation from outside users
-
-```cpp
-// ClapTrap.hpp
-class ClapTrap {
-protected:                    // Accessible to derived classes but not outside users
-    std::string name;
-    int hitPoints;
-    int energyPoints;
-    int attackDamage;
-
-public:
-    ClapTrap(const std::string& name);
-    virtual ~ClapTrap();      // Virtual destructor for proper inheritance cleanup
-
-    virtual void attack(const std::string& target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
-};
-
-// ScavTrap.hpp - Inherits from ClapTrap
-class ScavTrap : public ClapTrap {
-public:
-    ScavTrap(const std::string& name);
-    ~ScavTrap();
-
-    void attack(const std::string& target);  // Override base class method
-    void guardGate();                        // ScavTrap-specific function
-};
-
-// ScavTrap.cpp
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
-    // Can access protected members from base class
-    this->hitPoints = 100;     // protected member - accessible here
-    this->energyPoints = 50;   // protected member - accessible here
-    this->attackDamage = 20;   // protected member - accessible here
+// External operators (for symmetry)
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
+    out << static_cast<float>(fixed);  // Use conversion operator
+    return out;
 }
 
-void ScavTrap::attack(const std::string& target) {
-    // Can use protected members directly (no getter functions needed)
-    if (energyPoints > 0) {
-        std::cout << "ScavTrap " << name << " attacks " << target;
-        std::cout << " causing " << attackDamage << " damage!" << std::endl;
-        energyPoints--;
-    }
-}
-```
-
-- **Access Comparison:**
-  - **`private`**: Only the class itself can access
-  - **`protected`**: The class and its derived classes can access
-  - **`public`**: Everyone can access
-- **Design principle**: Use `protected` for data that derived classes need but outside code shouldn't touch
-
----
-
-### Module 04 Examples
-
-#### `virtual` - Polymorphism and Pure Virtual Functions
-
-- **`virtual`** - Enables polymorphism by allowing function overriding in derived classes
-- **Pure virtual** (`= 0`) - Makes a class abstract (cannot be instantiated)
-- **Virtual destructor** - Ensures proper cleanup in inheritance hierarchies
-
-```cpp
-// Animal.hpp - Abstract base class
-class Animal {
-protected:
-    std::string type;
-
-public:
-    Animal();
-    virtual ~Animal();                    // Virtual destructor - CRUCIAL for inheritance!
-
-    virtual void makeSound() const = 0;   // Pure virtual - must be overridden
-    virtual std::string getType() const; // Virtual - can be overridden
-};
-
-// Dog.hpp
-class Dog : public Animal {
-private:
-    Brain* brain;  // Dog has a brain (composition)
-
-public:
-    Dog();
-    Dog(const Dog& other);               // Copy constructor
-    Dog& operator=(const Dog& other);    // Assignment operator
-    virtual ~Dog();                      // Virtual destructor
-
-    virtual void makeSound() const;      // Override pure virtual function
-    Brain* getBrain() const;
-};
-
-// Dog.cpp
-Dog::Dog() : Animal() {
-    type = "Dog";
-    brain = new Brain();  // Dynamic allocation
-    std::cout << "Dog constructor called" << std::endl;
-}
-
-Dog::~Dog() {
-    delete brain;  // Clean up dynamic memory
-    std::cout << "Dog destructor called" << std::endl;
-}
-
-void Dog::makeSound() const {
-    std::cout << "Woof! Woof!" << std::endl;
-}
-
-// Usage demonstrating polymorphism
+// Usage examples
 int main() {
-    const int arraySize = 4;
-    Animal* animals[arraySize];
-
-    // Fill array with different animals
-    for (int i = 0; i < arraySize / 2; i++) {
-        animals[i] = new Dog();
-    }
-    for (int i = arraySize / 2; i < arraySize; i++) {
-        animals[i] = new Cat();
-    }
-
-    // Polymorphic behavior - calls the correct makeSound() for each animal type
-    for (int i = 0; i < arraySize; i++) {
-        animals[i]->makeSound();  // Virtual function call - runtime dispatch
-    }
-
-    // Proper cleanup - virtual destructors ensure correct destructor is called
-    for (int i = 0; i < arraySize; i++) {
-        delete animals[i];  // Calls Dog::~Dog() or Cat::~Cat(), then Animal::~Animal()
-    }
-
+    Fixed a(5.05f);
+    Fixed b(2);
+    
+    Fixed c = a + b;             // Calls a.operator+(b)
+    Fixed d = a * b;             // Calls a.operator*(b)
+    
+    bool greater = a > b;        // Calls a.operator>(b)
+    
+    ++a;                         // Calls a.operator++()
+    Fixed old = b++;             // Calls b.operator++(0)
+    
+    std::cout << a << std::endl; // Calls operator<<(cout, a)
+    
     return 0;
 }
 ```
 
-- **Key Concepts:**
-  - **Runtime polymorphism**: Function called depends on actual object type, not pointer type
-  - **Virtual table (vtable)**: Compiler creates table of virtual functions for each class
-  - **Abstract classes**: Classes with pure virtual functions cannot be instantiated
-  - **Virtual destructor rule**: Always make base class destructors virtual in inheritance hierarchies
+**Operator Overloading Rules:**
+- **Const correctness**: Operators that don't modify should be const
+- **Return types**: Arithmetic returns new objects, comparison returns bool
+- **Pre vs Post increment**: Pre-increment more efficient (no temporary)
+- **Self-assignment**: Always check in assignment operator
+- **Symmetry**: Some operators better as external functions
 
-#### `dynamic_cast` - Safe Downcasting
+### Type Safety & Conversions
 
-- **`dynamic_cast`** - Runtime type checking for safe downcasting in inheritance hierarchies
-- **When to use**: Converting from base class pointer to derived class pointer
-- **Safety**: Returns `nullptr` if the cast is invalid (unlike `static_cast`)
+| Keyword          | Purpose                           | When to Use                         | Safety Level                        |
+| ---------------- | --------------------------------- | ----------------------------------- | ----------------------------------- |
+| static_cast      | Safe compile-time conversions     | Numeric conversions, inheritance    | ✅ Safe - compile-time checks       |
+| dynamic_cast     | Runtime-checked conversions       | Safe downcasting in polymorphism    | ✅ Safe - runtime checks            |
+| const_cast       | Remove const qualifier            | Rarely (legacy C function calls)   | ⚠️ Use sparingly - breaks const correctness |
+| reinterpret_cast | Unsafe bit-level conversions      | ❌ Usually forbidden in 42          | ❌ Dangerous - no safety checks     |
+
+**Type Conversion Deep Dive:**
 
 ```cpp
-// Safe downcasting in polymorphic hierarchy
-void identifyAnimal(Animal* animal) {
-    // Try to cast to Dog - runtime type checking
-    Dog* dog = dynamic_cast<Dog*>(animal);
-    if (dog != nullptr) {  // Cast succeeded - animal is actually a Dog
-        std::cout << "This is a dog with brain!" << std::endl;
-        dog->getBrain();  // Can safely call Dog-specific methods
-        return;
-    }
+// static_cast - Safe conversions
+void staticCastExamples() {
+    // Numeric conversions
+    int intValue = 42;
+    double doubleValue = static_cast<double>(intValue);  // int to double - safe
+    float floatValue = static_cast<float>(doubleValue);  // double to float - safe
+    
+    // Truncation warning - but explicit
+    int truncated = static_cast<int>(3.14159);  // Becomes 3 - explicit truncation
+    
+    // Inheritance upcasting (always safe)
+    Dog dog;
+    Animal* animalPtr = static_cast<Animal*>(&dog);  // Upcast - safe
+    
+    // Inheritance downcasting (compile-time, no runtime check)
+    Animal* basePtr = &dog;
+    Dog* dogPtr = static_cast<Dog*>(basePtr);  // Downcast - assumes basePtr points to Dog
+    // This is NOT checked at runtime - dangerous if basePtr doesn't point to Dog!
+}
 
-    // Try to cast to Cat - runtime type checking
-    Cat* cat = dynamic_cast<Cat*>(animal);
-    if (cat != nullptr) {  // Cast succeeded - animal is actually a Cat
-        std::cout << "This is a cat with brain!" << std::endl;
-        cat->getBrain();  // Can safely call Cat-specific methods
-        return;
+// dynamic_cast - Runtime-checked conversions
+void dynamicCastExamples() {
+    Dog dog;
+    Cat cat;
+    Animal* animals[] = { &dog, &cat };
+    
+    for (int i = 0; i < 2; i++) {
+        // Safe downcasting with runtime check
+        Dog* dogPtr = dynamic_cast<Dog*>(animals[i]);
+        if (dogPtr != nullptr) {  // Cast succeeded - animals[i] is actually a Dog
+            std::cout << "Found a dog!" << std::endl;
+            dogPtr->wagTail();  // Safe to call Dog-specific methods
+        }
+        
+        Cat* catPtr = dynamic_cast<Cat*>(animals[i]);
+        if (catPtr != nullptr) {  // Cast succeeded - animals[i] is actually a Cat
+            std::cout << "Found a cat!" << std::endl;
+            catPtr->purr();     // Safe to call Cat-specific methods
+        }
     }
+}
 
-    std::cout << "Unknown animal type" << std::endl;
+// const_cast - Remove const (use rarely!)
+void constCastExamples() {
+    const std::string message = "Hello";
+    
+    // Need to call legacy C function that takes non-const char*
+    void legacyFunction(char* str);  // Old C function signature
+    
+    // const_cast to interface with legacy code
+    char* mutableStr = const_cast<char*>(message.c_str());
+    legacyFunction(mutableStr);  // DANGEROUS - if legacyFunction modifies string!
+    
+    // Better approach - copy to non-const
+    std::string copy = message;
+    legacyFunction(const_cast<char*>(copy.c_str()));  // Safer - modify copy
+}
+
+// Why reinterpret_cast is forbidden
+void dangerousReinterpretCast() {
+    int number = 42;
+    
+    // FORBIDDEN in 42 - treats int bits as char* - UNDEFINED BEHAVIOR!
+    char* badPtr = reinterpret_cast<char*>(&number);
+    // Using badPtr is almost certainly going to crash or corrupt memory
 }
 ```
 
-- **How it works:**
-  - **Runtime Type Information (RTTI)**: Compiler stores type information in objects
-  - **Polymorphic classes only**: Works only with classes that have virtual functions
-  - **Safe failure**: Returns `nullptr` for pointers, throws `std::bad_cast` for references
-- **vs static_cast**: `static_cast` trusts you, `dynamic_cast` verifies at runtime
+**Cast Safety Guidelines:**
+1. **Prefer static_cast** for most conversions - explicit and compile-time checked
+2. **Use dynamic_cast** for safe downcasting in polymorphic hierarchies
+3. **Avoid const_cast** unless interfacing with legacy C code
+4. **Never use reinterpret_cast** in 42 - breaks type safety
+5. **C-style casts forbidden** - `(int)value` hides what type of cast is happening
 
 ---
 
-### Module 05 Examples
+## Advanced Keywords (Modules 05-09)
 
-#### `try`, `catch`, `throw` - Exception Handling
+For sophisticated C++ features like exceptions, templates, and namespaces.
 
-- **`try`** - Defines a block where exceptions might occur
-- **`catch`** - Handles specific types of exceptions
-- **`throw`** - Raises an exception to signal an error condition
-- **Why use exceptions?** - Better error handling than return codes, automatic stack unwinding
+### Exception Handling (Module 05)
+
+| Keyword | Purpose                      | Example Usage                        | Exception Flow                       |
+| ------- | ---------------------------- | ------------------------------------ | ------------------------------------ |
+| try     | Begin exception monitoring   | `try { risky_operation(); }`         | Monitors code for thrown exceptions  |
+| catch   | Handle specific exceptions   | `catch (const std::exception& e)`    | Handles exceptions by type           |
+| throw   | Raise an exception           | `throw GradeTooHighException();`     | Transfers control to nearest catch   |
+
+**Exception Handling Deep Dive:**
 
 ```cpp
-// Bureaucrat.hpp
+// Module 05 Examples - Bureaucrat Class
 class Bureaucrat {
 private:
     const std::string name;
     int grade;  // 1 (highest) to 150 (lowest)
 
 public:
-    Bureaucrat(const std::string& name, int grade);
+    Bureaucrat(const std::string& name, int grade) : name(name) {
+        if (grade < 1) {
+            throw GradeTooHighException();    // throw - signal error condition
+        }
+        if (grade > 150) {
+            throw GradeTooLowException();     // throw - signal error condition
+        }
+        this->grade = grade;
+    }
 
     // Custom exception classes - inherit from std::exception
     class GradeTooHighException : public std::exception {
@@ -984,38 +563,25 @@ public:
         }
     };
 
-    void incrementGrade();
-    void decrementGrade();
+    void incrementGrade() {
+        if (grade <= 1) {
+            throw GradeTooHighException();    // throw - signal error condition
+        }
+        grade--;  // Lower number = higher grade
+    }
+
+    void decrementGrade() {
+        if (grade >= 150) {
+            throw GradeTooLowException();     // throw - signal error condition
+        }
+        grade++;  // Higher number = lower grade
+    }
+
     int getGrade() const { return grade; }
     const std::string& getName() const { return name; }
 };
 
-// Bureaucrat.cpp
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name) {
-    if (grade < 1) {
-        throw GradeTooHighException();    // throw - raise exception
-    }
-    if (grade > 150) {
-        throw GradeTooLowException();     // throw - raise exception
-    }
-    this->grade = grade;
-}
-
-void Bureaucrat::incrementGrade() {
-    if (grade <= 1) {
-        throw GradeTooHighException();    // throw - signal error condition
-    }
-    grade--;  // Lower number = higher grade
-}
-
-void Bureaucrat::decrementGrade() {
-    if (grade >= 150) {
-        throw GradeTooLowException();     // throw - signal error condition
-    }
-    grade++;  // Higher number = lower grade
-}
-
-// Usage with exception handling
+// Exception handling in action
 int main() {
     try {                                      // try - monitor for exceptions
         Bureaucrat bob("Bob", 2);
@@ -1025,112 +591,81 @@ int main() {
         std::cout << "After increment: " << bob.getGrade() << std::endl;
 
         bob.incrementGrade();  // This throws exception (can't go below 1)
+        std::cout << "This line won't execute" << std::endl;  // Skipped due to exception
     }
     catch (const Bureaucrat::GradeTooHighException& e) {  // catch - handle specific exception
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught high grade exception: " << e.what() << std::endl;
     }
     catch (const Bureaucrat::GradeTooLowException& e) {   // catch - handle specific exception
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught low grade exception: " << e.what() << std::endl;
     }
     catch (const std::exception& e) {                     // catch - handle any std::exception
         std::cout << "Caught general exception: " << e.what() << std::endl;
     }
+    // Execution continues here after exception is handled
 
     // Multiple try-catch blocks
     try {                                      // try - separate exception handling block
-        Bureaucrat alice("Alice", 200);  // This will throw (grade too high)
+        Bureaucrat alice("Alice", 200);  // This will throw (grade too low)
+        alice.incrementGrade();          // This won't execute
     }
     catch (const std::exception& e) {          // catch - handle any exception
         std::cout << "Failed to create Alice: " << e.what() << std::endl;
     }
 
+    std::cout << "Program continues normally" << std::endl;
     return 0;
 }
 ```
 
-- **Exception Handling Principles:**
-  - **RAII (Resource Acquisition Is Initialization)**: Exceptions trigger automatic cleanup
-  - **Stack unwinding**: Local objects are destroyed automatically when exception is thrown
-  - **Exception hierarchy**: Catch more specific exceptions before general ones
-  - **what() method**: Standard way to get error message from exceptions
+**Exception Handling Principles:**
+- **RAII (Resource Acquisition Is Initialization)**: Local objects automatically destroyed when exception thrown
+- **Stack unwinding**: Function call stack unwound until catch block found
+- **Exception safety**: Write code that handles exceptions gracefully
+- **what() method**: Standard way to get error message from exceptions
+- **Catch order**: More specific exceptions before general ones
+- **Exception specifications**: `throw()` means function doesn't throw (C++98 syntax)
 
----
-
-### Module 06 Examples
-
-#### Advanced Casting Examples
-
+**Exception vs Return Codes:**
 ```cpp
-// Using const_cast to work with legacy C functions
-void legacyCFunction(char* str) {
-    // Some old C function that needs non-const char*
-    std::cout << "Processing: " << str << std::endl;
+// Old C-style error handling
+int divide(int a, int b, int* result) {
+    if (b == 0) return -1;  // Error code
+    *result = a / b;
+    return 0;  // Success
 }
 
-void modernCppFunction(const std::string& str) {
-    // Need to call legacy function with const string
-    char* mutableStr = const_cast<char*>(str.c_str());
-    legacyCFunction(mutableStr);  // Use const_cast sparingly!
-}
-
-// More static_cast examples
-class Base {
-public:
-    virtual ~Base() {}
-    virtual void baseMethod() { std::cout << "Base method" << std::endl; }
-};
-
-class Derived : public Base {
-public:
-    void baseMethod() override { std::cout << "Derived method" << std::endl; }
-    void derivedOnlyMethod() { std::cout << "Derived only" << std::endl; }
-};
-
-void castingExamples() {
-    // Numeric conversions
-    int intValue = 42;
-    double doubleValue = static_cast<double>(intValue);  // int to double
-    float floatValue = static_cast<float>(doubleValue);  // double to float
-
-    // Pointer conversions in inheritance
-    Derived derivedObj;
-    Base* basePtr = &derivedObj;  // Implicit upcast (safe)
-
-    // Downcast using static_cast (compile-time, no safety check)
-    Derived* derivedPtr = static_cast<Derived*>(basePtr);
-    derivedPtr->derivedOnlyMethod();  // This works if basePtr really points to Derived
-
-    // Safer downcast using dynamic_cast (runtime check)
-    Derived* safeDerivedPtr = dynamic_cast<Derived*>(basePtr);
-    if (safeDerivedPtr != nullptr) {
-        safeDerivedPtr->derivedOnlyMethod();  // Safe to call
+// Modern C++ exception handling
+int divide(int a, int b) {
+    if (b == 0) {
+        throw std::invalid_argument("Division by zero");
     }
+    return a / b;  // Clean, simple interface
 }
 ```
 
----
+### Template Programming (Modules 07-08)
 
-### Module 07-08 Examples
+| Keyword  | Purpose                        | Example Usage                       | Key Concepts                        |
+| -------- | ------------------------------ | ----------------------------------- | ----------------------------------- |
+| template | Define generic code            | `template<typename T>`              | Code generation at compile time     |
+| typename | Declare template type parameter | `template<typename T> class Array;` | T is placeholder for any type       |
 
-#### `template`, `typename` - Generic Programming
-
-- **`template`** - Defines generic code that works with multiple types
-- **`typename`** - Declares template type parameters
-- **Generic programming** - Write code once, use with many different types
-- **Compile-time polymorphism** - Different from runtime polymorphism (virtual functions)
+**Template Programming Deep Dive:**
 
 ```cpp
-// Array.hpp - Template class
-template<typename T>  // template and typename keywords - T is a placeholder for any type
+// Module 07-08 Examples - Generic Array Class
+template<typename T>  // template and typename keywords - T is placeholder for any type
 class Array {
 private:
     T* data;          // T will be replaced with actual type (int, string, etc.)
     unsigned int size;
 
 public:
-    // Template constructor
+    // Default constructor
     Array() : data(nullptr), size(0) {}
 
+    // Parameterized constructor
     Array(unsigned int n) : size(n) {
         if (n > 0) {
             data = new T[n];           // Create array of type T
@@ -1142,7 +677,7 @@ public:
         }
     }
 
-    // Copy constructor
+    // Copy constructor - deep copy
     Array(const Array& other) : size(other.size) {
         if (size > 0) {
             data = new T[size];
@@ -1154,7 +689,7 @@ public:
         }
     }
 
-    // Assignment operator
+    // Assignment operator - deep copy with self-assignment check
     Array& operator=(const Array& other) {
         if (this != &other) {
             delete[] data;
@@ -1202,17 +737,23 @@ void swap(T& a, T& b) {  // Works with any type T that supports copying
     b = temp;
 }
 
+// Template function with multiple parameters
+template<typename T, typename U>
+void printPair(const T& first, const U& second) {
+    std::cout << "(" << first << ", " << second << ")" << std::endl;
+}
+
 // Usage of templates
 int main() {
     try {
-        // Array of integers - T becomes int
-        Array<int> intArray(5);  // Compiler generates Array<int> class
+        // Array of integers - compiler generates Array<int> class
+        Array<int> intArray(5);  // T becomes int
         for (unsigned int i = 0; i < intArray.getSize(); i++) {
             intArray[i] = i * 10;
         }
 
-        // Array of strings - T becomes std::string
-        Array<std::string> stringArray(3);  // Compiler generates Array<std::string> class
+        // Array of strings - compiler generates Array<std::string> class
+        Array<std::string> stringArray(3);  // T becomes std::string
         stringArray[0] = "Hello";
         stringArray[1] = "World";
         stringArray[2] = "!";
@@ -1225,6 +766,10 @@ int main() {
         std::string str1 = "first", str2 = "second";
         swap(str1, str2); // Template parameter deduction - compiler figures out T = std::string
 
+        // Multiple template parameters
+        printPair(42, "Answer");     // T = int, U = const char*
+        printPair(3.14, true);       // T = double, U = bool
+
     } catch (const std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
@@ -1233,16 +778,16 @@ int main() {
 }
 ```
 
-- **Key Template Concepts:**
-  - **Code generation**: Compiler creates separate code for each type used
-  - **Type requirements**: Template code must work with the types you use it with
-  - **Compile-time errors**: Template errors show up when you try to use incompatible types
-  - **No runtime overhead**: Templates are resolved at compile time, not runtime
+**Template Concepts:**
+- **Code generation**: Compiler creates separate code for each type used with template
+- **Type requirements**: Template code must work with the types you instantiate it with
+- **Compile-time errors**: Template errors show up when you instantiate with incompatible types
+- **No runtime overhead**: Templates are resolved at compile time, not runtime
+- **Type deduction**: Compiler can often figure out template parameters automatically
 
-#### Advanced Template Features
-
+**Template Specialization:**
 ```cpp
-// Template specialization
+// General template
 template<typename T>
 class Container {
 public:
@@ -1260,53 +805,25 @@ public:
     }
 };
 
-// Function templates with multiple parameters
-template<typename T, typename U>
-auto add(T a, U b) -> decltype(a + b) {  // C++11 trailing return type
-    return a + b;
-}
-
-// Template with non-type parameters
-template<typename T, int SIZE>
-class FixedArray {
-private:
-    T data[SIZE];
-
-public:
-    T& operator[](int index) { return data[index]; }
-    const T& operator[](int index) const { return data[index]; }
-    int size() const { return SIZE; }
-};
-
 // Usage
-int main() {
-    Container<int> intContainer;
-    intContainer.process();      // "Processing generic type"
+Container<int> intContainer;
+intContainer.process();      // "Processing generic type"
 
-    Container<bool> boolContainer;
-    boolContainer.process();     // "Processing bool type specially"
-
-    auto result = add(3.14, 42); // Mix double and int
-
-    FixedArray<int, 10> fixedArray;  // Array of 10 integers
-    fixedArray[0] = 100;
-
-    return 0;
-}
+Container<bool> boolContainer;
+boolContainer.process();     // "Processing bool type specially"
 ```
 
----
+### Code Organization
 
-### Advanced Keywords Examples
+| Keyword   | Purpose                         | Example Usage                      | Best Practices                      |
+| --------- | ------------------------------- | ---------------------------------- | ----------------------------------- |
+| namespace | Create named scopes             | `namespace ft { /* code */ }`      | Organize code, prevent name conflicts |
+| using     | Import namespace elements       | `using std::cout;`                 | Use sparingly, avoid in headers    |
 
-#### `namespace`, `using` - Code Organization
-
-- **`namespace`** - Creates named scopes to organize code and prevent name conflicts
-- **`using`** - Brings namespace elements into current scope
-- **Why use namespaces?** - Avoid naming conflicts in large projects, organize related code
+**Namespace and Using Deep Dive:**
 
 ```cpp
-// MyLibrary namespace
+// Creating custom namespace
 namespace MyLibrary {                    // namespace - create named scope
     namespace Math {                     // nested namespace
         const double PI = 3.14159;
@@ -1325,17 +842,21 @@ namespace MyLibrary {                    // namespace - create named scope
     namespace String {                   // separate nested namespace
         std::string toUpper(const std::string& str) {
             std::string result = str;
-            for (char& c : result) {
-                c = std::toupper(c);
+            for (size_t i = 0; i < result.length(); i++) {
+                result[i] = std::toupper(result[i]);
             }
             return result;
+        }
+
+        bool isValidEmail(const std::string& email) {
+            return email.find('@') != std::string::npos;
         }
     }
 }
 
 // Usage examples
 int main() {
-    // Full namespace qualification - most explicit
+    // Full namespace qualification - most explicit and safe
     double result1 = MyLibrary::Math::square(5.0);
     std::cout << "Square: " << result1 << std::endl;
 
@@ -1347,41 +868,78 @@ int main() {
     Calculator calc;                     // No namespace qualifier needed
     double sum = calc.add(10, 20);
 
-    // Using directive for entire namespace
-    using namespace MyLibrary::String;   // using namespace - bring all symbols into scope
-    std::string upper = toUpper("hello world");  // No namespace qualifier needed
+    // Using directive for entire namespace (use carefully!)
+    {
+        using namespace MyLibrary::String;   // using namespace - bring all symbols into scope
+        std::string upper = toUpper("hello world");  // No namespace qualifier needed
+        bool valid = isValidEmail("test@example.com");
+    }  // using namespace scope ends here
 
-    // Alias for long namespace names
+    // Namespace alias for long namespace names
     namespace ML = MyLibrary::Math;      // namespace alias - create shortcut
     double result2 = ML::square(3.0);    // Use alias instead of full name
 
     return 0;
 }
+
+// Namespace best practices for 42
+namespace ft {  // Common to use 'ft' namespace in 42 for custom implementations
+    template<typename T>
+    class vector {
+        // Custom vector implementation
+    private:
+        T* data;
+        size_t size;
+        size_t capacity;
+    public:
+        // Implementation...
+    };
+
+    template<typename T>
+    class stack {
+        // Custom stack implementation
+    };
+}
+
+// In header file (.hpp) - AVOID this:
+using namespace std;  // BAD in headers - pollutes global namespace for all includers
+
+// In source file (.cpp) - OK but use sparingly:
+int main() {
+    using std::cout;     // GOOD - specific declaration
+    using std::endl;     // GOOD - specific declaration
+    // using namespace std;  // ACCEPTABLE in .cpp, but not recommended
+    
+    cout << "Hello World" << endl;  // Can use without std::
+    return 0;
+}
 ```
 
-- **Namespace Best Practices:**
-  - **Avoid `using namespace std;` in headers** - pollutes global namespace for all includers
-  - **Use specific `using` declarations** - bring only what you need into scope
-  - **Organize related functionality** - group related classes and functions together
-  - **Prevent name conflicts** - especially important when using multiple libraries
+**Namespace Guidelines:**
+- **Organization**: Group related functionality together
+- **Name conflicts**: Prevent clashes between different libraries
+- **Header files**: Never use `using namespace` in headers
+- **Specific using**: Prefer `using std::cout;` over `using namespace std;`
+- **Custom namespace**: Use `ft` namespace for 42 implementations
+- **Nested namespaces**: Organize complex libraries hierarchically
 
-#### `inline`, `explicit` - Performance and Safety
+### Performance & Safety Hints
 
-- **`inline`** - Suggests to compiler to replace function calls with function body (optimization)
-- **`explicit`** - Prevents implicit type conversions and constructor calls
-- **Performance vs Safety** - `inline` for speed, `explicit` for preventing bugs
+| Keyword  | Purpose                       | Usage Guidelines                    | When to Use                         |
+| -------- | ----------------------------- | ----------------------------------- | ----------------------------------- |
+| inline   | Suggest function inlining     | `inline int getSize() const;`       | Small, frequently called functions  |
+| explicit | Prevent implicit conversions  | `explicit MyClass(int value);`      | Single-argument constructors        |
+| mutable  | Allow modification in const   | `mutable int cacheValue;`           | Caching, lazy evaluation           |
+
+**Performance & Safety Deep Dive:**
 
 ```cpp
+// inline keyword - performance optimization
 class Vector3D {
 private:
     double x, y, z;
 
 public:
-    // Explicit constructor prevents implicit conversions
-    explicit Vector3D(double value) : x(value), y(value), z(value) {}
-
-    Vector3D(double x, double y, double z) : x(x), y(y), z(z) {}
-
     // Inline functions - suggest compiler to inline for performance
     inline double getX() const { return x; }    // Small, frequently called
     inline double getY() const { return y; }    // Good candidates for inlining
@@ -1405,33 +963,243 @@ inline Vector3D Vector3D::crossProduct(const Vector3D& other) const {
     );
 }
 
+// explicit keyword - prevent implicit conversions
+class MyString {
+private:
+    char* data;
+    size_t length;
+
+public:
+    // Explicit constructor prevents implicit conversions
+    explicit MyString(size_t size) : length(size) {
+        data = new char[size + 1];
+        data[0] = '\0';
+    }
+
+    // Multi-parameter constructor - no need for explicit
+    MyString(const char* str, size_t len) : length(len) {
+        data = new char[len + 1];
+        strncpy(data, str, len);
+        data[len] = '\0';
+    }
+
+    ~MyString() { delete[] data; }
+};
+
 // Usage showing explicit keyword effect
 void demonstrateExplicit() {
-    Vector3D v1(1.0, 2.0, 3.0);     // OK - multi-parameter constructor
-    Vector3D v2 = Vector3D(5.0);     // OK - explicit constructor call
+    MyString str1(10);                   // OK - direct initialization
+    MyString str2 = MyString(20);        // OK - explicit constructor call
 
-    // Vector3D v3 = 5.0;            // ERROR! explicit prevents implicit conversion
-    // doSomething(5.0);             // ERROR! explicit prevents implicit conversion
+    // MyString str3 = 30;               // ERROR! explicit prevents implicit conversion
+    // processString(40);                // ERROR! explicit prevents implicit conversion
 
-    Vector3D v4(5.0);                // OK - direct initialization
-    doSomething(Vector3D(5.0));      // OK - explicit constructor call
+    MyString str4(50);                   // OK - direct initialization
+    processString(MyString(60));         // OK - explicit constructor call
 }
 
-void doSomething(const Vector3D& v) {
-    std::cout << "Processing vector" << std::endl;
+void processString(const MyString& str) {
+    // Function that takes MyString
+}
+
+// mutable keyword - logical const vs bitwise const
+class ExpensiveCalculation {
+private:
+    int input;
+    mutable int cachedResult;           // Can be modified even in const methods
+    mutable bool resultCached;          // Can be modified even in const methods
+
+public:
+    ExpensiveCalculation(int value) : input(value), cachedResult(0), resultCached(false) {}
+
+    // Const method that can modify mutable members
+    int getExpensiveResult() const {
+        if (!resultCached) {            // Check if we need to calculate
+            // Simulate expensive calculation
+            cachedResult = input * input * input;  // Can modify mutable member
+            resultCached = true;                    // Can modify mutable member
+            std::cout << "Expensive calculation performed" << std::endl;
+        }
+        return cachedResult;            // Return cached result
+    }
+
+    // Truly const method
+    int getInput() const {
+        return input;  // Cannot modify input or any non-mutable members
+    }
+};
+
+// mutable usage example
+int main() {
+    const ExpensiveCalculation calc(5);  // const object
+
+    // First call - calculation performed
+    int result1 = calc.getExpensiveResult();  // "Expensive calculation performed"
+
+    // Second call - cached result returned
+    int result2 = calc.getExpensiveResult();  // No output - uses cache
+
+    return 0;
 }
 ```
 
-- **`inline` Benefits and Considerations:**
-  - **Performance**: Eliminates function call overhead for small functions
-  - **Compiler decision**: `inline` is a suggestion, compiler may ignore it
-  - **Code bloat**: Inlining large functions can increase executable size
-  - **Best for**: Small, frequently called functions (getters, simple calculations)
+**Performance & Safety Guidelines:**
 
-- **`explicit` Benefits:**
-  - **Prevents surprises**: No accidental type conversions
-  - **Clear intent**: Forces explicit constructor calls
-  - **Safer code**: Reduces hard-to-find bugs from implicit conversions
-  - **42 Best Practice**: Use `explicit` for single-parameter constructors
+**inline Rules:**
+- **Use for**: Small functions (1-3 lines), getters/setters, frequently called functions
+- **Avoid for**: Large functions, recursive functions, functions with loops
+- **Compiler decision**: `inline` is a suggestion, compiler may ignore it
+- **Header files**: Inline functions must be defined in headers (ODR - One Definition Rule)
 
-These examples show the progressive complexity and real-world usage of each keyword as you advance through the 42 CPP modules. Each example builds on previous knowledge while introducing new concepts appropriately.
+**explicit Rules:**
+- **Always use** for single-argument constructors (unless conversion is intended)
+- **Prevents surprises**: No accidental type conversions
+- **Better error messages**: Compilation fails instead of silent conversion
+- **Not needed** for multi-parameter constructors (can't be used for implicit conversion)
+
+**mutable Rules:**
+- **Use sparingly**: Only for implementation details that don't affect logical state
+- **Good for**: Caching, reference counting, mutex locks, lazy evaluation
+- **Bad for**: Actual object state that users care about
+- **Logical const**: Object appears unchanged to users, but implementation may cache data
+
+---
+
+## Type System & Utilities
+
+### Additional Data Types
+
+| Keyword  | Purpose                    | Usage Notes                          |
+| -------- | -------------------------- | ------------------------------------ |
+| long     | Long integer type          | `long timestamp = 1234567890L;`      |
+| short    | Short integer type         | `short port = 8080;`                 |
+| unsigned | Unsigned integer modifier  | `unsigned int count = 0u;`           |
+| signed   | Signed integer modifier    | `signed char value = -128;`          |
+| wchar_t  | Wide character type        | For internationalization             |
+
+### Type Information & Manipulation
+
+| Keyword | Purpose                      | Example Usage                        |
+| ------- | ---------------------------- | ------------------------------------ |
+| sizeof  | Get size of type/variable    | `sizeof(int)`, `sizeof(array)`       |
+| typedef | Create type aliases          | `typedef std::string String;`       |
+| typeid  | Runtime type information     | `typeid(obj).name()`                |
+| enum    | Define enumerated type       | `enum Color { RED, GREEN, BLUE };`   |
+| union   | Define union type            | `union Data { int i; float f; };`    |
+
+### Special Keywords
+
+| Keyword | Purpose                         | Usage Context                       |
+| ------- | ------------------------------- | ----------------------------------- |
+| friend  | Grant access to private members | `friend class MyFriend;`            |
+| this    | Pointer to current object       | `this->member` or `return *this;`   |
+| true    | Boolean true literal            | `bool flag = true;`                 |
+| false   | Boolean false literal           | `bool flag = false;`                |
+
+---
+
+## Forbidden & Restricted Keywords in 42
+
+### ❌ Strictly Forbidden
+
+| Keyword | Reason                           | Alternative                        |
+| ------- | -------------------------------- | ---------------------------------- |
+| goto    | Poor programming practice        | Use proper control structures      |
+| asm     | Assembly not allowed in 42       | Use C++ language features          |
+
+### ⚠️ Use with Extreme Caution
+
+| Keyword          | Issues                          | When Acceptable                    |
+| ---------------- | ------------------------------- | ---------------------------------- |
+| reinterpret_cast | Unsafe, breaks type system     | Almost never in 42 projects       |
+| const_cast       | Breaks const correctness        | Only for legacy C function calls  |
+| volatile         | Rarely needed                   | Hardware programming (not in 42)  |
+| register         | Deprecated since C++11          | Let compiler optimize              |
+| export           | Not supported by most compilers | Avoid completely                   |
+
+---
+
+## Modern C++ Keywords (NOT Available in 42)
+
+These keywords exist in C++11 and later but **cannot be used** in 42 CPP modules:
+
+| Keyword       | C++ Version | Purpose                             |
+| ------------- | ----------- | ----------------------------------- |
+| nullptr       | C++11       | Type-safe null pointer              |
+| auto          | C++11       | Type inference                      |
+| override      | C++11       | Explicit virtual function override  |
+| final         | C++11       | Prevent inheritance/overriding      |
+| constexpr     | C++11       | Compile-time constant expressions   |
+| decltype      | C++11       | Type deduction from expressions     |
+| static_assert | C++11       | Compile-time assertions             |
+| noexcept      | C++11       | Exception specification             |
+| thread_local  | C++11       | Thread-local storage                |
+| alignas       | C++11       | Alignment specification             |
+| alignof       | C++11       | Alignment query                     |
+| char16_t      | C++11       | 16-bit Unicode character            |
+| char32_t      | C++11       | 32-bit Unicode character            |
+
+---
+
+## Module-by-Module Keyword Introduction
+
+### Module 00: Basic OOP
+**New Keywords:** `class`, `public`, `private`, `const`, `static`
+**Focus:** Class definition, access control, basic encapsulation
+
+### Module 01: Memory Management
+**New Keywords:** `new`, `delete`
+**Focus:** Dynamic memory allocation, pointers vs references
+
+### Module 02: Operator Overloading
+**New Keywords:** `operator`, `static_cast`, `explicit`
+**Focus:** Making classes behave like built-in types
+
+### Module 03: Inheritance
+**New Keywords:** `protected`, advanced `virtual` usage
+**Focus:** Code reuse through inheritance
+
+### Module 04: Polymorphism
+**New Keywords:** `dynamic_cast`, pure virtual functions
+**Focus:** Runtime polymorphism, abstract classes
+
+### Module 05: Exceptions
+**New Keywords:** `try`, `catch`, `throw`
+**Focus:** Error handling mechanisms
+
+### Module 06: Type Conversions
+**New Keywords:** Advanced casting techniques
+**Focus:** Safe and explicit type conversions
+
+### Module 07-08: Templates
+**New Keywords:** `template`, `typename`
+**Focus:** Generic programming, code reuse
+
+### Module 09: Containers
+**New Keywords:** `namespace`, `using`, STL integration
+**Focus:** Standard library usage, algorithms
+
+---
+
+## Best Practices Summary
+
+### ✅ Always Do
+1. **Use `const` everywhere possible** - methods, parameters, return values
+2. **Make single-argument constructors `explicit`** - prevent accidental conversions
+3. **Use `virtual` destructors** - in any class that might be inherited
+4. **Prefer `static_cast`** - over C-style casts for safety
+5. **Match every `new` with `delete`** - avoid memory leaks
+
+### ⚠️ Be Careful With
+1. **`static` members** - ensure proper initialization order
+2. **`const_cast`** - only when interfacing with legacy C code
+3. **`mutable`** - use only for truly implementation-specific details
+4. **Multiple inheritance** - can lead to diamond problem
+
+### ❌ Never Do
+1. **Use `goto`** - forbidden in 42 style guidelines
+2. **Use C-style casts** - `(type)value` is dangerous
+3. **Forget virtual destructors** - causes memory leaks in inheritance
+4. **Use raw pointers without ownership** - always know who deletes what
+
+This reference covers all keywords you'll encounter in 42 CPP modules. Focus on understanding each keyword's purpose and proper usage patterns rather than memorizing syntax.
