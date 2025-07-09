@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/09 18:01:51 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:12:53 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,19 @@
 # define BLUE "\033[0;34m"
 # define MAGENTA "\033[0;35m"
 # define CYAN "\033[0;36m"
+
+class Fixed
+{
+	private:
+		static const int nBits = 8;
+		int fixedPointNbr;
+	public:
+		Fixed();
+		Fixed(const Fixed& other);
+		Fixed& operator=(const Fixed& other);
+		~Fixed();
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
+};
 
 #endif
