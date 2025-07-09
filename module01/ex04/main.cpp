@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:34:36 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/04 17:30:28 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:01:54 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void my_file_replace(std::ifstream &inputFile, const std::string &s1, const std:
 	if (inputFile.is_open())
 	{
 		std::getline(inputFile, inputStr, '\0');
-		while ((found = inputStr.find(s1, pos)) != std::string::npos)
+		while ((found = inputStr.find(s1, pos)) != std::string::npos && !s1.empty())
 		{
 			outputStr += inputStr.substr(pos, found - pos);
 			outputStr += s2;
