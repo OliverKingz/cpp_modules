@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/07/09 18:12:53 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:40:57 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@
 class Fixed
 {
 	private:
-		static const int nBits = 8;
-		int fixedPointNbr;
+		static const int	_nBits;
+		int					_fixedPointNbr;
 	public:
 		Fixed();
+		Fixed(int nbr);
 		Fixed(const Fixed& other);
 		Fixed& operator=(const Fixed& other);
 		~Fixed();

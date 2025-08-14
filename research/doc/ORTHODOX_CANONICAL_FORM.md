@@ -155,6 +155,20 @@ func(s1);             // Copy constructor called (parameter passing)
 return s1;            // Copy constructor called (return by value)
 ```
 
+### Best Practice for Copy constructor
+
+In the context of **copy constructors**, using `(*this) = other;` is generally discouraged for the following reasons:
+
+1. **Self-Assignment Risk**: If the object being copied (`other`) is the same as the object being constructed (`*this`), this approach could lead to self-assignment. If the assignment operator is not implemented correctly, this may cause resource leaks or corrupted data.
+
+2. **Unnecessary Overhead**: The copy constructor is designed to initialize a new object, not modify an existing one. Using the assignment operator introduces unnecessary overhead, as it involves cleaning up and reassigning resources that don't yet exist in the new object.
+
+3. **Clarity and Intent**: Directly initializing member variables in the copy constructor (e.g., using a member initializer list) is more efficient and clearly communicates the intent of creating a new object based on another.
+
+The copy constructor should directly initialize member variables using a member initializer list, avoiding the assignment operator entirely. This ensures efficiency, avoids self-assignment risks, and makes the code more readable.
+
+Avoid using `(*this) = other;` in copy constructors. Instead, directly initialize member variables to ensure efficiency, avoid self-assignment risks, and improve code clarity.
+
 ### **Examples**
 
 #### Simple Copy Constructor

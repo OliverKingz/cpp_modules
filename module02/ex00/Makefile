@@ -28,7 +28,7 @@ endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main
+SRC_FILES := main Fixed
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
