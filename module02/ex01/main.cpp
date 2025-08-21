@@ -1,23 +1,38 @@
-#include <string>
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 18:01:14 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/08/21 15:28:24 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# define RESET "\033[0m"
-# define BOLD "\033[1m"
-# define BOLD_OFF "\033[22m"
-# define UNDERLINE "\033[4m"
-# define UNDERLINE_OFF "\033[24m"
-# define BLACK "\033[0;30m"
-# define WHITE "\033[0;37m"
-# define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
-# define YELLOW "\033[0;33m"
-# define BLUE "\033[0;34m"
-# define MAGENTA "\033[0;35m"
-# define CYAN "\033[0;36m"
+#include "Fixed.hpp"
 
 int main()
 {
-	std::cout << "\n===============|" << BLUE << " Exercise X: template of main " << RESET << "|===============\n";
-	std::cout <<   "================" <<         "=============================="          << "================\n\n";
+	std::cout << "\n============|" << BLUE << " Exercise 01: Towards a more useful fixed-point number class " << RESET << "|============\n";
+
+	Fixed		a;
+	Fixed const	b( 10 );
+	Fixed const	c( 42.42f );
+	Fixed const	d( b );
+
+	a = Fixed( 1234.4321f );
+
+	std::cout << "a is " << a << std::endl;
+	std::cout << "b is " << b << std::endl;
+	std::cout << "c is " << c << std::endl;
+	std::cout << "d is " << d << std::endl;
+	
+	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+	std::cout <<   "=============" <<         "============================================================="          << "=============\n\n";
 	return 0;
 }
