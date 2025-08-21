@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/14 20:42:30 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:34:39 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ Fixed& Fixed::operator=(const Fixed& other)
 	std::cout << "Copy assigment operator called\n";
 	if (this != &other)
 	{
-		_fixedPointNbr = other._fixedPointNbr;
+		// _fixedPointNbr = other._fixedPointNbr;
+		_fixedPointNbr = other.getRawBits();
 	}
 	return *this;
 }
