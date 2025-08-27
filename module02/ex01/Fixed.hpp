@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/27 19:58:16 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:32:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,30 @@ class Fixed
 		static const int	_fractionalBits;
 		int					_rawBits;
 	public:
+		// Constructor
+
 		Fixed();
 		Fixed(const int nbr);
 		Fixed(const float nbr);
 		Fixed(const Fixed& other);
+
+		// Destructor
+
 		~Fixed();
+
+		// Operators
 
 		Fixed& operator=(const Fixed& other);
 		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
+		// Methods
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 
 		float toFloat(void) const;
 		int toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif
