@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/21 16:08:37 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/27 19:58:16 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <cmath> // To use allowed function roundf
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
@@ -34,10 +35,9 @@ class Fixed
 {
 	private:
 		static const int	_fractionalBits;
-		int					_fixedPointNbr;
+		int					_rawBits;
 	public:
 		Fixed();
-		Fixed(int nbr);
 		Fixed(const int nbr);
 		Fixed(const float nbr);
 		Fixed(const Fixed& other);
