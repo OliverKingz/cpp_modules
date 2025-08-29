@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/27 21:28:52 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:56:57 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ class Fixed
 
 		// In(de)crement prefix
 
-		Fixed operator++();
-		Fixed operator--();
+		Fixed& operator++();
+		Fixed& operator--();
 
 		// Methods
 
