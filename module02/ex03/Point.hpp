@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:26:17 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/29 20:00:14 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/29 20:16:51 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Point
 		Fixed getY(void) const;
 };
 
-float	getArea( Point const a, Point const b, Point const c);
+Fixed	crossProduct(Point const a, Point const b, Point const p);
 bool	bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif

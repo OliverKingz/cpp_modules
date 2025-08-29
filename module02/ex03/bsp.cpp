@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:33:51 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/29 20:00:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/29 20:16:41 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * Result:
  *   > 0 : point is to the left (anticlockwise)
  *   < 0 : point is to the right (clockwise)
- *   = 0 : points are collinear (point is on the edge/border)
+ *   = 0 : points are collinear (point is on the vortex or edge)
  */
 Fixed crossProduct(Point const a, Point const b, Point const p)
 {
@@ -45,6 +45,6 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	if ((orientationABP > 0 && orientationBCP > 0 && orientationCAP > 0) // All Anticlockwise
 		|| (orientationABP < 0 && orientationBCP < 0 && orientationCAP < 0)) // All Clockwise
 		pointInsideTriangle = true;
-	// The point in the edge/border is considered outside of the triangle
+	// If the point is a vertex or an edge, it is considered outside of the triangle
 	return pointInsideTriangle;
 }
