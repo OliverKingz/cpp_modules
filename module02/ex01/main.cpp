@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/27 20:19:59 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:04:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	// std::cout << "\n============|" << BLUE << " Exercise 01: Towards a more useful fixed-point number class " << RESET << "|============\n";
+	std::cout << "\n============|" << BLUE << " Exercise 01: Towards a more useful fixed-point number class " << RESET << "|============\n";
 
 	Fixed		a;
 	Fixed const	b( 10 );
@@ -37,6 +37,6 @@ int main()
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
-	// std::cout <<   "=============" <<         "============================================================="          << "=============\n\n";
+	std::cout <<   "=============" <<         "============================================================="          << "=============\n\n";
 	return 0;
 }

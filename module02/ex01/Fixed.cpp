@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/27 20:07:40 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:18:02 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-	return (static_cast<int>(roundf(this->toFloat())));
+	return (static_cast<int>(this->toFloat())); // Truncation
 }

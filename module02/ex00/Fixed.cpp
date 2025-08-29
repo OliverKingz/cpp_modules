@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:01:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/27 20:47:25 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:19:53 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Fixed::Fixed() : _rawBits(0)
 
 Fixed::Fixed(int nbr) : _rawBits(nbr)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "Int constructor called\n";
 }
 
 // Copy constructor
