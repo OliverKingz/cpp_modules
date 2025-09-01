@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/29 21:36:53 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/01 15:29:19 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ int main()
 	ClapTrap def;
 	ClapTrap oliver("Oliver");
 	ClapTrap oliverClone(oliver);
-	
+
+	oliver.attack("Brenda");
+	oliver.takeDamage(5);
+	oliver.beRepaired(5);
+
 	std::cout <<   "================" <<         "==============================="          << "================\n\n";
 	return 0;
 }

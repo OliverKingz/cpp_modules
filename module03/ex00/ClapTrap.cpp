@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/29 21:37:38 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/01 15:28:00 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,41 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src)
 	return *this;
 }
 
-// void ClapTrap::attack(const std::string& target){}
-// void ClapTrap::takeDamage(unsigned int amount){}
-// void ClapTrap::beRepaired(unsigned int amount){}
+void ClapTrap::attack(const std::string& target)
+{
+	if (this->_hitPoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->_name << " cannot attack " << target << "as they have no hit points(HP) left!" << std::endl;
+		return;
+	}
+	if (this->_energyPoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->_name << " cannot attack " << target << "as they have no energy points(EP) left!" << std::endl;
+		return;
+	}
+	this->_energyPoints -= 1;
+	std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!";
+	std::cout << "\tHP: " << _hitPoints << " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+	
+}
+
+void ClapTrap::takeDamage(unsigned int amount)
+{
+	std::cout << "ClapTrap " << this->_name << " takes " << amount << " points of damage!";
+	this->_hitPoints -= amount;
+	std::cout << "\t\t\tHP: " << _hitPoints << " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+}
+
+void ClapTrap::beRepaired(unsigned int amount)
+{
+	if (this->_energyPoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->_name << " cannot repair themselves as they have no EP left!" << std::endl;
+		return;
+	}
+	this->_energyPoints -= 1;
+	this->_hitPoints += amount;
+	std::cout << "ClapTrap " << this->_name << " repairs themselves " << amount << " hit points (HP)!";
+	std::cout << "\t\tHP: " << _hitPoints << " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+}
+
