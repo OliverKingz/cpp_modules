@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 13:53:53 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:57:33 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@ ClapTrap::ClapTrap() : _name("Default"), _hitPoints(10), _energyPoints(10), _att
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap " << this->_name << " was built" << std::endl;
+	std::cout << "ClapTrap " BLUE << this->_name << RESET " was built" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap& src) : _name(src._name), _hitPoints(src._hitPoints), _energyPoints(src._energyPoints), _attackDamage(src._attackDamage)
+ClapTrap::ClapTrap(ClapTrap& src) : _name(src._name), _hitPoints(src._hitPoints), 
+	_energyPoints(src._energyPoints), _attackDamage(src._attackDamage)
 {
-	std::cout << "ClapTrap built as a copy of \"" << src._name;
-	std::cout << "\" with HP: " << _hitPoints << " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+	std::cout << "ClapTrap built as a copy of ClapTrap " BLUE << src._name << RESET;
+	std::cout << "\t\t\t" BLUE << this->_name << RESET "*\tHP: " << _hitPoints << " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap " << this->_name << " was destroyed" << std::endl;
+	std::cout << "ClapTrap " BLUE << this->_name << RESET " was destroyed" << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src)
@@ -49,19 +50,21 @@ void ClapTrap::attack(const std::string& target)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " cannot attack " << target << "as they have no hit points(HP) left!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot attack " << target << "as it is already dead!" << std::endl;
 		return;
 	}
 	if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " cannot attack " << target << "as they have no energy points(EP) left!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot attack " << target << "as it has no energy points(EP) left!" << std::endl;
 		return;
 	}
-	this->_energyPoints -= 1;
-	ClapTrap enemy(target);
-	std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!\n";
-	enemy.takeDamage(this->_attackDamage);
-	//std::cout << "\tHP: " << _hitPoints << " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+	else
+	{
+		this->_energyPoints -= 1;
+		ClapTrap enemy(target);
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " attacks " BLUE << target << RESET ", causing " << this->_attackDamage << " points of damage!\n";
+		enemy.takeDamage(this->_attackDamage);
+	}
 	
 }
 
@@ -69,29 +72,34 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " cannot take more damage, as they are dead!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot take more damage, as is already dead!" << std::endl;
 		return;
 	}
-	std::cout << "ClapTrap " << this->_name << " takes " << amount << " points of damage!";
+	std::cout << "ClapTrap " BLUE << this->_name << RESET" takes " << amount << " points of damage!";
+	std::cout << "\t\t\t" BLUE << this->_name << RESET "\tHP: " RED << _hitPoints - amount << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
 	this->_hitPoints -= amount;
-	std::cout << BOLD "\t\t\tHP: " << _hitPoints << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+	if (this->_hitPoints <= 0)
+	{
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " was killed!" << std::endl;
+		return;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " cannot repair themselves as they are dead!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot repair itself as it is dead!" << std::endl;
 		return;
 	}
 	if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " cannot repair themselves as they have no EP left!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot repair itself as it has no EP left!" << std::endl;
 		return;
 	}
 	this->_energyPoints -= 1;
 	this->_hitPoints += amount;
-	std::cout << "ClapTrap " << this->_name << " repairs themselves " << amount << " hit points (HP)!";
-	std::cout << BOLD "\t\tHP: " << _hitPoints << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
+	std::cout << "ClapTrap " BLUE << this->_name << RESET " repairs itself " << amount << " hit points (HP)!";
+	std::cout << "\t\t" BLUE << this->_name << RESET "\tHP: " GREEN << _hitPoints << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
 }
 

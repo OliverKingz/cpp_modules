@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 13:52:26 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:48:59 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int main()
 {
-	std::cout << "\n===============|" << BLUE << " Exercise 00: Aaaaand... OPEN! " << RESET << "|===============\n";
+	std::cout << "\n===============================|" << BLUE << " Exercise 00: Aaaaand... OPEN! " << RESET << "|===============================\n";
 
-	// ClapTrap def;
 	ClapTrap oliver("Oliver");
-	//ClapTrap oliverClone(oliver);
+	ClapTrap oliverClone(oliver);
+	ClapTrap def;
 
-	oliver.attack("Default");
-	//def.takeDamage(5);
+	oliver.attack("Brenda");
 	oliver.beRepaired(5);
 
-	std::cout <<   "================" <<         "==============================="          << "================\n\n";
+	def.takeDamage(5);
+
+
+	std::cout <<   "================================" <<         "==============================="          << "================================\n\n";
 	return 0;
 }
