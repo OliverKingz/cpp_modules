@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:54:12 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/08/29 19:55:52 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:27:34 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main()
 			  << "c2(" << c2.getX() << "," << c2.getY() << ")\n";
 
 	// Point to search
-	Point p(1, 10);
+	Point p(1, 1);
 	std::cout << "Point: "
 			  << "p(" << p.getX() << "," << p.getY() << ")\n";
 
