@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 13:52:32 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:52:37 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@
 
 class ClapTrap
 {
-	private:
+	protected: // Changed from private so children can access
 		std::string	_name;
 		int			_hitPoints;
 		int			_energyPoints;
 		int			_attackDamage;
+
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
@@ -45,9 +46,16 @@ class ClapTrap
 
 		ClapTrap& operator=(const ClapTrap& src);
 
-		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
+
+		// Modified for Inheritance
+
+		virtual void attack(const std::string& target); //added virtual to override
+
+		// Added for Inheritance
+
+		// ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
 };
 
 #endif

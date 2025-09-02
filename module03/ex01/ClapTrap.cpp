@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 15:57:33 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:52:44 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,3 +103,10 @@ void ClapTrap::beRepaired(unsigned int amount)
 	std::cout << "\t\t" BLUE << this->_name << RESET "\tHP: " GREEN << _hitPoints << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
 }
 
+// Added to use inheritance
+
+// ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage) : 
+// 	_name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
+// {
+// 	std::cout << "ClapTrap " BLUE << this->_name << RESET " was built" << std::endl;
+// }
