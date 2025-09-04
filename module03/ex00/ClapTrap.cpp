@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 17:00:45 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:23:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 	std::cout << "ClapTrap " BLUE << this->_name << RESET " was built" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap& src) : _name(src._name), _hitPoints(src._hitPoints), 
+ClapTrap::ClapTrap(const ClapTrap& src) : _name(src._name), _hitPoints(src._hitPoints), 
 	_energyPoints(src._energyPoints), _attackDamage(src._attackDamage)
 {
 	std::cout << "ClapTrap built as a copy of ClapTrap " BLUE << src._name << RESET;

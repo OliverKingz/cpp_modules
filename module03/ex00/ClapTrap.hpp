@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 13:52:32 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:26:44 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class ClapTrap
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
-		ClapTrap(ClapTrap& src);
+		ClapTrap(const ClapTrap& src);
 		~ClapTrap();
 
 		ClapTrap& operator=(const ClapTrap& src);
