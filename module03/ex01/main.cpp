@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 17:20:18 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:18:48 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int main()
 		std::cout << "\nScavTrap Example:\n";
 		ScavTrap oliver("OliverST");
 
+		oliver.attack("Brenda");
+		oliver.beRepaired(5);
+		oliver.takeDamage(5);
+		oliver.guardGate();
+
+		// Death messages
+		oliver.takeDamage(101);
 		oliver.attack("Brenda");
 		oliver.beRepaired(5);
 		oliver.takeDamage(5);

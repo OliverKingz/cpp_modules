@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 17:27:56 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:16:08 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void ClapTrap::attack(const std::string& target)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot attack " << target << "as it is already dead!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot attack " << target << " as it is already dead!" << std::endl;
 		return;
 	}
 	if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot attack " << target << "as it has no energy points(EP) left!" << std::endl;
+		std::cout << "ClapTrap " BLUE << this->_name << RESET " cannot attack " << target << " as it has no energy points(EP) left!" << std::endl;
 		return;
 	}
 	else
@@ -75,11 +75,11 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return;
 	}
 	std::cout << "ClapTrap " BLUE << this->_name << RESET" takes " << amount << " points of damage!";
-	std::cout << "\t\t\t" BLUE << this->_name << RESET "\tHP: " RED << _hitPoints - amount << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
 	this->_hitPoints -= amount;
+	std::cout << "\t\t\t" BLUE << this->_name << RESET "\tHP: " RED << _hitPoints << RESET " | EP: " << _energyPoints << " | AD: " << _attackDamage << std::endl;
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " BLUE << this->_name << RESET " was killed!" << std::endl;
+		std::cout << RED "ClapTrap " BLUE << this->_name << RED " was killed!" RESET << std::endl;
 		return;
 	}
 }
