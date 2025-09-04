@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 15:48:59 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:02:03 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int main()
 
 	oliver.attack("Brenda");
 	oliver.beRepaired(5);
-
-	def.takeDamage(5);
-
+	oliver.takeDamage(5);
 
 	std::cout <<   "================================" <<         "==============================="          << "================================\n\n";
 	return 0;
