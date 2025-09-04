@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/02 17:52:44 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:27:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoint
 	std::cout << "ClapTrap " BLUE << this->_name << RESET " was built" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap& src) : _name(src._name), _hitPoints(src._hitPoints), 
+ClapTrap::ClapTrap(const ClapTrap& src) : _name(src._name), _hitPoints(src._hitPoints), 
 	_energyPoints(src._energyPoints), _attackDamage(src._attackDamage)
 {
 	std::cout << "ClapTrap built as a copy of ClapTrap " BLUE << src._name << RESET;
@@ -61,11 +61,10 @@ void ClapTrap::attack(const std::string& target)
 	else
 	{
 		this->_energyPoints -= 1;
-		ClapTrap enemy(target);
+		// ClapTrap enemy(target);
 		std::cout << "ClapTrap " BLUE << this->_name << RESET " attacks " BLUE << target << RESET ", causing " << this->_attackDamage << " points of damage!\n";
-		enemy.takeDamage(this->_attackDamage);
+		// enemy.takeDamage(this->_attackDamage);
 	}
-	
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -105,8 +104,8 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 // Added to use inheritance
 
-// ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage) : 
-// 	_name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
-// {
-// 	std::cout << "ClapTrap " BLUE << this->_name << RESET " was built" << std::endl;
-// }
+ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage) : 
+	_name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
+{
+	std::cout << "ClapTrap " BLUE << this->_name << RESET " was built" << std::endl;
+}
