@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:31:30 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 18:40:44 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:43:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class DiamondTrap: public FragTrap, public ScavTrap
 
 		DiamondTrap& operator=(const DiamondTrap& src);
 
+		void attack(const std::string& target);
 		void whoAmI();
 };
 
