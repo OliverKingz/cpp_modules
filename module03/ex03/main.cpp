@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/08 16:46:03 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:48:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main()
 		oliver.highFivesGuys();
 
 		// No energy messages
-		for (size_t i = 0; i <= 48; i++) 
+		for (size_t i = 0; i <= 47; i++) 
 			oliver.beRepaired(1);
 		oliver.attack("Brenda");
 		oliver.beRepaired(5);
