@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:05:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 17:17:33 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:44:33 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void ScavTrap::attack(const std::string& target)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ScavTrap " BLUE << this->_name << RESET " cannot attack " << target << "as it is already dead!" << std::endl;
+		std::cout << "ScavTrap " BLUE << this->_name << RESET " cannot attack " << target << " as it is already dead!" << std::endl;
 		return;
 	}
 	if (this->_energyPoints <= 0)
 	{
-		std::cout << "ScavTrap " BLUE << this->_name << RESET " cannot attack " << target << "as it has no energy points(EP) left!" << std::endl;
+		std::cout << "ScavTrap " BLUE << this->_name << RESET " cannot attack " << target << " as it has no EP left!" << std::endl;
 		return;
 	}
 	else

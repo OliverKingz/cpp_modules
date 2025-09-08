@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/08 16:03:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:46:03 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,27 @@ int main()
 		oliver.beRepaired(5);
 		oliver.takeDamage(5);
 		oliver.whoAmI();
+		oliver.guardGate();
+		oliver.highFivesGuys();
+
+		// No energy messages
+		for (size_t i = 0; i <= 48; i++) 
+			oliver.beRepaired(1);
+		oliver.attack("Brenda");
+		oliver.beRepaired(5);
+		oliver.takeDamage(5);
+		oliver.whoAmI();
+		oliver.guardGate();
+		oliver.highFivesGuys();
+
+		// Death messages
+		oliver.takeDamage(150);
+		oliver.attack("Brenda");
+		oliver.beRepaired(5);
+		oliver.takeDamage(5);
+		oliver.whoAmI();
+		oliver.guardGate();
+		oliver.highFivesGuys();
 	}
 	
 	std::cout <<   "================================" <<         "=============================="          << "================================\n\n";
