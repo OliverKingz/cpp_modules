@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 16:05:34 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 16:43:53 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:53:18 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap: public ClapTrap
+//  Inherits from ClapTrap using virtual inheritance to avoid the diamond problem
+//  in multiple inheritance scenarios.
+//  Virtual inheritance ensures that only one ClapTrap base subobject exists
+//  when multiple derived classes inherit from ClapTrap.
+
+class ScavTrap: virtual public ClapTrap
 {
 	private:
 

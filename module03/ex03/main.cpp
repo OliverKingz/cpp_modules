@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 18:41:03 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:03:01 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ int main()
 		oliver.beRepaired(5);
 		oliver.takeDamage(5);
 		oliver.highFivesGuys();
+	}
+	{
+		std::cout << "\nDiamondTrap Example:\n";
+		DiamondTrap oliver("OliverDT");
 
-		// Death messages
-		oliver.takeDamage(101);
 		oliver.attack("Brenda");
 		oliver.beRepaired(5);
 		oliver.takeDamage(5);
-		oliver.highFivesGuys();
+		oliver.whoAmI();
 	}
 	
 	std::cout <<   "================================" <<         "=============================="          << "================================\n\n";
