@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/08 16:22:34 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/10 21:23:43 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@
 
 class ClapTrap
 {
-	protected: // Changed from private so children can access
-		std::string	_name;
-		int			_hitPoints;
-		int			_energyPoints;
-		int			_attackDamage;
+	protected: // Changed from private -> protected so derived classes (ScavTrap, FragTrap) can access
+		std::string	_name;        // Name inherited by all derived classes
+		int			_hitPoints;   // Health points - varies by derived class
+		int			_energyPoints;// Energy for actions - varies by derived class  
+		int			_attackDamage;// Damage dealt - varies by derived class
 
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap& src);
+		
+		// Virtual destructor MANDATORY for polymorphic base classes
+		// Ensures proper cleanup: Derived destructor called first, then base
 		virtual ~ClapTrap(); 
 
 		ClapTrap& operator=(const ClapTrap& src);
@@ -49,12 +52,11 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-		// Modified for Inheritance
-
-		virtual void attack(const std::string& target); //added virtual to override
-
-		// Added for Inheritance
-
+		// Virtual method - allows derived classes to override with different behavior
+		virtual void attack(const std::string& target);
+		
+		// Protected constructor for derived classes to set custom values
+		// FragTrap(100,100,30), ScavTrap(100,50,20), DiamondTrap uses combination
 		ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
 };
 

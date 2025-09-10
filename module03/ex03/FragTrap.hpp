@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:33:36 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/08 15:52:33 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/10 21:24:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class FragTrap: virtual public ClapTrap
 
 		FragTrap& operator=(const FragTrap& src);
 
-		void highFivesGuys(void);
+		void highFivesGuys(void); // Unique FragTrap method
 };
 
 #endif
