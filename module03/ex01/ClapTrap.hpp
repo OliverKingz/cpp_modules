@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:53:21 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 17:27:34 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:06:04 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 
 class ClapTrap
 {
-	protected: // Changed from private so children can access
-		std::string	_name;
-		int			_hitPoints;
-		int			_energyPoints;
-		int			_attackDamage;
+	protected: // Changed from private -> protected so derived classes  can access
+		std::string	_name;        // Name inherited by all derived classes
+		int			_hitPoints;   // Health points - varies by derived class
+		int			_energyPoints;// Energy for actions - varies by derived class  
+		int			_attackDamage;// Damage dealt - varies by derived class
 
 	public:
 		ClapTrap();
@@ -49,13 +49,11 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-		// Modified for Inheritance
+		// Virtual method - allows derived classes to override with different behavior
+		virtual void attack(const std::string& target); // added virtual to override
 
-		virtual void attack(const std::string& target); //added virtual to override
-
-		// Added for Inheritance
-
-		ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
+		// Protected constructor for derived classes to set custom values
+		ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage); // added for easier use
 };
 
 #endif

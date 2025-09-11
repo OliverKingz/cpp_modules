@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:07:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:21:40 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,40 @@ int main()
 		std::cout << "\nScavTrap Example:\n";
 		ScavTrap oliver("OliverST");
 
-		oliver.attack("Brenda");
-		oliver.beRepaired(5);
-		oliver.takeDamage(5);
-		oliver.guardGate();
+		oliver.attack("Brenda"); // ST overrides CT
+		oliver.beRepaired(5);    // inherited from CT
+		oliver.takeDamage(5);    // inherited from CT
+		oliver.guardGate();      // unique from ST
 	}
 	{
 		std::cout << "\nFragTrap Example:\n";
 		FragTrap oliver("OliverFT");
 
-		oliver.attack("Brenda");
-		oliver.beRepaired(5);
-		oliver.takeDamage(5);
-		oliver.highFivesGuys();
+		oliver.attack("Brenda"); // inhertied from CT
+		oliver.beRepaired(5);    // inherited from CT
+		oliver.takeDamage(5);    // inherited from CT
+		oliver.highFivesGuys();  // unique from FT
 	}
 	{
 		std::cout << "\nDiamondTrap Example:\n";
 		DiamondTrap oliver("OliverDT");
 
-		oliver.attack("Brenda");
-		oliver.beRepaired(5);
-		oliver.takeDamage(5);
-		oliver.whoAmI();
-		oliver.guardGate();
-		oliver.highFivesGuys();
+		oliver.attack("Brenda"); // inherited from ST
+		oliver.beRepaired(5);    // inherited from CT
+		oliver.takeDamage(5);    // inherited from CT
+		oliver.whoAmI();         // unique from DT
+		oliver.guardGate();      // inherited from ST
+		oliver.highFivesGuys();  // inhertied from FT
 
 		// No energy messages
-		for (size_t i = 0; i <= 47; i++) 
-			oliver.beRepaired(1);
-		oliver.attack("Brenda");
-		oliver.beRepaired(5);
-		oliver.takeDamage(5);
-		oliver.whoAmI();
-		oliver.guardGate();
-		oliver.highFivesGuys();
+		// for (size_t i = 0; i <= 47; i++) 
+		// 	oliver.beRepaired(1);
+		// oliver.attack("Brenda");
+		// oliver.beRepaired(5);
+		// oliver.takeDamage(5);
+		// oliver.whoAmI();
+		// oliver.guardGate();
+		// oliver.highFivesGuys();
 
 		// Death messages
 		oliver.takeDamage(150);

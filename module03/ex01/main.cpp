@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 20:52:45 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/04 18:18:48 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:13:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 		std::cout << "ClapTrap Example:\n";
 		ClapTrap oliver("OliverCT");
 
-		oliver.attack("Brenda");
+		oliver.attack("Brenda"); 
 		oliver.beRepaired(5);
 		oliver.takeDamage(5);
 	}
@@ -28,10 +28,10 @@ int main()
 		std::cout << "\nScavTrap Example:\n";
 		ScavTrap oliver("OliverST");
 
-		oliver.attack("Brenda");
-		oliver.beRepaired(5);
-		oliver.takeDamage(5);
-		oliver.guardGate();
+		oliver.attack("Brenda"); // ST overrides CT
+		oliver.beRepaired(5);    // inherited from CT
+		oliver.takeDamage(5);    // inherited from CT
+		oliver.guardGate();      // unique from ST
 
 		// Death messages
 		oliver.takeDamage(101);
@@ -41,7 +41,7 @@ int main()
 		oliver.guardGate();
 	}
 	std::cout << "\n\tWhen a ScavTrap is created, the program starts by constructing a ClapTrap. \n";
-	std::cout << "\tDestruction occurs in reverse order. Why?\n";
+	std::cout << "\tDestruction occurs in reverse order. \n";
 
 	std::cout <<   "================================" <<         "==============================="          << "================================\n\n";
 	return 0;
