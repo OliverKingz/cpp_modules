@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:26:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/12 11:44:15 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/12 12:00:40 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ std::string Animal::getType() const{
 }
 
 void Animal::makeSound() const{
-	std::cout << "Animal makes noises\n";
+	std::cout << "*noises*\n";
 }
