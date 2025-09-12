@@ -6,13 +6,13 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:26:46 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/12 12:00:40 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/12 12:06:42 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal(void) : type(""){
+Animal::Animal(void) : type("Animal"){
 	std::cout << "Animal Default Constructor called\n";
 }
 

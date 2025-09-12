@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/12 12:02:28 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/12 12:06:23 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int main()
 		const Animal* doggy = new Dog();
 		const Animal* kitty = new Cat();
 
-		std::cout << doggy->getType() << " " << std::endl;
-		std::cout << kitty->getType() << " " << std::endl;
-
-		kitty->makeSound(); // will output the cat sound!
+		std::cout << doggy->getType() << " says ";
 		doggy->makeSound();
+		std::cout << kitty->getType() << " says ";
+		kitty->makeSound(); // will output the cat sound!
+		std::cout << meta->getType() << " says ";
 		meta->makeSound();
 
 		delete meta;
