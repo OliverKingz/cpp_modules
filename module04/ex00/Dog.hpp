@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:44:13 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/11 17:58:19 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:26:21 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Dog : public Animal
 		~Dog();
 		Dog& operator=(const Dog& src);
 
-		void makeSound();
+		void makeSound() const;
 };
 
 #endif

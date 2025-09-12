@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:44:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/11 17:59:41 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:26:05 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Cat : public Animal
 		~Cat();
 		Cat& operator=(const Cat& src);
 
-		void makeSound();
+		void makeSound() const;
 };
 
 #endif
