@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:45:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/12 12:02:51 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:43:23 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ Cat::~Cat(){
 	std::cout << "Cat Destructor called\n";
 }
 
-Cat& Cat::operator=(const Cat& src){
+Cat& Cat::operator=(const Cat& src) {
 	std::cout << "Cat Copy Assignment Operator called\n";
 	if (this != &src)
 	{
-		this->type = src.type;
+		Animal::operator=(src);
 	}
 	return *this;
 }
