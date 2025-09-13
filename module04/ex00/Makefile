@@ -28,7 +28,7 @@ endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main Animal Dog Cat
+SRC_FILES := main Animal Dog Cat WrongAnimal WrongCat
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
