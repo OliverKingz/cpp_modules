@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 14:43:27 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/13 15:04:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:42:24 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 class WrongAnimal
 {
-	private:
 	protected:
 		std::string	type;
+
 	public:
 		WrongAnimal(void);
 		WrongAnimal(const WrongAnimal& src);

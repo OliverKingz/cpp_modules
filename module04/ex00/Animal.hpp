@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:36:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/11 17:50:58 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:41:59 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 class Animal
 {
-	private:
 	protected:
 		std::string	type;
+
 	public:
 		Animal(void);
 		Animal(const Animal& src);
