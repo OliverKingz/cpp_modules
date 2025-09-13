@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:45:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/13 15:43:23 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:49:21 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Cat::Cat(void): Animal(){
 	type = "Cat";
+	_brain = new Brain();
 	std::cout << "Cat Default Constructor called\n";
 }
 
@@ -23,6 +24,7 @@ Cat::Cat(const Cat& src) : Animal(src) {
 }
 
 Cat::~Cat(){
+	delete _brain;
 	std::cout << "Cat Destructor called\n";
 }
 

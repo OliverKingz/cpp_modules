@@ -1,6 +1,6 @@
 # **************************************************************************** #
 # PROJECT
-NAME := Polymorphism
+NAME := Brain
 
 # **************************************************************************** #
 # COMPILER
@@ -28,7 +28,7 @@ endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main Animal Dog Cat WrongAnimal WrongCat
+SRC_FILES := main Animal Dog Cat WrongAnimal WrongCat Brain
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))

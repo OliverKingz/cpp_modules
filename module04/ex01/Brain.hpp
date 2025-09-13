@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/11 17:44:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/13 16:49:21 by ozamora-         ###   ########.fr       */
+/*   Created: 2025/09/13 15:53:52 by ozamora-          #+#    #+#             */
+/*   Updated: 2025/09/13 16:58:47 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "colors.hpp"
 
-class Cat : public Animal
+class Brain
 {
 	private:
-		Brain* _brain;
+		std::string ideas[100];
 
 	public:
-		Cat(void);
-		Cat(const Cat& src);
-		~Cat();
-		Cat& operator=(const Cat& src);
+		Brain(void);
+		Brain(const Brain& src);
+		~Brain();
+		Brain& operator=(const Brain& src);
 
-		void makeSound() const;
-
-		Brain* getBrain() const; // Used pointer, as it can be Null
+		std::string getIdea(int index) const;
+		void setIdea(int index, const std::string& idea); // The input string is not a copy and cannot be modified 
+		void printIdea(int index);
+		void printAllIdeas();
 };
 
 #endif
