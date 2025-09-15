@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:44:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/15 15:35:42 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/15 16:40:13 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ class Cat : public Animal
 		void makeSound() const;
 
 		Brain* getBrain() const; // Used pointer, as it can be Null
-		std::string getIdea(int index) const;
-		void setIdea(int index, const std::string& idea); // The input string is not a copy and cannot be modified 
-		void printIdea(int index);
+		std::string getIdea(size_t index) const;
+		void setIdea(size_t index, const std::string& idea); // The input string is not a copy and cannot be modified 
+		void printIdea(size_t index);
 		void printAllIdeas();
 };
 

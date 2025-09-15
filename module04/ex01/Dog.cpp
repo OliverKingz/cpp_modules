@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:45:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/15 15:46:36 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/15 16:40:13 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void Dog::makeSound() const{
 
 Brain* Dog::getBrain() const { return _brain;}
 
-std::string Dog::getIdea(int index) const { return _brain->getIdea(index); }
+std::string Dog::getIdea(size_t index) const { return _brain->getIdea(index); }
 
-void Dog::setIdea(int index, const std::string& idea) { _brain->setIdea(index, idea); }
+void Dog::setIdea(size_t index, const std::string& idea) { _brain->setIdea(index, idea); }
 
-void Dog::printIdea(int index) {
+void Dog::printIdea(size_t index) {
 	std::cout << "Dog ";
 	 _brain->printIdea(index);
 }

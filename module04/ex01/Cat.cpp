@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:45:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/15 15:46:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/15 16:40:13 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void Cat::makeSound() const {
 
 Brain* Cat::getBrain() const { return _brain;}
 
-std::string Cat::getIdea(int index) const { return _brain->getIdea(index); }
+std::string Cat::getIdea(size_t index) const { return _brain->getIdea(index); }
 
-void Cat::setIdea(int index, const std::string& idea) { _brain->setIdea(index, idea); }
+void Cat::setIdea(size_t index, const std::string& idea) { _brain->setIdea(index, idea); }
 
-void Cat::printIdea(int index) {
+void Cat::printIdea(size_t index) {
 	std::cout << "Cat ";
 	_brain->printIdea(index);
 }
