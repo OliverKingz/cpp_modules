@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:45:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/13 16:49:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:46:36 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Dog::Dog(void): Animal(){
 
 Dog::Dog(const Dog& src) : Animal(src) {
 	// Attribute type is not from Dog, but from base class Animal, delegating into Animal Copy Constructor.
+	_brain = new Brain(*src._brain); // dont delete before _brain, as it was not created yet
 	std::cout << "Dog Copy Constructor called\n";
 }
 
@@ -33,10 +34,28 @@ Dog& Dog::operator=(const Dog& src){
 	if (this != &src)
 	{
 		Animal::operator=(src);
+		delete _brain;
+		_brain = new Brain(*src._brain);
 	}
 	return *this;
 }
 
 void Dog::makeSound() const{
 	std::cout << "\"Woof\"\n";
+}
+
+Brain* Dog::getBrain() const { return _brain;}
+
+std::string Dog::getIdea(int index) const { return _brain->getIdea(index); }
+
+void Dog::setIdea(int index, const std::string& idea) { _brain->setIdea(index, idea); }
+
+void Dog::printIdea(int index) {
+	std::cout << "Dog ";
+	 _brain->printIdea(index);
+}
+
+void Dog::printAllIdeas() {
+	std::cout << "Dog ";
+	_brain->printAllIdeas();
 }
