@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/18 17:02:14 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:12:28 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int main()
 		// Animal* oliver = new Animal(); // Unable to do, as Animal is now Abstract
 		// Animal perry();                // Unable to do, as Animal is now Abstract
 
-		Animal* bolt = new Dog(); // This is still allowed, as it points to Cat that implements all pure virtual functions
-		                          // Polymorphism is allowed still, and Animal* can refer to any subclass object
+		Animal* bolt = new Dog(); // This is still allowed, as it points to Dog that implements all pure virtual functions
+								  // Polymorphism is allowed still, and Animal* can refer to any subclass object
+								  // However, Animal* doesn't have access to derived class-specific functions
 		std::cout << std::endl;
 
 		Dog* doggy = new Dog();
