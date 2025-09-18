@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:26:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:48:00 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int main()
 
 	std::cout << YELLOW BOLD "\nOliver Tests: \n" RESET;
 	{
-		Animal* oliver = new Animal();
+		Animal* oliver = new Animal(); // Animal created on the heap. Dynamic Memory allocation 
+		std::cout << std::endl;
+
+		Animal perry; // Animal created on stack
 		std::cout << std::endl;
 
 		Dog* doggy = new Dog();
@@ -45,11 +48,25 @@ int main()
 		Cat* catty = new Cat();
 		std::cout << std::endl;
 
-		Cat cattyCopy(*catty); // Copy Constructor
+		Cat cattyCopy(*catty); // Copy Constructor and Heap Object
 		std::cout << std::endl;
 
 		Cat* cattyCopyOperator = new Cat();
 		*cattyCopyOperator = cattyCopy; // Copy Assignment Operator
+		std::cout << std::endl;
+
+		std::cout << oliver->getType() << " says ";
+		oliver->makeSound();
+		std::cout << perry.getType() << " says ";
+		perry.makeSound();
+		std::cout << doggy->getType() << " says ";
+		doggy->makeSound();
+		std::cout << catty->getType() << " says ";
+		catty->makeSound();
+		std::cout << cattyCopy.getType() << " says ";
+		cattyCopy.makeSound();
+		std::cout << cattyCopyOperator->getType() << " says ";
+		cattyCopyOperator->makeSound();
 		std::cout << std::endl;
 
 		std::string idea0 = "I am hungry...";
@@ -61,10 +78,12 @@ int main()
 		std::cout << "Size of animal_ptr:    " << sizeof(oliver) << std::endl;  // Pointer size is 8
 		std::cout << "Size of dog_ptr:       " << sizeof(doggy) << std::endl;   // Pointer size is 8
 		std::cout << "Size of animal object: " << sizeof(*oliver) << std::endl; // Animal object size: string(32) + vtable(8)
+		std::cout << "Size of animal object: " << sizeof(perry) << std::endl;   // Animal object size: string(32) + vtable(8)
 		std::cout << "Size of dog object:    " << sizeof(*doggy) << std::endl;  // Animal(40) + brain_ptr(8)
 		std::cout << "Size of cat object:    " << sizeof(*catty) << std::endl;  // Animal(40) + brain_ptr(8)
 		std::cout << "Size of brain object:  " << sizeof(*doggy->getBrain()) << std::endl; // Brain object(32 string * 100)
 
+		std::cout << std::endl;
 		delete oliver;
 		std::cout << std::endl;
 		delete doggy;
@@ -73,7 +92,7 @@ int main()
 		std::cout << std::endl;
 		delete cattyCopyOperator;
 		std::cout << std::endl;
-		// cattyCopy is a stack object and will be destroyed automatically
+		// perry and cattyCopy are a stack object and will be destroyed automatically
 	}
 	std::cout <<   "================" <<         "===================================================="          << "================\n\n";
 	return 0;

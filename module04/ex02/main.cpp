@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:56:22 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:02:14 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ int main()
 	std::cout << YELLOW BOLD "\nOliver Tests: \n" RESET;
 	{
 		// Animal* oliver = new Animal(); // Unable to do, as Animal is now Abstract
-		// std::cout << std::endl;
+		// Animal perry();                // Unable to do, as Animal is now Abstract
+
+		Animal* bolt = new Dog(); // This is still allowed, as it points to Cat that implements all pure virtual functions
+		                          // Polymorphism is allowed still, and Animal* can refer to any subclass object
+		std::cout << std::endl;
 
 		Dog* doggy = new Dog();
 		std::cout << std::endl;
@@ -48,12 +52,25 @@ int main()
 		Cat cattyCopy(*catty);
 		std::cout << std::endl;
 
-		Animal* cattyCopyOperator = new Cat(); // This is still allowed, as it points to Cat that implements all pure virtual functions
-		*cattyCopyOperator = cattyCopy;        // Polymorphism is allowed still, and Animal* can refer to any subclass object
+		Cat* cattyCopyOperator = new Cat();
+		*cattyCopyOperator = cattyCopy;
 		std::cout << std::endl;
 
+		// std::cout << oliver->getType() << " says ";
+		// oliver->makeSound();
+		// std::cout << perry.getType() << " says ";
+		// perry.makeSound();
+		std::cout << bolt->getType() << " says ";
+		bolt->makeSound();
+		std::cout << doggy->getType() << " says ";
 		doggy->makeSound();
+		std::cout << catty->getType() << " says ";
 		catty->makeSound();
+		std::cout << cattyCopy.getType() << " says ";
+		cattyCopy.makeSound();
+		std::cout << cattyCopyOperator->getType() << " says ";
+		cattyCopyOperator->makeSound();
+		std::cout << std::endl;
 
 		std::string idea0 = "I am hungry...";
 		const std::string idea1 = "I want meat";
@@ -65,11 +82,14 @@ int main()
 		// std::cout << "Size of animal_ptr:    " << sizeof(oliver) << std::endl;  // Pointer size is 8
 		std::cout << "Size of dog_ptr:       " << sizeof(doggy) << std::endl;   // Pointer size is 8
 		// std::cout << "Size of animal object: " << sizeof(*oliver) << std::endl; // Animal object size: string(32) + vtable(8)
+		// std::cout << "Size of animal object: " << sizeof(perry) << std::endl;   // Animal object size: string(32) + vtable(8)
 		std::cout << "Size of dog object:    " << sizeof(*doggy) << std::endl;  // Animal(40) + brain_ptr(8)
 		std::cout << "Size of cat object:    " << sizeof(*catty) << std::endl;  // Animal(40) + brain_ptr(8)
 		std::cout << "Size of brain object:  " << sizeof(*doggy->getBrain()) << std::endl; // Brain object(32 string * 100)
 
 		// delete oliver;
+		std::cout << std::endl;
+		delete bolt;
 		std::cout << std::endl;
 		delete doggy;
 		std::cout << std::endl;
