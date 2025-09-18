@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 11:45:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/15 16:40:13 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:23:15 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ Dog& Dog::operator=(const Dog& src){
 	if (this != &src)
 	{
 		Animal::operator=(src);
-		delete _brain;
+		if (_brain)
+			delete _brain;
 		_brain = new Brain(*src._brain);
 	}
 	return *this;
