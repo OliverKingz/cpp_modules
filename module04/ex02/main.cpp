@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:26:35 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:56:22 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int main()
 
 	std::cout << YELLOW BOLD "\nOliver Tests: \n" RESET;
 	{
-		Animal* oliver = new Animal();
-		std::cout << std::endl;
+		// Animal* oliver = new Animal(); // Unable to do, as Animal is now Abstract
+		// std::cout << std::endl;
 
 		Dog* doggy = new Dog();
 		std::cout << std::endl;
@@ -45,27 +45,31 @@ int main()
 		Cat* catty = new Cat();
 		std::cout << std::endl;
 
-		Cat cattyCopy(*catty); // Copy Constructor
+		Cat cattyCopy(*catty);
 		std::cout << std::endl;
 
-		Cat* cattyCopyOperator = new Cat();
-		*cattyCopyOperator = cattyCopy; // Copy Assignment Operator
+		Animal* cattyCopyOperator = new Cat(); // This is still allowed, as it points to Cat that implements all pure virtual functions
+		*cattyCopyOperator = cattyCopy;        // Polymorphism is allowed still, and Animal* can refer to any subclass object
 		std::cout << std::endl;
+
+		doggy->makeSound();
+		catty->makeSound();
 
 		std::string idea0 = "I am hungry...";
+		const std::string idea1 = "I want meat";
 		doggy->setIdea(0, idea0);
-		doggy->printIdea(1);
+		doggy->setIdea(1, idea1);
 		doggy->printAllIdeas();
 		std::cout << std::endl;
 
-		std::cout << "Size of animal_ptr:    " << sizeof(oliver) << std::endl;  // Pointer size is 8
+		// std::cout << "Size of animal_ptr:    " << sizeof(oliver) << std::endl;  // Pointer size is 8
 		std::cout << "Size of dog_ptr:       " << sizeof(doggy) << std::endl;   // Pointer size is 8
-		std::cout << "Size of animal object: " << sizeof(*oliver) << std::endl; // Animal object size: string(32) + vtable(8)
+		// std::cout << "Size of animal object: " << sizeof(*oliver) << std::endl; // Animal object size: string(32) + vtable(8)
 		std::cout << "Size of dog object:    " << sizeof(*doggy) << std::endl;  // Animal(40) + brain_ptr(8)
 		std::cout << "Size of cat object:    " << sizeof(*catty) << std::endl;  // Animal(40) + brain_ptr(8)
 		std::cout << "Size of brain object:  " << sizeof(*doggy->getBrain()) << std::endl; // Brain object(32 string * 100)
 
-		delete oliver;
+		// delete oliver;
 		std::cout << std::endl;
 		delete doggy;
 		std::cout << std::endl;
