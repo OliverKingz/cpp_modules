@@ -6,15 +6,18 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:17:11 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/22 16:45:00 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:31:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "colors.hpp"
-#include "ICharacter.hpp"
 #include "IMateriaSource.hpp"
+
+// #include "ICharacter.hpp"
+// Forward declaration instead of include to avoid circular dependency
+class ICharacter;
 
 class AMateria
 {

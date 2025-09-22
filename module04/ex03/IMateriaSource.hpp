@@ -6,14 +6,17 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:17:22 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/22 17:26:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:34:51 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "colors.hpp"
-#include "AMateria.hpp"
+
+// #include "AMateria.hpp"
+// Forward declaration instead of include to avoid circular dependency
+class AMateria;
 
 class IMateriaSource
 {
