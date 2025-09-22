@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/18 17:12:28 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:20:47 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,7 @@
 
 int main()
 {
-	std::cout << "\n===============|" << BLUE << " Exercise 01: I don’t want to set the world on fire " << RESET << "|===============\n";
-
-	std::cout << YELLOW BOLD "\nSubject Tests: \n" RESET;
-	{
-		const Animal* j = new Dog();
-		std::cout << std::endl;
-		const Animal* i = new Cat();
-		std::cout << std::endl;
-
-		delete j; //should not create a leak
-		std::cout << std::endl;
-		delete i;
-		std::cout << std::endl;
-	}
+	std::cout << "\n===============|" << BLUE << " Exercise 02: Abstract class " << RESET << "|===============\n";
 
 	std::cout << YELLOW BOLD "\nOliver Tests: \n" RESET;
 	{
@@ -100,6 +87,6 @@ int main()
 		std::cout << std::endl;
 		// cattyCopy is a stack object and will be destroyed automatically
 	}
-	std::cout <<   "================" <<         "===================================================="          << "================\n\n";
+	std::cout <<   "================" <<         "============================="          << "================\n\n";
 	return 0;
 }
