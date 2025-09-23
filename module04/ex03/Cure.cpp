@@ -6,11 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:30:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/22 17:19:57 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:01:02 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
+#include "ICharacter.hpp"
 
 Cure::Cure(void) : AMateria("cure") {
 	std::cout << "Cure Default Constructor called\n";
@@ -37,5 +38,5 @@ AMateria* Cure::clone() const {
 }
 
 void Cure::use(ICharacter& target) {
-	std::cout << "* heals " << target.getName() << "’s wounds *\n";
+	std::cout << " heals " << target.getName() << "’s wounds.\n";
 }

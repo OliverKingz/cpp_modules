@@ -6,11 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:26:23 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/22 17:20:20 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:54:09 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
+#include "ICharacter.hpp"
 
 Ice::Ice(void) : AMateria("Ice") {
 	std::cout << "Ice Default Constructor called\n";
@@ -37,5 +38,5 @@ AMateria* Ice::clone() const {
 }
 
 void Ice::use(ICharacter& target) {
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
+	std::cout << " shoots an ice bolt at " << target.getName() << ".\n";
 }
