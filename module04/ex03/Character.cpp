@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:26:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/23 18:18:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/24 18:38:35 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "AMateria.hpp"
 
 Character::Character(void) : _name(""), _n_materias(0), _n_drop(0) {
-	std::cout << "Character Default Constructor called for: " BLUE << _name << RESET << std::endl;
+	std::cout << "Character Default Constructor called\n";
 	for (int i = 0 ; i < MAX_SLOT; i++)
 		_inventory[i] = NULL;
 	for (int i = 0 ; i < MAX_DROP; i++)
@@ -47,20 +47,8 @@ Character::Character(const Character& src) : _name(src._name), _n_materias(src._
 
 Character::~Character() {
 	std::cout << "Character Destructor called for: " BLUE << _name << RESET << std::endl;
-	for (int i = 0; i < MAX_SLOT; i++) {
-		if (_inventory[i]) {
-			delete _inventory[i];
-			_inventory[i] = NULL;
-		}
-	}
-	// IMPORTANT: The user is responsible for cleaning the dropped Materia at the end of the program
-	
-	// for (int i = 0; i < MAX_DROP; i++) {
-	// 	if (_dropped[i]) {
-	// 		delete _dropped[i];
-	// 		_dropped[i] = NULL;
-	// 	}
-	// }
+	cleanData(_inventory, MAX_SLOT);
+	cleanData(_dropped, MAX_DROP);
 }
 
 Character& Character::operator=(const Character& src) {
@@ -110,8 +98,7 @@ void Character::equip(AMateria* m) {
 			return ;
 		}
 	}
-	std::cout << "Unable to equip more Materias, as " BLUE << _name << RESET "'s inventory is full. Dropped\n";
-	
+	std::cout << "Unable to equip more Materias, as " BLUE << _name << RESET "'s inventory is full. Dropped.\n";
 }
 
 void Character::unequip(int idx) {
@@ -123,12 +110,14 @@ void Character::unequip(int idx) {
 				_inventory[idx] = NULL;
 				_n_drop++;
 				_n_materias--;
-			} else
+			} else {
 				std::cout << "Drop storage full, cannot save unequipped Materia.\n";
+				std::cout << WARNING_DROP << std::endl;
+			}
 		} else
 			std::cout << "Unable to unequip Materia in slot " << idx << " as it doesn't exist.\n";
 	} else
-		std::cout << "Unable to unequip the selected Materia, as it is out of the valid values";
+		std::cout << "Unable to unequip the selected Materia, as it is out of the valid values.\n";
 }
 
 void Character::use(int idx, ICharacter& target) {
@@ -140,5 +129,15 @@ void Character::use(int idx, ICharacter& target) {
 		} else
 			std::cout << "Unable to use Materia in slot " << idx << " as it doesn't exist.\n";
 	} else
-		std::cout << "Unable to use the selected Materia, as it is out of the valid values";
+		std::cout << "Unable to use the selected Materia, as it is out of the valid values. \n";
+}
+
+void Character::cleanData(AMateria** data, const int max_data)
+{
+	for (int i = 0; i < max_data; i++) {
+		if (data[i]) {
+			delete data[i];
+			data[i] = NULL;
+		}
+	}
 }

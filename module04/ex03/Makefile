@@ -28,7 +28,10 @@ endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main AMateria ICharacter IMateriaSource colors
+SRC_FILES := main \
+			AMateria Cure Ice \
+			ICharacter Character \
+			IMateriaSource MateriaSource
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
