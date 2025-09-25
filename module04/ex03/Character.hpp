@@ -6,13 +6,14 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:25:43 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/25 16:35:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:19:25 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ICharacter.hpp" // It needs to still include AMateria in cpp
+#include "ICharacter.hpp" // It still needs include AMateria in Character.cpp,
+						  // even if it was forward declarated in ICharacter
 
 class Character : public ICharacter
 {

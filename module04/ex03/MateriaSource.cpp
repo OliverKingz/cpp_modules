@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:36:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/25 16:43:54 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:14:42 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& src) {
 	std::cout << "MateriaSource Copy Assignment Operator called\n";
 	if (this != &src) {
 		this->_n_materias = src._n_materias;
-		cleanData(this->_memory, MAX_SLOT); // We empty >memory and then fill it from src
+		cleanData(this->_memory, MAX_SLOT); // We empty memory and then fill it from src
 		copyData(src._memory, this->_memory, MAX_SLOT);
 	}
 	return *this;
