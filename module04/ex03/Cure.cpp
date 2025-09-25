@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:30:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/24 18:36:08 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:50:13 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ AMateria* Cure::clone() const {
 }
 
 void Cure::use(ICharacter& target) {
-	std::cout << " * heals " YELLOW << target.getName() << RESET "’s wounds*\n";
+	std::cout << " * " YELLOW "heals " BLUE << target.getName() << RESET "’s wounds *\n";
 }

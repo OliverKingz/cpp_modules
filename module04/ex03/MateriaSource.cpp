@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:36:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/24 18:51:56 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:43:54 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ MateriaSource::MateriaSource(void) : _n_materias(0) {
 
 MateriaSource::MateriaSource(const MateriaSource& src) : _n_materias(src._n_materias) {
 	std::cout << "MateriaSource Copy Constructor called\n";
-	for (int i = 0 ; i < MAX_SLOT; i++) {
-		if (src._memory[i])
-			_memory[i] = src._memory[i]->clone(); // Deep object copy
-		else
-			_memory[i] = NULL;
-	}
+	copyData(src._memory, this->_memory, MAX_SLOT);
 }
 
 MateriaSource::~MateriaSource() {
@@ -38,34 +33,37 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& src) {
 	std::cout << "MateriaSource Copy Assignment Operator called\n";
 	if (this != &src) {
 		this->_n_materias = src._n_materias;
-		// We empty this->memory and then fill it from src
-		cleanData(this->_memory, MAX_SLOT);
+		cleanData(this->_memory, MAX_SLOT); // We empty >memory and then fill it from src
 		copyData(src._memory, this->_memory, MAX_SLOT);
 	}
 	return *this;
 }
 
-void MateriaSource::learnMateria(AMateria* src) {
+void MateriaSource::learnMateria(AMateria* m) {
+	if (!m) {
+		std::cout << "Unable to learn unexisting Materia. \n";
+		return;
+	}
 	for (int i = 0 ; i < MAX_SLOT; i++) {
 		if (!_memory[i]) {
-			_memory[i] = src->clone();
-			delete src;
+			_memory[i] = m;
 			_n_materias++;
-			std::cout << "The Source memorized the " BLUE << src->getType() << RESET " materia. \n";
+			std::cout << "The Source memorized the " YELLOW << m->getType() << RESET " materia. \n";
 			return ;
 		}
 	}
-	std::cout << "The Source is already full of memory. Unable to learn. \n";
+	std::cout << "Nothing done. The Source is already full of memory. Unable to learn.\n";
+	delete m; // Destroys the Materia, as the User might not remember to do it.
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
 	for (int i = 0 ; i < MAX_SLOT; i++) {
 		if (_memory[i] &&_memory[i]->getType() == type ) {
-			std::cout << "The Source created the materia " BLUE << type << RESET << std::endl;
+			std::cout << "The Source created the materia " YELLOW << type << RESET << std::endl;
 			return _memory[i]->clone();
 		}
 	}
-	std::cout << "The Source is unable to create " BLUE << type << RESET " materia, as it isn't memorized. \n";
+	std::cout << "Nothing done. The Source is unable to create " YELLOW << type << RESET " materia, as it isn't memorized. \n";
 	return NULL;
 }
 
