@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:09:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/25 17:04:06 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:10:08 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int main()
 
 		std::cout << GREEN "\n--- Dropped materia full ---\n" RESET;
 		oliver->equip(src->createMateria("cure")); 
-		oliver->unequip(0); // Not dropped, still equiped. Warning! Floor with dropped Materia full. 
+		oliver->unequip(0); // Not dropped, still equiped. The floor with dropped Materia is full. 
 
 		std::cout << GREEN "\n--- Other Character Constructors (Deep Copy) ---\n" RESET;
 		Character oliverClone(*oliver); // Copy construtor
-		Character noname; // Default constructor
-		noname = *oliver; // Assigment constructor
+		Character noname;				// Default constructor
+		noname = *oliver;				// Assigment constructor
 
 		std::cout << GREEN "\n--- Manual Destructor ---\n" RESET;
 		delete src;
