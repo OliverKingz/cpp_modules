@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:56 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/13 15:33:14 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/10/01 15:45:39 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,21 @@ int main()
 	}
 	std::cout << YELLOW BOLD "\nSubject Wrong Tests: \n" RESET;
 	{
+		const WrongAnimal* i_wAnimal = new WrongCat();
+		const WrongCat* i_wCat = new WrongCat();
 		const WrongAnimal* meta = new WrongAnimal();
-		const Animal* j = new Dog();
-		const WrongAnimal* i = new WrongCat();
 
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
+		std::cout << i_wAnimal->getType() << " " << std::endl;
+		std::cout << i_wCat->getType() << " " << std::endl;
+		std::cout << meta->getType() << " " << std::endl;
 
-		i->makeSound(); // will output Animal sound, as it is not virtual
-		j->makeSound();
+		i_wAnimal->makeSound(); // will output Animal sound, as function is not virtual so it is not overriden
+		i_wCat->makeSound(); // will output Cat sound, 
 		meta->makeSound();
 
 		delete meta; // added so there aren't leaks
-		delete j;
-		delete i;
+		delete i_wAnimal;
+		delete i_wCat;
 	}
 	std::cout << YELLOW BOLD "\nOliver Tests: \n" RESET;
 	{

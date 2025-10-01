@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:36:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/09/13 16:37:44 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/10/01 15:46:11 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Animal
 	public:
 		Animal(void);
 		Animal(const Animal& src);
-		virtual ~Animal();
+		virtual ~Animal(); // virtual so derived classes' destructors are called as well
 		Animal& operator=(const Animal& src);
 
 		std::string getType() const;
