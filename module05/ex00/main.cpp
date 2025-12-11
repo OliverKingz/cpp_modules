@@ -6,14 +6,11 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/04 16:53:23 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/11 17:43:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
-
-#include "colors.hpp"
+#include "Bureaucrat.hpp"
 
 int main()
 {
