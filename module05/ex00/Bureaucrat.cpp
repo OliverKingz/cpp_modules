@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/18 22:11:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/18 22:26:15 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,24 @@ Bureaucrat::~Bureaucrat() {
 
 // ======| Getters |======
 const std::string Bureaucrat::getName() const {
-
+	return (_name);
 }
 
 int Bureaucrat::getGrade() const{
-
+	return (_grade);
 }
 
 // ======| Setters |======
 void Bureaucrat::incrementGrade(void) {
-
+	if (_grade <= 1)
+		throw GradeTooHighException(_name);
+	_grade--;
 }
 
 void Bureaucrat::decrementGrade(void){
+	if (_grade >= 150)
+		throw GradeTooLowException(_name);
+	_grade++;
 
 }
 
