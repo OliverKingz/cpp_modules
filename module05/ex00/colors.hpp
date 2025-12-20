@@ -6,15 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:33:36 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/04 15:15:57 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 14:50:37 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLORS_HPP
 # define COLORS_HPP
-
-#include <string>
-#include <iostream>
 
 # define RESET "\033[0m"
 # define BOLD "\033[1m"

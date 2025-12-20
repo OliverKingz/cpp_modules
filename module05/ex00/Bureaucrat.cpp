@@ -6,22 +6,22 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/18 22:26:15 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 14:57:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 // ======| Constructors and Destructors (Canonical) |======
-Bureaucrat::Bureaucrat(void) : _name("Noname"), _grade(150){
+Bureaucrat::Bureaucrat(void) : _name("Noname"), _grade(MIN_GRADE){
 	std::cout << "Bureaucrat Default Constructor called\n";
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, const int grade)
 	: _name(name), _grade(grade) {
-	if (grade < 1)
+	if (grade < MAX_GRADE)
 		throw GradeTooHighException(_name);
-	else if (grade > 150)
+	else if (grade > MIN_GRADE)
 		throw GradeTooLowException(_name);
 	std::cout << "Bureaucrat Constructor called for " << _name << ".\n";
 }
@@ -55,13 +55,13 @@ int Bureaucrat::getGrade() const{
 
 // ======| Setters |======
 void Bureaucrat::incrementGrade(void) {
-	if (_grade <= 1)
+	if (_grade <= MAX_GRADE)
 		throw GradeTooHighException(_name);
 	_grade--;
 }
 
 void Bureaucrat::decrementGrade(void){
-	if (_grade >= 150)
+	if (_grade >= MIN_GRADE)
 		throw GradeTooLowException(_name);
 	_grade++;
 
@@ -82,4 +82,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw(){
 }
 
 // ======| Operator << |======
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& person){
+	os << person.getName() << ", bureaucrat grade " << person.getGrade();
+	return (os);
+}
