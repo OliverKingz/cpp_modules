@@ -17,7 +17,7 @@ VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all --t
 
 ifeq ($(DEBUG),1)
 	OBJ_DIR := obj/debug/
-	CPPFLAGS += -g3 -fsanitize=address
+	CPPFLAGS += -g3 -fsanitize=address -DDEBUG
 	LDFLAGS += -fsanitize=address
 else ifeq ($(VALGRIND),1)
 	OBJ_DIR := obj/valgrind/
@@ -90,13 +90,13 @@ ARGS := $(DEFAULT_ARGS)
 # Rule to compile and run with debug flags
 debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
-	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
+	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦\n$(NC)"
 	-./$(NAME) $(ARGS)
 
 # Rule to run with Valgrind
 valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
-	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
+	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦\n$(NC)"
 	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments

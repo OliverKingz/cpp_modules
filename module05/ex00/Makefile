@@ -17,7 +17,7 @@ VALGRIND_FLAGS := -s --tool=memcheck --leak-check=full --show-leak-kinds=all --t
 
 ifeq ($(DEBUG),1)
 	OBJ_DIR := obj/debug/
-	CPPFLAGS += -g3 -fsanitize=address
+	CPPFLAGS += -g3 -fsanitize=address -DDEBUG
 	LDFLAGS += -fsanitize=address
 else ifeq ($(VALGRIND),1)
 	OBJ_DIR := obj/valgrind/
