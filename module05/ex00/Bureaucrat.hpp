@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 19:56:03 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 20:51:04 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,21 @@ class Bureaucrat
 	public:
 		// ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===
 		class GradeTooHighException : public std::exception{ // Inherits from exception
+			private:
+				std::string _msg;
 			public:
-				virtual const char *what() const throw();
+				GradeTooHighException(const std::string& name);
+				virtual const char* what() const throw();
+				virtual ~GradeTooHighException() throw();
 		};
 		// ===| Internal Exception GradeTooLowException (Subject: non-canonical) |===
 		class GradeTooLowException : public std::exception{
+			private:
+				std::string _msg;
 			public:
-				virtual const char *what() const throw();
+				GradeTooLowException(const std::string& name);
+				virtual const char* what() const throw();
+				virtual ~GradeTooLowException() throw();
 		};
 
 		// ===| Constructors and Destructors (Canonical) |===
@@ -57,36 +65,94 @@ class Bureaucrat
 // ===| Operator << |===
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
 
-/* Exception Theory
-	- what(): provides a descriptive message. Returns const char* (not std::string)
-	  because it must override std::exception::what(), which has that signature.
-	
-	- throw(): old C++98 dynamic exception specification meaning "this function throws nothing".
-	  In C++11+, use noexcept instead. Both are equivalent for "throws nothing".
-	
-	- virtual: kept for clarity when overriding exception::what(), but technically not required
-	  since the base class already declares it virtual.
-	
-	- Virtual destructor: Not strictly needed for simple exceptions without dynamic allocation,
-	  but it's good practice to include one: virtual ~GradeTooHighException() throw() {}
-	  This ensures proper cleanup in inheritance hierarchies.
-	
-	- Exception safety: Keep exception constructors simple and noexcept to avoid throwing
-	  during exception handling, which causes std::terminate().
-	
-	- C++98 vs C++11: If using C++11+, prefer noexcept over throw(). They're functionally
-	  equivalent for "throws nothing", but noexcept is the modern standard.
+/*
+* EXECTION THEORY & IMPLEMENTATION NOTES
+* =======================================
+* 
+* SIGNATURE DETAILS:
+* ─────────────────
+* what():
+*   - Provides a descriptive message
+*   - Returns const char* (not std::string) to match std::exception::what()
+*   - Must override base class signature exactly
+*
+* throw():
+*   - Old C++98 dynamic exception specification meaning "throws nothing"
+*   - In C++11+, use noexcept instead (functionally equivalent)
+*
+* virtual:
+*   - Kept for clarity when overriding exception::what()
+*   - Technically not required since base class already declares it virtual
+* 
+* NESTED CLASS BEHAVIOR:
+* ──────────────────────
+* Class Structure:
+*   - GradeTooHighException and GradeTooLowException are nested within Bureaucrat
+*   - Both inherit from std::exception and override what()
+*
+* Usage Inside Bureaucrat:
+*   - throw GradeTooHighException();
+*
+* Usage Outside Bureaucrat:
+*   - throw Bureaucrat::GradeTooHighException();
+*
+* Catching Exceptions:
+*   - By const reference (prevents slicing):
+*         catch (const Bureaucrat::GradeTooHighException& e) { ... }
+*   - By base class:
+*         catch (const std::exception& e) { ... }
+*
+* Important:
+*   - Nested classes have NO implicit access to Bureaucrat instance members
+*
+* SAFETY PRACTICES:
+* ─────────────────
+* Virtual Destructor:
+*   - Not strictly needed for simple exceptions, but good practice:
+*     virtual ~GradeTooHighException() throw() {}
+*
+* Constructor Guidelines:
+*   - Keep exception constructors simple and noexcept
+*   - Avoid throwing during exception handling (causes std::terminate())
+*
+* Return Value Safety:
+*   - what() returns const char* to static-duration string literal (safe)
+*/
 
-	For complex exceptions with Bureaucrat data:
-	- Store members: Add private std::string _message to hold formatted error details
-	- Constructor: Accept Bureaucrat data (name, invalid grade, etc.), initialize message
-	- what(): return _message.c_str()
-	- Example:
-		class GradeTooHighException : public std::exception {
-		private:
-			std::string _message;
-		public:
-			GradeTooHighException(const std::string& name, int grade) noexcept;
-			virtual const char* what() const noexcept { return _message.c_str(); }
-		};
+/*
+* SEMANTIC NOTE (Grade System):
+* ─────────────────────────────
+* Lower numeric grade is BETTER (MAX_GRADE == 1)
+* incrementGrade():
+*   - Reduces _grade value (--_grade) to "promote"
+*   - Throws GradeTooHighException if already at MAX_GRADE
+*
+* decrementGrade():
+*   - Increases _grade value (++_grade) to "demote"
+*   - Throws GradeTooLowException if already at MIN_GRADE
+*/
+
+/*
+* MODERN C++11+ ALTERNATIVE:
+* ──────────────────────────
+* Recommendations:
+*   - Replace throw() with noexcept (preferred in modern C++)
+* 
+* EXAMPLES:
+* ________
+* For Simple Exceptions: 
+*   class GradeTooLowException : public std::exception{
+*   public:
+*       virtual const char *what() const throw();
+* };
+* 
+* For Complex Exceptions (store message):
+*   class GradeTooHighException : public std::exception {
+*   private:
+*       std::string _message;
+*   public:
+*       GradeTooHighException(const std::string& name, int grade);
+*       virtual const char* what() const throw() { return _message.c_str(); }
+*       virtual ~GradeTooHighException() throw() {} 
+*   };
 */

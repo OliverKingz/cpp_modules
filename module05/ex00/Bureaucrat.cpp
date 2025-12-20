@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 19:54:17 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 21:03:04 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ Bureaucrat::Bureaucrat(void) : _name("Noname"), _grade(MIN_GRADE){
 Bureaucrat::Bureaucrat(const std::string& name, const int grade)
 	: _name(name), _grade(grade) {
 	if (grade < MAX_GRADE)
-		throw GradeTooHighException();
+		throw GradeTooHighException(_name);
 	else if (grade > MIN_GRADE)
-		throw GradeTooLowException();
+		throw GradeTooLowException(_name);
 	DBG_MSG("Parameterized Constructor");
 }
 
@@ -71,32 +71,46 @@ int Bureaucrat::getGrade() const{
 
 // ======| Setters |======
 void Bureaucrat::incrementGrade(void) {
-	if (_grade <= MAX_GRADE)
-		throw GradeTooHighException();
+	if (_grade <= MAX_GRADE) {
+		DBG_MSG("did NOT increment grade");
+		throw GradeTooHighException(_name);
+	}
 	_grade--;
 }
 
 void Bureaucrat::decrementGrade(void){
-	if (_grade >= MIN_GRADE)
-		throw GradeTooLowException();
+	if (_grade >= MIN_GRADE) {
+		DBG_MSG("dit NOT decrement grade");
+		throw GradeTooLowException(_name);
+	}
 	_grade++;
 
 }
 
 // ======| Internal Exception GradeTooHighException (Subject: non-canonical) |======
 
-const char *Bureaucrat::GradeTooHighException::what() const throw(){
-	return("Exception: Bureaucrat's Grade is too high (must be between 1 and 150)");
+Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& name)
+	: _msg("Exception: Bureaucrat " BLUE + name + RED " is too HIGH (must be between 1 and 150)") {}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return (_msg.c_str());
 }
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
 
 // ======| Internal Exception GradeTooLowException (Subject: non-canonical) |======
 
-const char *Bureaucrat::GradeTooLowException::what() const throw(){
-	return("Exception: Bureaucrat's Grade is too high (must be between 1 and 150)");
+Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& name)
+	: _msg("Exception: Bureaucrat " BLUE + name + RED " is too LOW (must be between 1 and 150)") {}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return (_msg.c_str());
 }
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}
 
 // ======| Operator << |======
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& person){
-	os << person.getName() << ", bureaucrat grade " << person.getGrade();
+	os << BLUE << person.getName() << RESET ", bureaucrat grade " << person.getGrade();
 	return (os);
 }
