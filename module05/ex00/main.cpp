@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 21:03:55 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 21:13:04 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main()
 			std::cout << "Building a Bureucrat with a correct grade\n";
 			Bureaucrat ok("Ok", 42);
 			std::cout << ok << "\n";
-		} catch (const std::exception &e) {
+		} catch (const std::exception &e) { // catches all exceptions
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
 		}
 
@@ -50,7 +50,7 @@ int main()
 			Bureaucrat top("Top", MAX_GRADE);
 			std::cout << top << "\n";
 			top.incrementGrade(); // should throw
-		} catch (const std::exception &e) {
+		} catch (const Bureaucrat::GradeTooHighException& e) { //catch an specific exception
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
 		}
 
@@ -59,7 +59,7 @@ int main()
 			Bureaucrat bottom("Bottom", MIN_GRADE);
 			std::cout << bottom << "\n";
 			bottom.decrementGrade(); // should throw
-		} catch (const std::exception &e) {
+		} catch (const Bureaucrat::GradeTooLowException& e) {
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 20:51:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 21:10:49 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ class Bureaucrat
 {
 	private:
 		const std::string	_name;
-		int					_grade; // 1 to 150
+		int					_grade;
 	public:
 		// ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===
-		class GradeTooHighException : public std::exception{ // Inherits from exception
+		class GradeTooHighException : public std::exception{
 			private:
 				std::string _msg;
 			public:
@@ -117,9 +117,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
 *
 * Return Value Safety:
 *   - what() returns const char* to static-duration string literal (safe)
-*/
-
-/*
+* 
 * SEMANTIC NOTE (Grade System):
 * ─────────────────────────────
 * Lower numeric grade is BETTER (MAX_GRADE == 1)
@@ -130,9 +128,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
 * decrementGrade():
 *   - Increases _grade value (++_grade) to "demote"
 *   - Throws GradeTooLowException if already at MIN_GRADE
-*/
-
-/*
+* 
 * MODERN C++11+ ALTERNATIVE:
 * ──────────────────────────
 * Recommendations:
