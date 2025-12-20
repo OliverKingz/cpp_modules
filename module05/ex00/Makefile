@@ -1,6 +1,6 @@
 # **************************************************************************** #
 # PROJECT
-NAME := template
+NAME := toBeBureaucrat
 
 # **************************************************************************** #
 # COMPILER
@@ -21,14 +21,14 @@ ifeq ($(DEBUG),1)
 	LDFLAGS += -fsanitize=address
 else ifeq ($(VALGRIND),1)
 	OBJ_DIR := obj/valgrind/
-	CPPFLAGS += -g3
+	CPPFLAGS += -g3 -DDEBUG
 else
 	OBJ_DIR := obj/regular/
 endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main
+SRC_FILES := main Bureaucrat
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
@@ -90,13 +90,13 @@ ARGS := $(DEFAULT_ARGS)
 # Rule to compile and run with debug flags
 debug: fclean
 	@$(MAKE) DEBUG=1 $(NAME) -s
-	@echo " -> $(BW)[Debug]:\t\t\t$(BB)Debug mode enabled\t🟦$(NC)"
+	@echo " -> $(BW)[Debug]:\t$(BB)Debug mode enabled\t🟦$(NC)"
 	-./$(NAME) $(ARGS)
 
 # Rule to run with Valgrind
 valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
-	@echo " -> $(BW)[Valgrind]:\t\t\t$(BB)Valgrind mode enabled\t🟦$(NC)"
+	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦$(NC)"
 	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments

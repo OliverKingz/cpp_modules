@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 14:54:21 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 19:56:03 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <string>
 #include <iostream>
+#include <exception>
 
 #include "colors.hpp"
 
@@ -29,16 +30,12 @@ class Bureaucrat
 		// ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===
 		class GradeTooHighException : public std::exception{ // Inherits from exception
 			public:
-				GradeTooHighException(const std::string& name); // name is the object's name that gave the error
-				virtual ~GradeTooHighException() throw(); // throw() is the old C++98 dynamic exception specification meaning "this function throws nothing", noexcept is a C++11 feature
-				virtual const char *what() const throw(); // provides descriptive message
+				virtual const char *what() const throw();
 		};
 		// ===| Internal Exception GradeTooLowException (Subject: non-canonical) |===
 		class GradeTooLowException : public std::exception{
 			public:
-				GradeTooLowException(const std::string& name);
-				virtual ~GradeTooLowException() throw(); // virtual kept for clarity, but it's not required
-				virtual const char *what() const throw(); // Cannot be string, override from exception
+				virtual const char *what() const throw();
 		};
 
 		// ===| Constructors and Destructors (Canonical) |===
@@ -59,3 +56,37 @@ class Bureaucrat
 
 // ===| Operator << |===
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
+
+/* Exception Theory
+	- what(): provides a descriptive message. Returns const char* (not std::string)
+	  because it must override std::exception::what(), which has that signature.
+	
+	- throw(): old C++98 dynamic exception specification meaning "this function throws nothing".
+	  In C++11+, use noexcept instead. Both are equivalent for "throws nothing".
+	
+	- virtual: kept for clarity when overriding exception::what(), but technically not required
+	  since the base class already declares it virtual.
+	
+	- Virtual destructor: Not strictly needed for simple exceptions without dynamic allocation,
+	  but it's good practice to include one: virtual ~GradeTooHighException() throw() {}
+	  This ensures proper cleanup in inheritance hierarchies.
+	
+	- Exception safety: Keep exception constructors simple and noexcept to avoid throwing
+	  during exception handling, which causes std::terminate().
+	
+	- C++98 vs C++11: If using C++11+, prefer noexcept over throw(). They're functionally
+	  equivalent for "throws nothing", but noexcept is the modern standard.
+
+	For complex exceptions with Bureaucrat data:
+	- Store members: Add private std::string _message to hold formatted error details
+	- Constructor: Accept Bureaucrat data (name, invalid grade, etc.), initialize message
+	- what(): return _message.c_str()
+	- Example:
+		class GradeTooHighException : public std::exception {
+		private:
+			std::string _message;
+		public:
+			GradeTooHighException(const std::string& name, int grade) noexcept;
+			virtual const char* what() const noexcept { return _message.c_str(); }
+		};
+*/

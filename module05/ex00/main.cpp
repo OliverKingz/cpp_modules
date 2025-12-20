@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 19:01:49 by ozamora-         ###   ########.fr       */
+/*   Updated: 2025/12/20 19:10:42 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int main()
 {
 	std::cout << "\n===============|" << BLUE << " Exercise 00: Mommy, when I grow up, I want to be a bureaucrat! " << RESET << "|===============\n";
+	Bureaucrat *example = new Bureaucrat();
+	delete example;
 	std::cout <<   "================" <<         "================================================================"          << "================\n\n";
 	return 0;
 }
