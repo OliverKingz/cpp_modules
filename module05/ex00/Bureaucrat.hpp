@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 21:10:49 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:51:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ class Bureaucrat
 // ===| Operator << |===
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
 
-/*
+/* **************************************************************************
 * EXECTION THEORY & IMPLEMENTATION NOTES
 * =======================================
 * 
@@ -152,3 +152,4 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& person);
 *       virtual ~GradeTooHighException() throw() {} 
 *   };
 */
+/* ************************************************************************** */

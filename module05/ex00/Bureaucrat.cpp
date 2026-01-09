@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 21:03:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/09 15:46:14 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void Bureaucrat::decrementGrade(void){
 // ======| Internal Exception GradeTooHighException (Subject: non-canonical) |======
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& name)
-	: _msg("Exception: Bureaucrat " BLUE + name + RED " is too HIGH (must be between 1 and 150)") {}
+	: _msg("Exception: Bureaucrat " BLUE + name + RED "'s grade is too HIGH (must be between 1 and 150)") {}
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return (_msg.c_str());
@@ -101,7 +101,7 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
 // ======| Internal Exception GradeTooLowException (Subject: non-canonical) |======
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& name)
-	: _msg("Exception: Bureaucrat " BLUE + name + RED " is too LOW (must be between 1 and 150)") {}
+	: _msg("Exception: Bureaucrat " BLUE + name + RED "'s grade is too LOW (must be between 1 and 150)") {}
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return (_msg.c_str());
