@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2025/12/20 21:13:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:43:39 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int main()
 {
 	std::cout << "\n===============|" << BLUE << " Exercise 00: Mommy, when I grow up, I want to be a bureaucrat! " << RESET << "|===============\n";
 
-	std::cout << BLUE << "\nSimple boundary checks" << RESET << "\n";
+	std::cout << BLUE << "\n1. Simple boundary checks" << RESET << "\n";
 	{
 		try {
-			std::cout << "Building a Bureucrat with a correct grade\n";
+			std::cout << "- Building a Bureucrat with a correct grade\n";
 			Bureaucrat ok("Ok", 42);
 			std::cout << ok << "\n";
 		} catch (const std::exception &e) { // catches all exceptions
@@ -27,7 +27,7 @@ int main()
 		}
 
 		try {
-			std::cout << "\nBuilding a Bureucrat with a too high grade\n";
+			std::cout << "\n- Building a Bureucrat with a too high grade\n";
 			Bureaucrat tooHigh("TooHigh", MAX_GRADE - 1); // should throw
 			std::cout << tooHigh << "\n";
 		} catch (const std::exception &e) {
@@ -35,7 +35,7 @@ int main()
 		}
 
 		try {
-			std::cout << "\nBuilding a Bureucrat with a too low grade\n";
+			std::cout << "\n- Building a Bureucrat with a too low grade\n";
 			Bureaucrat tooLow("TooLow", MIN_GRADE + 1); // should throw
 			std::cout << tooLow << "\n";
 		} catch (const std::exception &e) {
@@ -43,10 +43,10 @@ int main()
 		}
 	}
 
-	std::cout << BLUE << "\nIncrement/Decrement checks" << RESET << "\n";
+	std::cout << BLUE << "\n2. Increment/Decrement checks" << RESET << "\n";
 	{
 		try {
-			std::cout << "Top Bureucrat tries to get a promotion/increase\n";
+			std::cout << "- Top Bureucrat tries to get a promotion/increase\n";
 			Bureaucrat top("Top", MAX_GRADE);
 			std::cout << top << "\n";
 			top.incrementGrade(); // should throw
@@ -55,7 +55,7 @@ int main()
 		}
 
 		try {
-			std::cout << "\nBottom Bureucrat tries to get a demotion/decrease\n";
+			std::cout << "\n- Bottom Bureucrat tries to get a demotion/decrease\n";
 			Bureaucrat bottom("Bottom", MIN_GRADE);
 			std::cout << bottom << "\n";
 			bottom.decrementGrade(); // should throw
