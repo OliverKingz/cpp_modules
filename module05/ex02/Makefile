@@ -28,7 +28,8 @@ endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main Bureaucrat AForm
+SRC_FILES := main Bureaucrat AForm \
+	ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm
 
 # GENERAL FILES
 SRCS := $(addsuffix .cpp, $(SRC_FILES))

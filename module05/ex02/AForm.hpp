@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 18:47:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 19:16:14 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class AForm {
 
 		// ===| Constructors and Destructors (Canonical) |===
 		AForm(void);
-		AForm(const std::string& name, bool is_signed, const int grade_to_sign, const int grade_to_exec); // Throws exeptions, need to be caught. 
+		AForm(const std::string& name, const int grade_to_sign, const int grade_to_exec); // Throws exeptions, need to be caught. 
 		AForm(const AForm& src);
 		AForm& operator=(const AForm& src);
 		virtual ~AForm(void); // Abstract Class needs virtual Destructor

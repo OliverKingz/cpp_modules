@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 18:43:53 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 19:16:57 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ AForm::AForm(void) : _name("Default"), _is_signed(false), _grade_to_sign(MAX_GRA
 	DBG_MSG("Default Constructor");
 }
 
-AForm::AForm(const std::string& name, bool is_signed, const int grade_to_sign, const int grade_to_exec)
-	: _name(name), _is_signed(is_signed), _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec){
+AForm::AForm(const std::string& name, const int grade_to_sign, const int grade_to_exec)
+	: _name(name), _is_signed(false), _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec){
 	if (grade_to_sign < MAX_GRADE)
 		throw GradeTooHighException("Exception: AForm " BLUE + name + RED "'s grade to SIGN is too HIGH (must be between 1 and 150)");
 	else if (grade_to_sign > MIN_GRADE)
