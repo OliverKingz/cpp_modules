@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 17:55:58 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 19:18:00 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class Form {
 
 		// ===| Constructors and Destructors (Canonical) |===
 		Form(void);
-		Form(const std::string& name, bool is_signed, const int grade_to_sign, const int grade_to_exec); //Throws exeptions, need to be caught. 
+		Form(const std::string& name, const int grade_to_sign, const int grade_to_exec); //Throws exeptions, need to be caught. 
 		Form(const Form& src);
 		Form& operator=(const Form& src);
 		~Form(void);

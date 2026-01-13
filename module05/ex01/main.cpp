@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 18:48:39 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 19:19:20 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 	{
 		try {
 			std::cout << "- Building a Form with a correct grade to sign/exec\n";
-			Form ok("Ok", false, 50, 50);
+			Form ok("Ok", 50, 50);
 			std::cout << ok << "\n";
 		} catch (const std::exception &e) { // catches all exceptions
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
@@ -28,7 +28,7 @@ int main()
 
 		try {
 			std::cout << "\n- Building a Form with a too high grade to EXEC\n";
-			Form tooHigh("TooHigh", false, 50, MAX_GRADE - 1); // should throw
+			Form tooHigh("TooHigh", 50, MAX_GRADE - 1); // should throw
 			std::cout << tooHigh << "\n";
 		} catch (const std::exception &e) {
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
@@ -36,7 +36,7 @@ int main()
 
 		try {
 			std::cout << "\n- Building a Form with a too low grade to SIGN\n";
-			Form tooLow("TooLow", false, MIN_GRADE + 1, 50); // should throw
+			Form tooLow("TooLow", MIN_GRADE + 1, 50); // should throw
 			std::cout << tooLow << "\n";
 		} catch (const std::exception &e) {
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
@@ -48,10 +48,11 @@ int main()
 		try {
 			std::cout << "- Bureucrat succeeds signing a form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			Form ok("Ok", false, 50, 50);
+			Form ok("Ok", 50, 50);
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.signForm(ok);
+			std::cout << ok << "\n";
 		} catch (const std::exception &e) {
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
 		}
@@ -59,10 +60,11 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat fails signing a form\n";
 			Bureaucrat oliver("Oliver", MIN_GRADE);
-			Form ko("Ko", false, 50, 50);
+			Form ko("Ko", 50, 50);
 			std::cout << oliver << "\n";
 			std::cout << ko << "\n";
 			oliver.signForm(ko); // should throw
+			std::cout << ko << "\n";
 		} catch (const std::exception &e) {
 			std::cout << RED << "Caught: " << e.what() << RESET << "\n";
 		}
