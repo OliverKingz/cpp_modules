@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
+/*   Updated: 2026/01/13 18:47:02 by ozamora-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#pragma once
+
+#include <string>
+#include <iostream>
+#include <exception>
+
+#include "colors.hpp"
+
+// Forward declaration instead of include to avoid circular dependency
+class Bureaucrat;
+
+class AForm {
+	private:
+		const std::string	_name;
+		bool				_is_signed;
+		const int			_grade_to_sign;
+		const int			_grade_to_exec;
+
+	public:
+		// ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===
+		class GradeTooHighException : public std::exception{
+			private:
+				std::string _msg;
+			public:
+				GradeTooHighException(const std::string& msg);
+				virtual const char* what() const throw();
+				virtual ~GradeTooHighException() throw();
+		};
+
+		// ===| Internal Exception GradeTooLowException (Subject: non-canonical) |===
+		class GradeTooLowException : public std::exception{
+			private:
+				std::string _msg;
+			public:
+				GradeTooLowException(const std::string& msg);
+				virtual const char* what() const throw();
+				virtual ~GradeTooLowException() throw();
+		};
+
+		// ===| Constructors and Destructors (Canonical) |===
+		AForm(void);
+		AForm(const std::string& name, bool is_signed, const int grade_to_sign, const int grade_to_exec); // Throws exeptions, need to be caught. 
+		AForm(const AForm& src);
+		AForm& operator=(const AForm& src);
+		virtual ~AForm(void); // Abstract Class needs virtual Destructor
+
+		// ===| Getters |===
+		const std::string getName() const;
+		bool getIsSigned() const; 
+		int getGradeToSign() const;
+		int getGradeToExec() const;
+
+		// ===| Setters |===
+		void beSigned(const Bureaucrat& bureaucrat); //Throws exeptions, need to be caught. 
+
+		// ===| Methods |===
+		//virtual void execute(Bureaucrat const & executor) const; // Abstract
+};
+
+// ===| Operator << |===
+std::ostream& operator<<(std::ostream & os, const AForm& form);
