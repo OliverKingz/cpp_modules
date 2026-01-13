@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 16:53:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:58:00 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ Form::Form(void) : _name("Default"), _is_signed(false), _grade_to_sign(MAX_GRADE
 Form::Form(const std::string& name, bool is_signed, const int grade_to_sign, const int grade_to_exec)
 	: _name(name), _is_signed(is_signed), _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec){
 	if (grade_to_sign < MAX_GRADE)
-		throw GradeTooHighException(_name, "Exception: Form " BLUE + name + RED "'s grade to SIGN is too HIGH (must be between 1 and 150)");
+		throw GradeTooHighException("Exception: Form " BLUE + name + RED "'s grade to SIGN is too HIGH (must be between 1 and 150)");
 	else if (grade_to_sign > MIN_GRADE)
-		throw GradeTooLowException(_name, "Exception: Form " BLUE + name + RED "'s grade to SIGN is too LOW (must be between 1 and 150)");
+		throw GradeTooLowException("Exception: Form " BLUE + name + RED "'s grade to SIGN is too LOW (must be between 1 and 150)");
 	else if (grade_to_exec < MAX_GRADE)
-		throw GradeTooHighException(_name, "Exception: Form " BLUE + name + RED "'s grade to EXEC is too HIGH (must be between 1 and 150)");
+		throw GradeTooHighException("Exception: Form " BLUE + name + RED "'s grade to EXEC is too HIGH (must be between 1 and 150)");
 	else if (grade_to_exec > MIN_GRADE)
-		throw GradeTooLowException(_name, "Exception: Form " BLUE + name + RED "'s grade to EXEC is too LOW (must be between 1 and 150)");
+		throw GradeTooLowException("Exception: Form " BLUE + name + RED "'s grade to EXEC is too LOW (must be between 1 and 150)");
 	DBG_MSG("Parameterized Constructor");
 }
 
@@ -88,16 +88,13 @@ int Form::getGradeToExec() const {
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() > _grade_to_sign)
-		throw GradeTooLowException(_name, "Bureaucrat " + bureaucrat.getName() + " couldn't sign form " + _name + " because their grade is not enough");
+		throw GradeTooLowException("Bureaucrat " BLUE + bureaucrat.getName() + RED " couldn't sign form " BLUE + _name + RED " because their grade to SIGN is not enough");
 	_is_signed = true;
 }
 
 // ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===
 
-Form::GradeTooHighException::GradeTooHighException(const std::string& name, const std::string& msg) : _msg(msg) {
-	(void)name;
-}
-// "Exception: Form " BLUE + name + RED "'s grade to sign/exec is too HIGH (must be between 1 and 150)"
+Form::GradeTooHighException::GradeTooHighException(const std::string& msg) : _msg(msg) {}
 
 const char* Form::GradeTooHighException::what() const throw() {
 	return (_msg.c_str());
@@ -107,10 +104,7 @@ Form::GradeTooHighException::~GradeTooHighException() throw() {}
 
 // ===| Internal Exception GradeTooLowException (Subject: non-canonical) |===
 
-Form::GradeTooLowException::GradeTooLowException(const std::string& name, const std::string& msg) : _msg(msg) {
-	(void)name;
-}
-// "Exception: Form " BLUE + name + RED "'s grade to sign/exec is too LOW (must be between 1 and 150)"
+Form::GradeTooLowException::GradeTooLowException(const std::string& msg) : _msg(msg) {}
 
 const char* Form::GradeTooLowException::what() const throw() {
 	return (_msg.c_str());
@@ -126,8 +120,8 @@ std::ostream& operator<<(std::ostream & os, const Form& form) {
 	<< "grade to exec: " << form.getGradeToExec() << ", " 
 	<< "is signed?: ";
 	if (form.getIsSigned())
-		os << "yes\n";
+		os << "yes";
 	else
-		os << "no\n";
+		os << "no";
 	return (os);
 }

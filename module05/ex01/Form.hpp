@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 16:44:18 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:55:58 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Form {
 			private:
 				std::string _msg;
 			public:
-				GradeTooHighException(const std::string& name, const std::string& msg);
+				GradeTooHighException(const std::string& msg);
 				virtual const char* what() const throw();
 				virtual ~GradeTooHighException() throw();
 		};
@@ -44,7 +44,7 @@ class Form {
 			private:
 				std::string _msg;
 			public:
-				GradeTooLowException(const std::string& name, const std::string& msg);
+				GradeTooLowException(const std::string& msg);
 				virtual const char* what() const throw();
 				virtual ~GradeTooLowException() throw();
 		};
