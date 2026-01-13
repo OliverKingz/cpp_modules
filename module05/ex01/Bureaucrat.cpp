@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/09 16:36:08 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:48:48 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ void Bureaucrat::decrementGrade(void){
 void Bureaucrat::signForm(Form& form) const {
 	if (form.getGradeToSign() < _grade)
 	{
-		std::cout << "Bureaucrat " << _name << " couldn't sign form " << form.getName() << " because is not in their level" << std::endl;
+		//std::cout << "Bureaucrat " << _name << " couldn't sign form " << form.getName() << " because their grade is not enough" << std::endl;
+		form.beSigned(*this);
 		return ;
 	}
 	else

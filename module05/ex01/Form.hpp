@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/09 16:26:52 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:44:18 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Form {
 			private:
 				std::string _msg;
 			public:
-				GradeTooHighException(const std::string& name);
+				GradeTooHighException(const std::string& name, const std::string& msg);
 				virtual const char* what() const throw();
 				virtual ~GradeTooHighException() throw();
 		};
@@ -44,17 +44,17 @@ class Form {
 			private:
 				std::string _msg;
 			public:
-				GradeTooLowException(const std::string& name);
+				GradeTooLowException(const std::string& name, const std::string& msg);
 				virtual const char* what() const throw();
 				virtual ~GradeTooLowException() throw();
 		};
 
 		// ===| Constructors and Destructors (Canonical) |===
 		Form(void);
-		Form(const std::string& name, bool is_signed, const int _grade_to_sign, const int _grade_to_exec); //Throws exeptions, need to be caught. 
+		Form(const std::string& name, bool is_signed, const int grade_to_sign, const int grade_to_exec); //Throws exeptions, need to be caught. 
 		Form(const Form& src);
-		~Form(void);
 		Form& operator=(const Form& src);
+		~Form(void);
 
 		// ===| Getters |===
 		const std::string getName() const;

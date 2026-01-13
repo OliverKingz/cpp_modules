@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/09 16:17:12 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:14:20 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class Bureaucrat
 
 		// ===| Constructors and Destructors (Canonical) |===
 		Bureaucrat(void);
-		Bureaucrat(const std::string& name, const int grade); //Throws exceptions, needs to be caught.
+		Bureaucrat(const std::string& name, const int grade); // Throws exceptions, needs to be caught.
 		Bureaucrat(const Bureaucrat& src);
 		Bureaucrat& operator=(const Bureaucrat& src);
 		~Bureaucrat(void);
@@ -64,7 +64,7 @@ class Bureaucrat
 		void decrementGrade(void); // throws GradeTooLowException
 
 		// ===| Member functions |===
-		void signForm(Form& form) const;
+		void signForm(Form& form) const; // Throws exceptions, needs to be caught.
 
 };
 
