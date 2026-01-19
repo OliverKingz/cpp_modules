@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 19:16:57 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:51:52 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,16 @@ const char* AForm::GradeTooLowException::what() const throw() {
 }
 
 AForm::GradeTooLowException::~GradeTooLowException() throw() {}
+
+// ===|  Internal Exception Unsigned (Subject: non-canonical) 
+
+AForm::UnsignedException::UnsignedException(const std::string& msg) : _msg(msg) {}
+
+const char* AForm::UnsignedException::what() const throw() {
+	return (_msg.c_str());
+}
+
+AForm::UnsignedException::~UnsignedException() throw() {}
 
 // ===| Operator << |===
 

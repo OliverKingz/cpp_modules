@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:54:02 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 19:06:38 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:50:49 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 #include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm{
+/**
+ * @brief Required grades: sign 145, exec 137. 
+ * 
+ * Creates a file <target>_shrubbery in the working directory and writes ASCII 
+ * trees inside it.
+ */
+class ShrubberyCreationForm : public AForm {
+
 	private:
 		std::string _target;
+
 	public:
 		// ===| Constructors and Destructors (Canonical) |===
+
 		ShrubberyCreationForm(void);
 		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& src);
@@ -26,5 +35,7 @@ class ShrubberyCreationForm : public AForm{
 		~ShrubberyCreationForm();
 
 		// ===| Methods |===
-		// void execute(Bureaucrat const & executor) const;
+
+		void execute(Bureaucrat const & executor) const;
+
 };

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 19:16:14 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:52:01 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class AForm {
 
 	public:
 		// ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===
+		
 		class GradeTooHighException : public std::exception{
 			private:
 				std::string _msg;
@@ -40,6 +41,7 @@ class AForm {
 		};
 
 		// ===| Internal Exception GradeTooLowException (Subject: non-canonical) |===
+
 		class GradeTooLowException : public std::exception{
 			private:
 				std::string _msg;
@@ -49,7 +51,19 @@ class AForm {
 				virtual ~GradeTooLowException() throw();
 		};
 
+		// ===|  Internal Exception Unsigned (Subject: non-canonical) |===
+
+		class UnsignedException : public std::exception{
+			private:
+				std::string _msg;
+			public:
+				UnsignedException(const std::string& msg);
+				virtual const char* what() const throw();
+				virtual ~UnsignedException() throw();
+		};
+
 		// ===| Constructors and Destructors (Canonical) |===
+
 		AForm(void);
 		AForm(const std::string& name, const int grade_to_sign, const int grade_to_exec); // Throws exeptions, need to be caught. 
 		AForm(const AForm& src);
@@ -57,17 +71,21 @@ class AForm {
 		virtual ~AForm(void); // Abstract Class needs virtual Destructor
 
 		// ===| Getters |===
+
 		const std::string getName() const;
 		bool getIsSigned() const; 
 		int getGradeToSign() const;
 		int getGradeToExec() const;
 
 		// ===| Setters |===
+
 		void beSigned(const Bureaucrat& bureaucrat); //Throws exeptions, need to be caught. 
 
 		// ===| Methods |===
-		//virtual void execute(Bureaucrat const & executor) const; // Abstract
+
+		virtual void execute(Bureaucrat const & executor) const; // Abstract
 };
 
 // ===| Operator << |===
+
 std::ostream& operator<<(std::ostream & os, const AForm& form);

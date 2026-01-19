@@ -6,11 +6,13 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:58 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 20:00:29 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/19 18:00:12 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp" // The implementation requires the complete include
 #include <fstream> // To create file
 
 /*
@@ -29,7 +31,8 @@
 #endif
 
 // ===| Constructors and Destructors (Canonical) |===
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm_Default", 145, 137), _target("Default"){
+
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("DefaultSC", 145, 137), _target("Default"){
 	DBG_MSG("Default Constructor");
 }
 
@@ -55,4 +58,27 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
 }
 
 // ===| Methods |===
-// void ShrubberyCreationForm::execute(Bureaucrat const & executor) const;
+
+/**
+ * @brief 
+ * A function to execute the form’s action in the concrete
+ * classes. You must check that the form is signed and that 
+ * the grade of the bureaucrat attempting to execute the form
+ * is high enough. Otherwise, throw an appropriate exception.
+ * @param executor 
+ */
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+	if (!this->getIsSigned()) // SCForm has no access to Form Attributes as they are private
+		throw UnsignedException("Bureaucrat " BLUE + executor.getName() + RED " couldn't execute ShrubberyCreationForm " BLUE + _target + RED " because the it is UNSIGNED");
+	if (executor.getGrade() > this->getGradeToExec())
+		throw GradeTooLowException("Bureaucrat " BLUE + executor.getName() + RED " couldn't execute ShrubberyCreationForm " BLUE + _target + RED " because the their GRADE IS TOO LOW");
+
+	std::ofstream newFile((_target + "_shrubbery").c_str()); // File creation
+	if (!newFile)
+		throw std::runtime_error("File creation failed"); //Check different types of exceptions
+	newFile << "   /\\\n";
+	newFile << "  /  \\\n";
+	newFile << " /    \\\n";
+	newFile << "   ||\n";
+	newFile.close();
+}
