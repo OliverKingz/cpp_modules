@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:42:42 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:22:22 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp" // The implementation requires the complete include
-#include <cstdlib> // To use rand
 
 /*
  * Debug macro: activate by defining DEBUG during compilation
@@ -24,25 +23,26 @@
  */
 
 #ifdef DEBUG
- # define DBG_MSG(x) std::cout << "RobotomyRequestForm " << x << " called for " BLUE << this->getName() << RESET " at " BLUE << _target << RESET ".\n";
+ # define DBG_MSG(x) std::cout << "PresidentialPardonForm " << x << " called for " BLUE << this->getName() << RESET " at " BLUE << _target << RESET ".\n";
 #else
  # define DBG_MSG(x) ((void)0)
 #endif
 
 // ===| Constructors and Destructors (Canonical) |===
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("DefaultRR", 72, 45), _target("Default"){
+
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("DefaultPP", 25, 5), _target("Default"){
 	DBG_MSG("Default Constructor");
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm(target, 72, 45), _target(target){
+PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm(target, 25, 5), _target(target){
 	DBG_MSG("Parameterized Constructor");
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : AForm(src), _target(src._target){
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src) : AForm(src), _target(src._target){
 	DBG_MSG("Copy Constructor");
 } // Do not use AForm(src.getName(), src.getGradeToSign(), src.getGradeToExec()), as it needs extra functions to change _is_signed
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& src){
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& src){
 	if (this != &src) {
 		AForm::operator=(src); // copies only _is_signed, as the others atributes are const
 		_target = src._target;
@@ -51,20 +51,15 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& s
 	return *this;
 }
 
-RobotomyRequestForm::~RobotomyRequestForm(){
+PresidentialPardonForm::~PresidentialPardonForm(){
 	DBG_MSG(RED "Destructor" RESET);
 }
 
 // ===| Execution Hook |===
 
-void RobotomyRequestForm::execute(Bureaucrat const & bureaucrat) const {
+void PresidentialPardonForm::execute(Bureaucrat const & bureaucrat) const {
 	(void)bureaucrat;
 
-	std::cout << "[Robotomy Request Form " BLUE << this->getName() << RESET "]: ";
-	std::cout << "Whirrrrr (Drilling Noises)... ";
-
-	if (std::rand() % 2 == 0) // 50%
-		std::cout << BLUE << _target <<  RESET " has been robotomized successfully. " RESET;
-	else
-		std::cout << BLUE << _target << RESET " failed the robotomy. " RESET;
+	std::cout << "[Presidential Pardon Form]: ";
+	std::cout << "Zaphod Beeblebrox has pardoned " BLUE << _target << RESET ". ";
 }
