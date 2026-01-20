@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:29:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:51:18 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat succeeds signing a form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			ShrubberyCreationForm ok("Ok");
+			ShrubberyCreationForm ok("ok_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.signForm(ok);
@@ -37,7 +37,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat fails signing a form\n";
 			Bureaucrat oliver("Oliver", MIN_GRADE);
-			ShrubberyCreationForm ko("Ko");
+			ShrubberyCreationForm ko("ko_Target");
 			std::cout << oliver << "\n";
 			std::cout << ko << "\n";
 			oliver.signForm(ko); // should throw
@@ -52,7 +52,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			RobotomyRequestForm ok("Ok");
+			RobotomyRequestForm ok("ok_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.signForm(ok);
@@ -65,7 +65,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			ShrubberyCreationForm ok("Ok");
+			ShrubberyCreationForm ok("ok_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.signForm(ok);
@@ -78,7 +78,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			PresidentialPardonForm ok("Ok");
+			PresidentialPardonForm ok("ok_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.signForm(ok);
@@ -94,7 +94,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			ShrubberyCreationForm ok("Ok");
+			ShrubberyCreationForm ok("ok_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.signForm(ok);
@@ -108,7 +108,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat CAN'T EXECUTE an SIGNED form\n";
 			Bureaucrat oliver("Oliver", 138); // Between 145 and 137
-			ShrubberyCreationForm ko("Ko");
+			ShrubberyCreationForm ko("ko_Target");
 			std::cout << oliver << "\n";
 			std::cout << ko << "\n";
 			oliver.signForm(ko);
@@ -122,7 +122,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat EXECUTES an UNSIGNED form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			ShrubberyCreationForm ok("Ko");
+			ShrubberyCreationForm ok("ok_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";
 			oliver.executeForm(ok);
@@ -134,7 +134,7 @@ int main()
 		try {
 			std::cout << "\n- Bureucrat SIGNS an SIGNED form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
-			ShrubberyCreationForm ok("Ko");
+			ShrubberyCreationForm ok("ko_Target");
 			std::cout << oliver << "\n";
 			std::cout << ok << "\n";	
 			oliver.signForm(ok);

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:42:14 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:48:03 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 #endif
 
 // ===| Constructors and Destructors (Canonical) |===
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("DefaultRR", 72, 45), _target("Default"){
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Default_RobotomyRequest", 72, 45), _target("Default_target"){
 	DBG_MSG("Default Constructor");
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm(target, 72, 45), _target(target){
+RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("Default_RobotomyRequest", 72, 45), _target(target){
 	DBG_MSG("Parameterized Constructor");
 }
 

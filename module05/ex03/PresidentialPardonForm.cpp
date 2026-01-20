@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:22:22 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:49:00 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 
 // ===| Constructors and Destructors (Canonical) |===
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("DefaultPP", 25, 5), _target("Default"){
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("Default_PresidentialPardon", 25, 5), _target("Default_target"){
 	DBG_MSG("Default Constructor");
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm(target, 25, 5), _target(target){
+PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm("Default_PresidentialPardon", 25, 5), _target(target){
 	DBG_MSG("Parameterized Constructor");
 }
 
@@ -60,6 +60,6 @@ PresidentialPardonForm::~PresidentialPardonForm(){
 void PresidentialPardonForm::execute(Bureaucrat const & bureaucrat) const {
 	(void)bureaucrat;
 
-	std::cout << "[Presidential Pardon Form]: ";
+	std::cout << "[Presidential Pardon Form " BLUE << this->getName() << RESET "]: ";
 	std::cout << "Zaphod Beeblebrox has pardoned " BLUE << _target << RESET ". ";
 }

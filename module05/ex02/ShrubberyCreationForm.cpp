@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:58 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:14:36 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:49:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 
 // ===| Constructors and Destructors (Canonical) |===
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("DefaultSC", 145, 137), _target("Default"){
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("Default_ShrubberyCreation", 145, 137), _target("Default_Target"){
 	DBG_MSG("Default Constructor");
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm(target, 145, 137), _target(target){
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("Default_ShrubberyCreation", 145, 137), _target(target){
 	DBG_MSG("Parameterized Constructor");
 }
 
@@ -62,7 +62,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
 void ShrubberyCreationForm::execute(Bureaucrat const & bureaucrat) const {
 	(void)bureaucrat;
 
-	std::cout << "[Shrubbery Creation Form]: ";
+	std::cout << "[Shrubbery Creation Form " BLUE << this->getName() << RESET "]: ";
 
 	// File creation
 	std::ofstream newFile((_target + "_shrubbery").c_str()); 
