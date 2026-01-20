@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:51:52 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:47:27 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,25 @@ int AForm::getGradeToExec() const {
 	return _grade_to_exec;
 }
 
-// ===| Setters |===
+// ===| Methods |===
 
 void AForm::beSigned(const Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() > _grade_to_sign)
-		throw GradeTooLowException("Bureaucrat " BLUE + bureaucrat.getName() + RED " couldn't sign AForm " BLUE + _name + RED " because their grade to SIGN is not enough");
+	if (_grade_to_sign < bureaucrat.getGrade() )
+		throw GradeTooLowException( RED "Bureaucrat " BLUE + bureaucrat.getName() + RED " could NOT SIGN form " BLUE + _name + RED " because their grade to SIGN is not enough." RESET);
+ 	if (_is_signed == true)
+ 	{
+ 		std::cout << "AForm " BLUE << _name << RESET " was already signed. "; 
+ 		return ;
+ 	}
 	_is_signed = true;
+}
+
+void AForm::beExecuted(const Bureaucrat& bureaucrat) const {
+	if (_grade_to_exec< bureaucrat.getGrade() )
+		throw GradeTooLowException(RED "Bureaucrat " BLUE + bureaucrat.getName() + RED " could NOT EXECUTE form " BLUE + _name + RED " because their grade to EXEC is not enough" RESET);
+	if (_is_signed == false)
+		throw UnsignedException(RED "Bureaucrat " BLUE + bureaucrat.getName() + RED " could NOT EXECUTE form " BLUE + _name + RED " because it is UNSIGNED. " RESET);
+	execute(bureaucrat);
 }
 
 // ===| Internal Exception GradeTooHighException (Subject: non-canonical) |===

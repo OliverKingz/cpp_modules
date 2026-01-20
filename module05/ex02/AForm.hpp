@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:40 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:52:01 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:53:25 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class Bureaucrat;
 
 class AForm {
 	private:
+		// ===| Attributes |===
+
 		const std::string	_name;
 		bool				_is_signed;
 		const int			_grade_to_sign;
@@ -77,13 +79,15 @@ class AForm {
 		int getGradeToSign() const;
 		int getGradeToExec() const;
 
-		// ===| Setters |===
-
-		void beSigned(const Bureaucrat& bureaucrat); //Throws exeptions, need to be caught. 
-
 		// ===| Methods |===
 
-		virtual void execute(Bureaucrat const & executor) const; // Abstract
+		void beSigned(const Bureaucrat& bureaucrat); //Throws exeptions, need to be caught. 
+		void beExecuted(const Bureaucrat& bureaucrat) const; //Throws exeptions, need to be caught. 
+
+	protected: 
+		// ===| Execution hook (to be implemented by derived classes) |===
+
+		virtual void execute(Bureaucrat const & executor) const = 0; // Pure virtual. 
 };
 
 // ===| Operator << |===

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:04 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:01:32 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:55:46 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& src);
 		~RobotomyRequestForm();
 
-		// ===| Methods |===
+	protected:
+		// ===| Execution hook (to be implemented by derived classes) |===
 
-		// void execute(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & bureaucrat) const; // Override
 
 };

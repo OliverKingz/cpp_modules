@@ -6,13 +6,13 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:05:05 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:19:27 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp" // The implementation requires the complete include
-
+#include <cstdlib> // To use rand
 
 /*
  * Debug macro: activate by defining DEBUG during compilation
@@ -24,7 +24,7 @@
  */
 
 #ifdef DEBUG
- # define DBG_MSG(x) std::cout << "RobotomyRequestForm " << x << " called for " BLUE << _name << RESET " at " BLUE << _target << RESET ".\n";
+ # define DBG_MSG(x) std::cout << "RobotomyRequestForm " << x << " called for " BLUE << this->getName() << RESET " at " BLUE << _target << RESET ".\n";
 #else
  # define DBG_MSG(x) ((void)0)
 #endif
@@ -55,6 +55,16 @@ RobotomyRequestForm::~RobotomyRequestForm(){
 	DBG_MSG(RED "Destructor" RESET);
 }
 
-// ===| Methods |===
+// ===| Execution Hook |===
 
-// void RobotomyRequestForm::execute(Bureaucrat const & executor) const;
+void RobotomyRequestForm::execute(Bureaucrat const & bureaucrat) const {
+	(void)bureaucrat;
+
+	std::cout << "[Robotomy Request Form]: ";
+	std::cout << "Whirrrrr (Drilling Noises)... ";
+
+	if (std::rand() % 2 == 0) // 50%
+		std::cout << BLUE << _target <<  RESET " has been robotomized successfully. " RESET;
+	else
+		std::cout << BLUE << _target << RESET " failed the robotomy. " RESET;
+}

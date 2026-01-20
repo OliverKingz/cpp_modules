@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:19 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 18:45:38 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:19:37 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ class Bureaucrat
 
 		// ===| Member functions |===
 		void signForm(AForm& form) const; // Throws exceptions, needs to be caught.
+		void executeForm(AForm& form) const; // Throws exceptions, needs to be caught.
 
 };
 

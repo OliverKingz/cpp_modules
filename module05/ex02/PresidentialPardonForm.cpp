@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:06:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:22:22 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  */
 
 #ifdef DEBUG
- # define DBG_MSG(x) std::cout << "PresidentialPardonForm " << x << " called for " BLUE << _name << RESET " at " BLUE << _target << RESET ".\n";
+ # define DBG_MSG(x) std::cout << "PresidentialPardonForm " << x << " called for " BLUE << this->getName() << RESET " at " BLUE << _target << RESET ".\n";
 #else
  # define DBG_MSG(x) ((void)0)
 #endif
@@ -55,6 +55,11 @@ PresidentialPardonForm::~PresidentialPardonForm(){
 	DBG_MSG(RED "Destructor" RESET);
 }
 
-// ===| Methods |===
+// ===| Execution Hook |===
 
-// void PresidentialPardonForm::execute(Bureaucrat const & executor) const;
+void PresidentialPardonForm::execute(Bureaucrat const & bureaucrat) const {
+	(void)bureaucrat;
+
+	std::cout << "[Presidential Pardon Form]: ";
+	std::cout << "Zaphod Beeblebrox has pardoned " BLUE << _target << RESET ". ";
+}

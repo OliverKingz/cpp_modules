@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:54:02 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:50:49 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:55:33 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& src);
 		~ShrubberyCreationForm();
 
-		// ===| Methods |===
+	protected:
+		// ===| Execution hook (to be implemented by derived classes) |===
 
-		void execute(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & bureaucrat) const; // Override
 
 };

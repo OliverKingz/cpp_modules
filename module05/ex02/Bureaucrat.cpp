@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 18:46:13 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:56:52 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,29 +90,28 @@ void Bureaucrat::decrementGrade(void){
 // ======| Member functions |======
 
 void Bureaucrat::signForm(AForm& form) const {
-	if (form.getGradeToSign() < _grade)
+	try 
 	{
-		//std::cout << "Bureaucrat " << _name << " couldn't sign form " << form.getName() << " because their grade is not enough" << std::endl;
 		form.beSigned(*this);
-		return ;
+		std::cout << GREEN "Bureaucrat " BLUE << _name << GREEN " SIGNED form " BLUE << form.getName() << RESET ". \n";
 	}
-	else
+	catch (const std::exception& e)
 	{
-		if (form.getIsSigned() == true)
-		{
-			std::cout << "Bureaucrat " << _name << " couldn't sign form " << form.getName() << " because it is already signed" << std::endl;
-			return ;
-		}
-		try 
-		{
-			form.beSigned(*this);
-			std::cout << "Bureaucrat " << _name << " signed form " << form.getName() << std::endl;
-		}
-		catch (const std::exception& e)
-		{
-			std::cout << "Bureaucrat " << _name << RESET " couldn't sign " << form.getName() << ". " << e.what() << std::endl;
-		}
+		std::cout << e.what() << std::endl;
 	}
+}
+
+void Bureaucrat::executeForm(AForm& form) const {
+	try 
+	{
+		form.beExecuted(*this);
+		std::cout << GREEN "Bureaucrat " BLUE << _name << GREEN " EXECUTED form " BLUE << form.getName() << RESET ". \n";
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 }
 
 // ======| Internal Exception GradeTooHighException (Subject: non-canonical) |======

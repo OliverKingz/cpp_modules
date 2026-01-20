@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:25:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/13 19:18:15 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:30:34 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int Form::getGradeToExec() const {
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() > _grade_to_sign)
-		throw GradeTooLowException("Bureaucrat " BLUE + bureaucrat.getName() + RED " couldn't sign form " BLUE + _name + RED " because their grade to SIGN is not enough");
+		throw GradeTooLowException(RED "Bureaucrat " BLUE + bureaucrat.getName() + RED " couldn't sign form " BLUE + _name + RED " because their grade to SIGN is not enough." RED);
 	_is_signed = true;
 }
 

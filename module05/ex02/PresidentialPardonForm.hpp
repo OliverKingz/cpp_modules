@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:52:54 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:01:22 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:25:25 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ class PresidentialPardonForm : public AForm {
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& src);
 		~PresidentialPardonForm();
 
-		// ===| Methods |===
+	protected:
+		// ===| Execution hook (to be implemented by derived classes) |===
 
-		// void execute(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & bureaucrat) const; // Override
 
 };

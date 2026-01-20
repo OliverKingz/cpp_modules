@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:58 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/19 18:00:12 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:14:36 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  */
 
 #ifdef DEBUG
- # define DBG_MSG(x) std::cout << "ShrubberyCreationForm " << x << " called for " BLUE << _name << RESET " at " BLUE << _target << RESET ".\n";
+ # define DBG_MSG(x) std::cout << "ShrubberyCreationForm " << x << " called for " BLUE << this->getName() << RESET << std::endl;
 #else
  # define DBG_MSG(x) ((void)0)
 #endif
@@ -57,28 +57,29 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
 	DBG_MSG(RED "Destructor" RESET);
 }
 
-// ===| Methods |===
+// ===| Execution Hook |===
 
-/**
- * @brief 
- * A function to execute the form’s action in the concrete
- * classes. You must check that the form is signed and that 
- * the grade of the bureaucrat attempting to execute the form
- * is high enough. Otherwise, throw an appropriate exception.
- * @param executor 
- */
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-	if (!this->getIsSigned()) // SCForm has no access to Form Attributes as they are private
-		throw UnsignedException("Bureaucrat " BLUE + executor.getName() + RED " couldn't execute ShrubberyCreationForm " BLUE + _target + RED " because the it is UNSIGNED");
-	if (executor.getGrade() > this->getGradeToExec())
-		throw GradeTooLowException("Bureaucrat " BLUE + executor.getName() + RED " couldn't execute ShrubberyCreationForm " BLUE + _target + RED " because the their GRADE IS TOO LOW");
+void ShrubberyCreationForm::execute(Bureaucrat const & bureaucrat) const {
+	(void)bureaucrat;
 
-	std::ofstream newFile((_target + "_shrubbery").c_str()); // File creation
+	std::cout << "[Shrubbery Creation Form]: ";
+
+	// File creation
+	std::ofstream newFile((_target + "_shrubbery").c_str()); 
 	if (!newFile)
-		throw std::runtime_error("File creation failed"); //Check different types of exceptions
-	newFile << "   /\\\n";
-	newFile << "  /  \\\n";
-	newFile << " /    \\\n";
-	newFile << "   ||\n";
+		throw std::runtime_error("File creation failed"); // Check different types of exceptions
+
+	// Tree drawing inside newFile
+	newFile << "                 \n";
+	newFile << "      #####      \n";
+	newFile << "    #########    \n";
+	newFile << "   ###########   \n";
+	newFile << "    ###}·{###    \n";
+	newFile << "       }·{       \n";
+	newFile << "       }·{       \n";
+	newFile << "                 \n";
 	newFile.close();
+
+	std::cout << "File " BLUE + _target + "_shrubbery" + RESET " was created. ";
 }
+
