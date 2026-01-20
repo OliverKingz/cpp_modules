@@ -70,7 +70,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 
 # Rule to clean generated files
 clean:
-	@rm -rf obj/
+	@rm -rf obj/ *_shrubbery
 	@printf "%b" "$(CL) -> $(BW)[$(NAME)]:\t$(BG)Object files cleaned\t❎$(NC)\n"
 
 # Rule to clean generated files and the executable

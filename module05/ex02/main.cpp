@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:28:13 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:29:02 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 	std::cout << BLUE << "\n1. AForm Signing checks" << RESET << "\n";
 	{
 		try {
-			std::cout << "\n-- Bureucrat succeeds signing a form\n";
+			std::cout << "\n- Bureucrat succeeds signing a form\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
 			ShrubberyCreationForm ok("Ok");
 			std::cout << oliver << "\n";
