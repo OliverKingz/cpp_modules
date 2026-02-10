@@ -6,14 +6,11 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 19:32:29 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/02/10 19:10:08 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/02/10 19:37:20 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 
 /*
  * Debug macro: activate by defining DEBUG during compilation
@@ -29,6 +26,8 @@
 #else
  # define DBG_MSG(x) ((void)0)
 #endif
+
+// ===| Constructors and Destructors (Canonical) |===
 
 Intern::Intern(void){
 	DBG_MSG("Default Constructor");
@@ -49,6 +48,8 @@ Intern::~Intern(){
 	DBG_MSG(RED "Destructor" RESET);
 }
 
+// ===| Auxilair Methods for makeForm |===
+
 AForm* Intern::createPardon(std::string target){
 	return new PresidentialPardonForm(target);
 }
@@ -60,6 +61,8 @@ AForm* Intern::createRobotomy(std::string target){
 AForm* Intern::createShrubbery(std::string target){
 	return new ShrubberyCreationForm(target);
 }
+
+// ===| Main Intern Method |===
 
 AForm* Intern::makeForm(std::string nameForm, std::string targetForm){
 	std::string acceptedNames[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
@@ -84,7 +87,7 @@ AForm* Intern::makeForm(std::string nameForm, std::string targetForm){
 			std::cout << GREEN "Intern creates Shrubbery Creation Form" RESET << std::endl;
 			return createShrubbery(targetForm);
 		default:
-			std::cout << RED "Intern cannot create form: " BLUE << nameForm << std::endl;
+			std::cout << RED "Error: Intern cannot create form " BLUE << nameForm << std::endl;
 			return NULL;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:16:03 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:51:18 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/02/10 20:07:46 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main()
 	std::cout << BLUE << "\n2. Testing all types of Forms" << RESET << "\n";
 	{
 		try {
-			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
+			std::cout << "\n- Bureucrat EXECUTES an SIGNED RobotomyRequestForm\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
 			RobotomyRequestForm ok("ok_Target");
 			std::cout << oliver << "\n";
@@ -63,7 +63,7 @@ int main()
 		}
 
 		try {
-			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
+			std::cout << "\n- Bureucrat EXECUTES an SIGNED ShrubberyCreationForm\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
 			ShrubberyCreationForm ok("ok_Target");
 			std::cout << oliver << "\n";
@@ -76,7 +76,7 @@ int main()
 		}
 
 		try {
-			std::cout << "\n- Bureucrat EXECUTES an SIGNED form\n";
+			std::cout << "\n- Bureucrat EXECUTES an SIGNED PresidentialPardonForm\n";
 			Bureaucrat oliver("Oliver", MAX_GRADE);
 			PresidentialPardonForm ok("ok_Target");
 			std::cout << oliver << "\n";

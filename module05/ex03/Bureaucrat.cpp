@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 21:33:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 18:56:52 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/02/10 20:27:10 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void Bureaucrat::signForm(AForm& form) const {
 	}
 	catch (const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		throw; // I propagate the Exception to the main to handle it. I could add more local info if I wanted to. 
 	}
 }
 
@@ -109,7 +109,7 @@ void Bureaucrat::executeForm(AForm& form) const {
 	}
 	catch (const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		throw; // I propagate the Exception to the main to handle it. I could add more local info if I wanted to. 
 	}
 
 }
