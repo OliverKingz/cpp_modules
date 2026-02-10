@@ -28,7 +28,7 @@ endif
 
 # **************************************************************************** #
 # FILES
-SRC_FILES := main Bureaucrat AForm \
+SRC_FILES := main Bureaucrat Intern AForm \
 	ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm
 
 # GENERAL FILES
