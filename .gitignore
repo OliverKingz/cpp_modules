@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 
 # Personal Files and Executables
+*.pdf
 /subjects
 *.build_mode
 my_program
@@ -94,6 +95,8 @@ Bureaucrat
 *_shrubbery
 
 # Module06 Files and Executables
+convert
+
 # Module07 Files and Executables
 # Module08 Files and Executables
 # Module09 Files and Executables
