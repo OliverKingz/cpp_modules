@@ -6,13 +6,14 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:53:18 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/01/20 19:48:03 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/03/11 19:57:08 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp" // The implementation requires the complete include
 #include <cstdlib> // To use rand
+#include <ctime> // To use srand
 
 /*
  * Debug macro: activate by defining DEBUG during compilation
@@ -62,6 +63,8 @@ void RobotomyRequestForm::execute(Bureaucrat const & bureaucrat) const {
 
 	std::cout << "[Robotomy Request Form " BLUE << this->getName() << RESET "]: ";
 	std::cout << "Whirrrrr (Drilling Noises)... ";
+
+	std::srand(std::time(0)); // seed the C RNG with the current time so rand() returns a different sequence each run
 
 	if (std::rand() % 2 == 0) // 50%
 		std::cout << BLUE << _target <<  RESET " has been robotomized successfully. " RESET;
