@@ -21,3 +21,5 @@ bool isInt(const std::string& scalar_value);
 bool isFloat(const std::string& scalar_value);
 bool isDouble(const std::string& scalar_value);
 bool isPseudoLiteral(const std::string& scalar_value);
+bool isInf(const std::string& scalar_value);
+bool isNan(const std::string& scalar_value);
