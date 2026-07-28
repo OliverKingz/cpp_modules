@@ -68,10 +68,10 @@ static void printFloat(double value, const std::string& scalar_value)
 		std::cout << "float: nanf" << std::endl;
 	else if (isInf(scalar_value))
 	{
-		if (scalar_value[0] == '+')
-			std::cout << "float: +inff" << std::endl;
-		else
+		if (scalar_value[0] == '-')
 			std::cout << "float: -inff" << std::endl;
+		else
+			std::cout << "float: +inff" << std::endl;
 	}
 	else if ((value >= -FLT_MAX && value <= FLT_MAX))
 	{
@@ -92,10 +92,10 @@ static void printDouble(double value, const std::string& scalar_value)
 		std::cout << "double: nan" << std::endl;
 	else if (isInf(scalar_value))
 	{
-		if (scalar_value[0] == '+')
-			std::cout << "double: +inf" << std::endl;
-		else
+		if (scalar_value[0] == '-')
 			std::cout << "double: -inf" << std::endl;
+		else
+			std::cout << "double: +inf" << std::endl;
 	}
 	else if ((value >= -DBL_MAX && value <= DBL_MAX))
 	{
@@ -259,14 +259,13 @@ bool isFloat(const std::string& scalar_value)
 	if (endptr == scalar_value.c_str()) // Check if no digits were found
 		return false;
 	if (errno == ERANGE) // Check for overflow/underflow
-		return false;
+		return true;
 	if (*endptr != 'f') // Check for 'f' suffix
 		return false;
 	if (*(endptr + 1) != '\0') // Check for no extra characters after 'f'
 		return false;
 	if ((value > FLT_MAX || value < -FLT_MAX) && !isPseudoLiteral(scalar_value))
-		return false;
-	(void)value;
+		return true;
 	return true;
 }
 
@@ -280,12 +279,11 @@ bool isDouble(const std::string& scalar_value)
 	if (endptr == scalar_value.c_str()) // Check if no digits were found
 		return false;
 	if (errno == ERANGE) // Check for overflow/underflow
-		return false;
+		return true;
 	if (*endptr != '\0') // Check for no extra characters
 		return false;
 	if ((value > DBL_MAX || value < -DBL_MAX) && !isPseudoLiteral(scalar_value))
-		return false;
-	(void)value;
+		return true;
 	return true;
 }
 
@@ -296,8 +294,8 @@ bool isPseudoLiteral(const std::string& scalar_value)
 
 bool isInf(const std::string& scalar_value)
 {
-	return (scalar_value == "+inf" || scalar_value == "-inf"
-			|| scalar_value == "+inff" || scalar_value == "-inff");
+	return (scalar_value == "+inf" || scalar_value == "-inf" || scalar_value == "inf" 
+			|| scalar_value == "+inff" || scalar_value == "-inff" || scalar_value == "inff");
 }
 
 bool isNan(const std::string& scalar_value)
