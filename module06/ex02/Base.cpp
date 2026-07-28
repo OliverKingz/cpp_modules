@@ -1,4 +1,4 @@
-#include "Class.hpp"
+#include "Base.hpp"
 #include "colors.hpp"
 
 /*
@@ -16,18 +16,18 @@
  # define DBG_MSG(x) ((void)0)
 #endif
 
-Class::Class(void) {
+Base::Base(void) {
 	DBG_MSG("Default Constructor called");
 }
 
-Class::Class(const Class& src) {
+Base::Base(const Base& src) {
 	DBG_MSG("Copy Constructor called");
 }
 
-Class& Class::operator=(const Class& src) {
+Base& Base::operator=(const Base& src) {
 	DBG_MSG(<< "Copy Assignment Operator called");
 }
 
-Class::~Class(void) {
+Base::~Base(void) {
 	DBG_MSG("Destructor called");
 }
