@@ -96,9 +96,13 @@ Bureaucrat
 
 # Module06 Files and Executables
 convert
-serialize
+serializer
 identify
 
 # Module07 Files and Executables
+template
+iter_template
+array_template
+
 # Module08 Files and Executables
 # Module09 Files and Executables
