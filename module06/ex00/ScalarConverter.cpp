@@ -2,11 +2,11 @@
 #include "colors.hpp"
 
 #include <iostream>	// std::cout, std::cerr, std::endl
+#include <cctype>	// std::isprint
 #include <cstdlib>	// std::strtod, std::strtol
 #include <cerrno>	// errno, ERANGE
 #include <climits>	// INT_MIN, INT_MAX
 #include <cfloat>	// FLT_MAX, DBL_MAX
-#include <stddef.h> 
 
 /*
  * Debug macro: activate by defining DEBUG during compilation
@@ -48,7 +48,7 @@ static void printChar(double value, bool isPseudoLiteral)
 {
 	if (value < 0 || value > 127 || isPseudoLiteral)
 		std::cout << "char: impossible" << std::endl;
-	else if (isprint(static_cast<unsigned char>(value)))
+	else if (std::isprint(static_cast<unsigned char>(value)))
 		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;

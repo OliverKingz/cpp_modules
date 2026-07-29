@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 19:03:14 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/07/28 19:40:05 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/07/28 20:08:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main()
 		for (int i = 0; i < 5; i++) {
 			Base *ptr = generate();
 			identify(ptr);
-			delete ptr;
+			if (ptr) delete ptr;
 		}
 	}
 
@@ -34,8 +34,8 @@ int main()
 	{
 		for (int i = 0; i < 5; i++) {
 			Base *ptr = generate();
-			identify(*ptr);
-			delete ptr;
+			if (ptr) identify(*ptr); // Can't input NULL if reference
+			if (ptr) delete ptr;
 		}
 	}
 
@@ -43,17 +43,17 @@ int main()
 	{
 		for (int i = 0; i < 5; i++) {
 			Base *ptr = generate();
-			identify(*ptr);
 			identify(ptr);
-			delete ptr;
+			if (ptr) identify(*ptr); // Can't input NULL if reference
+			if (ptr) delete ptr;
 		}
 	}
 
 	std::cout << BLUE "\n - Edge case: unknown" RESET << std::endl;
 	{
 		Base *ptr = NULL;
-		identify(*ptr);
 		identify(ptr);
+		if (ptr) identify(*ptr); // Can't input NULL if reference
 		if (ptr) delete ptr;
 
 		Base base = Base();
