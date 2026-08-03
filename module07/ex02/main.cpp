@@ -6,14 +6,15 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 19:18:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/07/29 19:18:45 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/03 19:36:08 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.hpp"
-#include "Class.hpp"
+#include "Array.hpp"
 #include <iostream>
-#include <Array.hpp>
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
 
 #define MAX_VAL 750
 int main(int, char**)
