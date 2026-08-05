@@ -6,11 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 19:04:29 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/08/05 19:04:39 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/05 20:17:51 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
 #include <string>
 #include <iostream>
@@ -24,3 +25,5 @@ class MutantStack
 		MutantStack& operator=(const MutantStack& src);
 		~MutantStack(void);
 };
+
+#endif

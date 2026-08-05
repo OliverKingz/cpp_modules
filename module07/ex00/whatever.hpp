@@ -6,11 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 19:18:05 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/07/29 20:03:03 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/05 20:18:56 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
 template<typename T> void swap(T& a, T& b) // Use & to avoid copies
 {
@@ -28,3 +29,5 @@ template <typename T> const T& max(const T& a, const T& b)
 {
 	return (a > b) ? a : b;
 };
+
+#endif

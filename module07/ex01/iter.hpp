@@ -6,11 +6,12 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 19:18:25 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/08/03 19:05:11 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/05 20:18:38 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef ITER_HPP
+# define ITER_HPP
 
 #include <iostream>
 #include "colors.hpp"
@@ -81,3 +82,5 @@ void setElement42(T& element)
 {
 	element = 42;
 };
+
+#endif

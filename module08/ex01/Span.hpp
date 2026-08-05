@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 #include <string>
 #include <iostream>
@@ -24,3 +25,5 @@ class Span
 		Span& operator=(const Span& src);
 		~Span(void);
 };
+
+#endif
