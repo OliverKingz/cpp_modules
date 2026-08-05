@@ -25,7 +25,7 @@ Class::Class(const Class& src) {
 }
 
 Class& Class::operator=(const Class& src) {
-	DBG_MSG(<< "Copy Assignment Operator called");
+	DBG_MSG("Copy Assignment Operator called");
 }
 
 Class::~Class(void) {

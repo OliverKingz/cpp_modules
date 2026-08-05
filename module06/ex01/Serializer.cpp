@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 15:23:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/07/28 15:26:17 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/05 19:01:33 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Serializer::Serializer(const Serializer& src) {
 
 Serializer& Serializer::operator=(const Serializer& src) {
 	(void)src;
-	DBG_MSG(<< "Copy Assignment Operator called");
+	DBG_MSG("Copy Assignment Operator called");
 	return (*this);
 }
 
