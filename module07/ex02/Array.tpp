@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 19:18:37 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/08/03 19:37:02 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/05 18:09:23 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,13 @@ Array<T>::Array(void) : _array(NULL), _size(0) {
 
 template <typename T>
 Array<T>::Array(unsigned int size) : _array(new T[size]), _size(size) {
-	DBG_MSG("Default Constructor called");
+	DBG_MSG("Size Constructor called");
 }
 
 template <typename T>
-Array<T>::Array(const Array& src) {
-	this->_array = new T[src._size];
-	this->_size = src._size;
-
+Array<T>::Array(const Array& src) : _array(new T[src._size]), _size(src._size){
 	for (unsigned int i = 0; i < src._size; i++)
 		this->_array[i] = src._array[i];
-	
 	DBG_MSG("Copy Constructor called");
 }
 
@@ -59,8 +55,10 @@ template <typename T>
 Array<T>& Array<T>::operator=(const Array& src) {
 	if (this != &src)
 	{
-		if (this->_array)
+		if (this->_array) {
 			delete[] this->_array;
+			this->_array = NULL;
+		}
 		this->_array = new T[src._size];
 		this->_size = src._size;
 
@@ -92,14 +90,14 @@ unsigned int Array<T>::getSize() const {
 template <typename T>
 T& Array<T>::operator [] (unsigned int index) {
 	if (index >= this->_size)
-		throw std::out_of_range("Index out of range");
+		throw std::out_of_range("Index out of range (write)");
 	return (this->_array[index]);
 }
 
 template <typename T>
 const T& Array<T>::operator [] (unsigned int index) const {
 	if (index >= this->_size)
-		throw std::out_of_range("Index out of range");
+		throw std::out_of_range("Index out of range (read)");
 	return (this->_array[index]);
 }
 
