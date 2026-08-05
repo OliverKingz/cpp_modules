@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 19:18:44 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/08/05 18:37:04 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/05 18:52:39 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include <iostream>
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
+
+class Data{
+	private:
+		std::string _value;
+	public:
+		Data(void) : _value("") {};
+		Data(std::string value) : _value(value){};
+		std::string getValue() const { return this->_value; };
+		void setValue(std::string value) { this->_value = value; };
+};
+static std::ostream& operator<<(std::ostream& os, const Data& d){ return os<< d.getValue();}
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -117,7 +128,24 @@ int main(int, char**)
 		} catch (const std::exception& e) {
 			std::cerr << "constArray[-1] -> " << e.what() << std::endl;
 		}
+		// Destructors called automatically for strArray, copyArray, and assignedArray
+	}
 
+	std::cout << BLUE "\nOther tests using my own class : \n" RESET;
+	{
+		std::cout << GREEN "\nTesting template funcions with Array of Data: \n" RESET;
+		Array<Data> dataArray(3); // Size constructor
+		dataArray[0].setValue("Hello");
+		dataArray[1].setValue("World!");
+		dataArray[2].setValue("My name is Oliver");
+
+		Array<Data> copyArray(dataArray); // Copy constructor
+		Array<Data> assignedArray; // Default constructor
+		assignedArray = dataArray; // Copy assignment operator
+
+		std::cout << "Original dataArray: \t\t" << dataArray << ", with size: " << dataArray.getSize() << std::endl;
+		std::cout << "Copy constructed copyArray: \t" << copyArray << std::endl;
+		std::cout << "Copy assigned assignedArray: \t" << assignedArray << std::endl;
 		// Destructors called automatically for strArray, copyArray, and assignedArray
 	}
 	std::cout <<   "\n================" <<         "====================="          << "================\n\n";
