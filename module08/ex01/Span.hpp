@@ -15,15 +15,36 @@
 
 #include <string>
 #include <iostream>
-#include "colors.hpp"
+#include <exception>
+#include <vector>
 
 class Span
 {
+	private:
+		std::vector<int>	_container;
+		unsigned int		_maxSize;
 	public:
 		Span(void);
+		Span(unsigned int size);
 		Span(const Span& src);
 		Span& operator=(const Span& src);
 		~Span(void);
+
+		void	addNumber(int n_toAdd);
+		void	addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		int		shortestSpan() const;
+		int		longestSpan() const;
+
+	class unableToFindSpanException : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
+	class maxSizeReachedException : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
 };
 
 #endif
