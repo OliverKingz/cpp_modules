@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 19:02:35 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/08/06 17:43:30 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:41:07 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 Span::Span(void) : _maxSize(0) {
 	DBG_MSG("Default Constructor called");
-}
+} // Container by default is empty, so we don't need to initialize it in the constructor initializer list.
 
 Span::Span(unsigned int maxSize) : _maxSize(maxSize){
 	DBG_MSG("Size Constructor called");
@@ -58,17 +58,20 @@ Span::~Span(void) {
 
 /* ************************************************************************** */
 
+std::vector<int>	Span::getContainer(void) const {
+	return (_container);
+}
+
+unsigned int		Span::getMaxSize(void) const {
+	return (_maxSize);
+}
+
+/* ************************************************************************** */
+
 void	Span::addNumber(int n_toAdd) {
 	if (_container.size() >= _maxSize)
 		throw (Span::maxSizeReachedException());
 	_container.push_back(n_toAdd);
-}
-
-void	Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
-	size_t	distance = std::distance(begin, end);
-	if (_container.size() + distance >= _maxSize)
-		throw (Span::maxSizeReachedException());
-	_container.insert(_container.end(), begin, end);
 }
 
 int		Span::shortestSpan() const {
@@ -100,6 +103,20 @@ int		Span::longestSpan() const {
 	std::sort(sortedContainer.begin(), sortedContainer.end());
 	longestSpan = sortedContainer.back() - sortedContainer.front();
 	return longestSpan;
+}
+
+/* ************************************************************************** */
+
+std::ostream& operator<<(std::ostream& os, const Span& span) {
+	os << "[";
+	const std::vector<int>& container = span.getContainer();
+	for (size_t i = 0; i < container.size(); ++i) {
+		os << container[i];
+		if (i < container.size() - 1)
+			os << ", ";
+	}
+	os << "] (maxSize " << span.getMaxSize() << ")";
+	return os;
 }
 
 /* ************************************************************************** */
