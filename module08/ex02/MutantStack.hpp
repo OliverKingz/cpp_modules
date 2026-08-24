@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 19:04:29 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/08/24 18:36:43 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/08/24 19:02:43 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Usage:
 - push() to add an element
 - pop() to remove the top element
 - empty() to check if the stack is empty.
+- size() to get the number of elements in the stack.
 Stack doesn't allow iteration through its elements. 
 With MutantStack, we can iterate through the elements of the stack using iterators.
 The begin() and end() methods are needed to provide access to
@@ -40,7 +41,7 @@ class MutantStack : public std::stack<T>
 		MutantStack& operator=(const MutantStack& src);
 		~MutantStack(void);
 
-		// Iterator definitions
+		// Iterator
 
 		typedef typename std::stack<T>::container_type::iterator		iterator;
 		typedef typename std::stack<T>::container_type::const_iterator	const_iterator;
