@@ -1,6 +1,6 @@
 # **************************************************************************** #
 # PROJECT
-NAME := bitcoin
+NAME := btc
 
 # **************************************************************************** #
 # COMPILER
@@ -84,7 +84,7 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-DEFAULT_ARGS :=
+DEFAULT_ARGS := input.txt
 ARGS := $(DEFAULT_ARGS)
 
 # Rule to compile and run with debug flags
