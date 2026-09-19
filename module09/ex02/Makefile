@@ -31,6 +31,7 @@ endif
 SRC_FILES := main PmergeMe
 
 # GENERAL FILES
+SRC_FILES := main
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
 OBJS := $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 DEPS := $(OBJS:.o=.d)
@@ -84,7 +85,7 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-DEFAULT_ARGS :=
+DEFAULT_ARGS := 3 5 9 7 4
 ARGS := $(DEFAULT_ARGS)
 
 # Rule to compile and run with debug flags
@@ -98,6 +99,16 @@ valgrind: fclean
 	@$(MAKE) VALGRIND=1 $(NAME) -s
 	@echo " -> $(BW)[Valgrind]:\t$(BB)Valgrind mode enabled\t🟦\n$(NC)"
 	-valgrind $(VALGRIND_FLAGS) ./$(NAME) $(ARGS)
+
+random:
+	@$(eval ARGS := $(shell shuf -i 1-100000 -n 3000 | tr '\n' ' '))
+	@echo " -> $(BW)[PMergeMe]:\t$(BB)3000 Random arguments generated\t$(NC)"
+	@-./$(NAME) $(ARGS)
+
+random-%:
+	@$(eval ARGS := $(shell shuf -i 1-$* -n $* | tr '\n' ' '))
+	@echo " -> $(BW)[PMergeMe]:\t$(BB)$* Random arguments generated\t$(NC)"
+	-./$(NAME) $(ARGS)
 
 # Rule to run the program with arguments
 run: all
