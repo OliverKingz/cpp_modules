@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 17:19:31 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/09/15 20:21:21 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/09/19 15:51:46 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void BitcoinExchange::processInputFile(const std::string& inputFilename) {
 
 	// Header line check
 	if (!std::getline(inputFile, line) || line != "date | value")
-		throw std::runtime_error(RED "Error: " RESET "invalid header in input file");
+		std::cerr << RED "Error: " RESET "invalid header in input file" << std::endl;
 
 	// Process each line in the input file
 	while (std::getline(inputFile, line)) {
