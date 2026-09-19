@@ -84,7 +84,7 @@ re: fclean all
 # **************************************************************************** #
 # DEBUG AND RULES
 
-DEFAULT_ARGS :=
+DEFAULT_ARGS := "8 9 * 9 - 9 - 9 - 4 - 1 +"
 ARGS := $(DEFAULT_ARGS)
 
 # Rule to compile and run with debug flags
