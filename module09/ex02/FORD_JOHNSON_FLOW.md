@@ -236,7 +236,7 @@ Main chain:
 Pending chain:
 7, 3, 2
 
-Insert first pending:
+Insert first pending to main chain:
 7, 9, 11, 13
 
 Jacobsthal group:
