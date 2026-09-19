@@ -29,9 +29,6 @@ endif
 # **************************************************************************** #
 # FILES
 SRC_FILES := main PmergeMe
-
-# GENERAL FILES
-SRC_FILES := main
 SRCS := $(addsuffix .cpp, $(SRC_FILES))
 OBJS := $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 DEPS := $(OBJS:.o=.d)

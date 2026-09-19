@@ -6,7 +6,7 @@
 /*   By: ozamora- <ozamora-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 17:29:07 by ozamora-          #+#    #+#             */
-/*   Updated: 2026/09/18 20:31:57 by ozamora-         ###   ########.fr       */
+/*   Updated: 2026/09/19 13:15:48 by ozamora-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 #include <string> // For std::string
 #include <vector> // For std::vector
 #include <list> // For std::list
+#include <iostream> // For std::cout, std::endl
 
 #define MAX_PRINT_SIZE 10
 
-template <typename Container>
 class PmergeMe
 {
 	private:
-		Container _values;
+		std::vector<int> _vector;
+		std::list<int> _list;
 
 		void parse(int argc, char **argv);
-		void sortRange(Container& values) const;
-		void createPairs(typename Container::const_iterator first, typename Container::const_iterator last, std::vector<std::pair<int, int> >& pairs) const;
-		void sortPairs(std::vector<std::pair<int, int> >& pairs) const;
-		void splitPairs(const std::vector<std::pair<int, int> >& pairs, Container& mainChain, Container& pending) const;
-		void insertPending(Container& mainChain, const Container& pending) const;
+		void sortVectorRange(std::vector<int>& values) const;
+		void sortListRange(std::list<int>& values) const;
+		void sortVectorPairs(std::vector<std::pair<int, int> >& pairs) const;
+		void sortListPairs(std::list<std::pair<int, int> >& pairs) const;
 
 		PmergeMe(void);
 
@@ -43,17 +43,28 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe& src);
 		~PmergeMe();
 
-		Container getValues() const;
-		Container sort();
+		std::vector<int>	getVector() const;
+		std::list<int>		getList() const;
+	
+		std::vector<int>	sortVector();
+		std::list<int>		sortList();
+
 		bool isSorted() const;
 };
 
-template <typename Container>
-void printRange(const Container& values);
+double timeSortingVector(PmergeMe& sorter, std::vector<int>& before, std::vector<int>& after);
+double timeSortingList(PmergeMe& sorter, std::list<int>& before, std::list<int>& after);
 
 template <typename Container>
-double timeSort(PmergeMe<Container>& sorter, Container& before, Container& after);
-
-#include "PmergeMe.tpp"
+void printContainer(const Container& values)
+{
+	int count = 0;
+	for (typename Container::const_iterator it = values.begin();
+		it != values.end() && count < MAX_PRINT_SIZE; ++it, ++count)
+		std::cout << *it << ' ';
+	if (values.size() > MAX_PRINT_SIZE)
+		std::cout << "[...]";
+	std::cout << std::endl;
+}
 
 #endif
